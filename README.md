@@ -1,6 +1,6 @@
 # AI Citation Tracker
 
-**Live demo:** https://YOUR-SITE.netlify.app
+**Live demo:** https://primetree2.github.io/ai-citation-tracker/
 
 I built this for the Beyond Labs interview task. When ChatGPT or Claude searches the web to answer a prompt, I wanted to see three things:
 

@@ -39,7 +39,7 @@
   // render
   function render() {
     $('#demo-banner').classList.toggle('hidden', !runs.some(r => r.demo));
-    renderKpis(); renderPlatformBars(); renderDomainBars(); renderRunsTables(); renderDetail();
+    renderKpis(); renderPlatformBars(); renderInsights(); renderDomainBars(); renderRunsTables(); renderDetail();
   }
 
   function renderKpis() {
@@ -66,6 +66,30 @@
     const rows = Object.entries(by).map(([p, v]) => ({ label: PLAT[p] || p, labelHtml: `<span class="tag ${p}">${PLAT[p] || p}</span> <span class="muted small">${pct(v.cit, v.ret)}%</span>`, ret: v.ret, cit: v.cit }));
     $('#platform-bars').innerHTML = bars(rows, Math.max(1, ...rows.map(r => r.ret)));
   }
+  function renderInsights() {
+    const out = [];
+    const by = {};
+    for (const r of runs) { const p = by[r.platform] || (by[r.platform] = { ret: 0, cit: 0, n: 0, q: 0 }); p.ret += r.retrieved; p.cit += r.cited; p.n++; p.q += r.queries.length; }
+    const g = by.chatgpt, c = by.claude;
+    if (g && c && c.ret && g.ret) {
+      const gAvg = g.ret / g.n, cAvg = c.ret / c.n;
+      const [hi, lo, hiN, loN] = gAvg >= cAvg ? ['ChatGPT', 'Claude', gAvg, cAvg] : ['Claude', 'ChatGPT', cAvg, gAvg];
+      out.push(`<b>${hi}</b> pulls in about <b>${(hiN / loN).toFixed(1)}×</b> more pages per answer than ${lo} (${Math.round(hiN)} vs ${Math.round(loN)}).`);
+      out.push(`ChatGPT cites <b>${pct(g.cit, g.ret)}%</b> of what it retrieves, Claude cites <b>${pct(c.cit, c.ret)}%</b>.`);
+    }
+    const srcs = runs.flatMap(r => r.sources.map(s => ({ ...s, platform: r.platform })));
+    const unc = srcs.filter(s => !s.cited).length;
+    if (srcs.length) out.push(`<b>${unc}</b> of ${srcs.length} retrieved pages were read but never cited. Those are the near-misses a brand would want to turn into citations.`);
+    const dom = {};
+    for (const s of srcs.filter(s => s.cited)) (dom[s.domain] = dom[s.domain] || new Set()).add(s.platform);
+    const both = Object.entries(dom).filter(([, v]) => v.size > 1).map(([d]) => d);
+    if (both.length) out.push(`Cited by both platforms: ${both.slice(0, 4).map(d => `<b>${esc(d)}</b>`).join(', ')}.`);
+    const top = Object.entries(dom).map(([d]) => [d, srcs.filter(s => s.cited && s.domain === d).length]).sort((a, b) => b[1] - a[1])[0];
+    if (top && !both.length) out.push(`Most cited domain: <b>${esc(top[0])}</b> (${top[1]}×).`);
+    if (g && !g.q) out.push('ChatGPT didn\'t save its fan-out queries in the conversation, so they only show up in the live network stream.');
+    $('#insights').innerHTML = out.length ? out.map(x => `<li>${x}</li>`).join('') : '<li class="muted">Add a run to see insights.</li>';
+  }
+
   function renderDomainBars() {
     const by = {};
     for (const s of runs.flatMap(r => r.sources)) { const d = by[s.domain] || (by[s.domain] = { ret: 0, cit: 0 }); d.ret++; if (s.cited) d.cit++; }
@@ -150,6 +174,24 @@
     try { const run = addRaw(JSON.parse($('#paste').value), 'paste'); $('#paste').value = ''; toast(`Imported ${PLAT[run.platform]} run`); selectedId = run.id; showTab('runs'); renderDetail(); }
     catch (e) { toast('Could not import: ' + e.message); }
   };
+
+  // sample files from the repo
+  async function loadSample(which) {
+    const list = which === 'all' ? ['chatgpt', 'claude'] : [which];
+    try {
+      let last;
+      for (const p of list) {
+        const res = await fetch(`../sample-data/${p}_raw.json`);
+        if (!res.ok) throw new Error(res.status);
+        last = addRaw(await res.json(), 'sample');
+      }
+      selectedId = last.id; showTab('runs'); renderDetail();
+      toast(list.length > 1 ? 'Parsed both sample chats live' : `Parsed ${PLAT[last.platform]} sample: ${last.cited}/${last.retrieved} cited`);
+    } catch (e) {
+      toast('Couldn\'t fetch the sample. Open the hosted site, or drop the file from sample-data/ instead.');
+    }
+  }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-sample]'); if (b) loadSample(b.dataset.sample); });
 
   // bookmarklet
   function bookmarkletCode(dash) {

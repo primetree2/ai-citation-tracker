@@ -4,7 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📌</text></svg>">
-  <title>AI Citation Tracker · prototype</title>
+<title>AI Citation Tracker · Harsh Raj</title>
+<meta name="description" content="See which pages ChatGPT and Claude retrieve during web search, and which ones they actually cite.">
+<meta property="og:title" content="AI Citation Tracker">
+<meta property="og:description" content="Retrieved vs cited sources across ChatGPT and Claude. Built by Harsh Raj.">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -21,11 +24,23 @@
     <button data-tab="runs">Runs</button>
     <button data-tab="add">Add data</button>
     <button data-tab="how">How it works</button>
+    <a class="gh" href="https://github.com/primetree2/ai-citation-tracker" target="_blank" rel="noopener">GitHub ↗</a>
   </nav>
 </header>
 
 <main>
     <section id="tab-overview" class="tab active">
+    <div class="hero">
+      <div>
+        <h1>Which pages does AI read, and which does it actually cite?</h1>
+        <p>When ChatGPT or Claude searches the web, it pulls in a bunch of pages but only credits a few in the answer. I built this to log both lists for any chat: the search queries it ran, every page it retrieved, and which of those made it into the answer.</p>
+        <div class="hero-cta">
+          <button class="btn primary" data-sample="all">▶ Run the parser on my sample chats</button>
+          <button class="btn" data-goto="add">Capture your own chat</button>
+          <button class="btn" data-goto="how">How I built it</button>
+        </div>
+      </div>
+    </div>
     <div id="demo-banner" class="banner hidden">
       Showing <b>demo data</b> from my own test chats. Add your own on the <a href="#" data-goto="add">Add data</a> tab.
     </div>
@@ -35,6 +50,8 @@
         <h3>Cite rate by platform</h3>
         <p class="muted">Share of retrieved pages that end up cited in the answer.</p>
         <div id="platform-bars"></div>
+        <h4>What stands out</h4>
+        <ul id="insights" class="insights"></ul>
       </div>
       <div class="panel">
         <h3>Domains: retrieved vs cited</h3>
@@ -64,6 +81,18 @@
   </section>
 
     <section id="tab-add" class="tab">
+    <div class="panel try">
+      <div class="row-between">
+        <div>
+          <h3>Try it in 10 seconds</h3>
+          <p class="muted">These are the untouched conversation files I downloaded from ChatGPT and Claude. The button fetches them and runs them through the parser right here in your browser.</p>
+        </div>
+        <div class="actions">
+          <button class="btn primary" data-sample="chatgpt">Load ChatGPT sample</button>
+          <button class="btn primary" data-sample="claude">Load Claude sample</button>
+        </div>
+      </div>
+    </div>
     <div class="grid2">
       <div class="panel">
         <h3>1 · One-click capture (bookmarklet)</h3>
@@ -81,7 +110,7 @@
         <h3>2 · Upload saved conversation files</h3>
         <label id="drop" class="drop">
           <input type="file" id="file-input" accept=".json,application/json" multiple hidden>
-          <div class="drop-icon">⇪</div>
+          <div class="drop-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></div>
           <div><b>Drop JSON files here</b> or click to choose</div>
           <div class="muted small">chatgpt_raw.json, claude_raw.json, or files from the batch runner</div>
         </label>
@@ -127,6 +156,7 @@ python batch_runner.py                  # runs prompts.txt on chatgpt + claude</
   </section>
 </main>
 
+<footer class="foot">Built by Harsh Raj for the Beyond Labs task · Runs entirely in your browser, nothing is uploaded · <a href="https://github.com/primetree2/ai-citation-tracker" target="_blank" rel="noopener">Source on GitHub</a></footer>
 <div id="toast" class="toast hidden"></div>
 <script src="parser.js"></script>
 <script src="demo-data.js"></script>
