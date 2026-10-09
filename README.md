@@ -1,4 +1,4 @@
-# AI Citation Tracker
+# AI Citation Tracker - by Harsh Raj 
 
 **Live demo:** https://primetree2.github.io/ai-citation-tracker/
 
