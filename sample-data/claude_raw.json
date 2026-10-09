@@ -1,0 +1,526 @@
+{
+  "uuid": "566a65a3-a3f1-4c30-aa2e-954b2697e71e",
+  "name": "YouTube tutorials for n8n automation",
+  "summary": "",
+  "model": "claude-sonnet-5-5",
+  "created_at": "2026-10-09T09:44:51.967934Z",
+  "updated_at": "2026-10-09T09:45:04.579904Z",
+  "settings": {
+    "enabled_web_search": true,
+    "paprika_mode": "extended",
+    "enabled_monkeys_in_a_barrel": true,
+    "enabled_saffron": false,
+    "tool_search_mode": "auto",
+    "thinking_mode": "auto",
+    "effort_level": "medium",
+    "preview_feature_uses_artifacts": true,
+    "enabled_artifacts_attachments": false,
+    "enabled_turmeric": true
+  },
+  "is_starred": false,
+  "is_archived": false,
+  "is_temporary": false,
+  "workspace_upgraded": false,
+  "is_multiplayer": false,
+  "platform": "CLAUDE_AI",
+  "is_wiggle_enabled": true,
+  "effective_thinking_mode": "auto",
+  "current_leaf_message_uuid": "01a1200d-3a99-7a5d-85fa-d63d8e4482db",
+  "chat_messages": [
+    {
+      "uuid": "01a1200d-3a99-78e4-86e8-57e8ef92ea2c",
+      "text": "",
+      "content": [
+        {
+          "start_timestamp": "2026-10-09T09:44:52.992639Z",
+          "stop_timestamp": "2026-10-09T09:44:52.992639Z",
+          "type": "text",
+          "text": "Search the web: best YouTube tutorials to learn n8n automation in 2026",
+          "citations": []
+        }
+      ],
+      "sender": "human",
+      "index": 0,
+      "created_at": "2026-10-09T09:44:52.992897Z",
+      "updated_at": "2026-10-09T09:44:52.992897Z",
+      "truncated": false,
+      "attachments": [],
+      "files": [],
+      "sync_sources": [],
+      "parent_message_uuid": "00000000-0000-4000-8000-000000000000"
+    },
+    {
+      "uuid": "01a1200d-3a99-7a5d-85fa-d63d8e4482db",
+      "text": "",
+      "content": [
+        {
+          "start_timestamp": "2026-10-09T09:44:52.992497Z",
+          "stop_timestamp": "2026-10-09T09:44:53.648736Z",
+          "type": "tool_use",
+          "id": "toolu_01VnzcwDoy5Fb15TyvxBvkxA",
+          "name": "web_search",
+          "input": {
+            "mode": "standard",
+            "query": "best YouTube tutorials learn n8n automation 2026"
+          },
+          "message": "Searching the web",
+          "icon_name": "globe",
+          "tool_origin": "first_party"
+        },
+        {
+          "start_timestamp": "2026-10-09T09:44:54.249253Z",
+          "stop_timestamp": "2026-10-09T09:44:54.249304Z",
+          "type": "tool_result",
+          "tool_use_id": "toolu_01VnzcwDoy5Fb15TyvxBvkxA",
+          "name": "web_search",
+          "content": [
+            {
+              "type": "knowledge",
+              "title": "10 Best n8n Tutorials for AI Automation",
+              "url": "https://glasp.co/posts/10-best-n8n-tutorials-for-ai-automation",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "glasp.co",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=glasp.co",
+                "site_name": "glasp"
+              },
+              "is_missing": false
+            },
+            {
+              "type": "knowledge",
+              "title": "Learn n8n — Free Video Roadmap",
+              "url": "https://developereducators.com/roadmap/n8n/",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "developereducators.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                "site_name": "developereducators"
+              },
+              "is_missing": false
+            },
+            {
+              "type": "knowledge",
+              "title": "Best Content and Community Resources for Founders Using n8n",
+              "url": "https://inferencebysequoia.substack.com/p/best-content-and-community-resources",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "substack.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=substack.com",
+                "site_name": "Substack"
+              },
+              "is_missing": false
+            },
+            {
+              "type": "knowledge",
+              "title": "Best n8n Tutorial Videos",
+              "url": "https://developereducators.com/best/n8n/",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "developereducators.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                "site_name": "developereducators"
+              },
+              "is_missing": false
+            },
+            {
+              "type": "knowledge",
+              "title": "genaiunplugged.substack.com",
+              "url": "https://genaiunplugged.substack.com/i/186556145/",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "substack.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=substack.com",
+                "site_name": "Substack"
+              },
+              "is_missing": false
+            },
+            {
+              "type": "knowledge",
+              "title": "developereducators.com",
+              "url": "https://developereducators.com/tutorials/n8n/",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "developereducators.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                "site_name": "developereducators"
+              },
+              "is_missing": false
+            },
+            {
+              "type": "knowledge",
+              "title": "Introduction to N8N",
+              "url": "https://community.n8n.io/t/introduction-to-n8n/230666?tl=ar",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "n8n.io",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=n8n.io",
+                "site_name": "n8n"
+              },
+              "is_missing": false
+            },
+            {
+              "type": "knowledge",
+              "title": "n8n tutorial 2026 complete learning roadmap for beginners",
+              "url": "https://www.createwith.com/video/n8n-tutorial-2026-complete-learning-roadmap-for-beginners",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "createwith.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=createwith.com",
+                "site_name": "createwith"
+              },
+              "is_missing": false
+            },
+            {
+              "type": "knowledge",
+              "title": "aiagentrank.io",
+              "url": "https://aiagentrank.io/learn/n8n",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "aiagentrank.io",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=aiagentrank.io",
+                "site_name": "aiagentrank"
+              },
+              "is_missing": false
+            }
+          ],
+          "is_error": false,
+          "icon_name": "globe",
+          "tool_origin": "first_party"
+        },
+        {
+          "start_timestamp": "2026-10-09T09:44:55.735486Z",
+          "stop_timestamp": "2026-10-09T09:45:02.858575Z",
+          "type": "thinking",
+          "thinking": "",
+          "summaries": [
+            {
+              "summary": "Drafting a concise, well-cited response."
+            }
+          ],
+          "cut_off": false,
+          "truncated": true,
+          "hidden": false,
+          "thinking_hidden": true
+        },
+        {
+          "start_timestamp": "2026-10-09T09:45:02.858667Z",
+          "stop_timestamp": "2026-10-09T09:45:04.516037Z",
+          "type": "text",
+          "text": "Here are the YouTube resources that came up most often for learning n8n in 2026.\n\n**Where to start**\n- **n8n's official channel** is the cleanest path to a first working automation. A curated list of 10 tutorials includes an official n8n intro that explains what automation is before you touch any nodes, plus n8n's own quick-start. The official channel also covers connecting n8n to AI tools through an instance-level MCP.\n- **AI Foundations, \"N8N Full Tutorial: Building AI Agents in 2025 for Beginners!\"** is the first video in one roadmap, with 415,235 views. A community post also recommends it as a \"Beginner to Pro\" tutorial focused on AI-powered automations.\n\n**Full courses and roadmaps**\n- **Nate Herk** has a video called \"How I'd Learn n8n if I had to Start Over in 2026.\" It lays out a roadmap from complete beginner to advanced user, covering the expression editor, authentication methods, JSON parsing, pagination and webhooks. His longer course-style video runs 91 minutes and has 520K views.\n- **GenAI Unplugged's free course** is a lesson-by-lesson series. It covers automation fundamentals, nodes and triggers, setting up n8n Cloud in 2026, an interface walkthrough, and branching and merging workflows, mostly in 10 to 20 minute videos.\n\n**Popular channels worth browsing**\n- **Fireship** has the most-viewed n8n video in one index, \"n8n will change your life as a developer...\", with over 1.1 million views.\n- **NetworkChuck** is listed among the top YouTube channels for learning n8n, with 5.33 million subscribers.\n- **Simon Høiberg** is another top educator. His video \"How To Build a Startup Team of AI Agents\" uses n8n, OpenAI and FeedHive.\n\n**Suggested order**\n1. Watch the official n8n intro and quick-start.\n2. Follow a beginner AI agent tutorial, such as AI Foundations.\n3. Work through Nate Herk's roadmap or the GenAI Unplugged course.\n4. Build small projects, then move on to error handling and best practices, since error workflows help you manage and resolve automation failures.\n\n**Roadmap and ranking sites**\n- Developer Educators has a free roadmap of 18 videos, ordered from beginner to advanced.\n- Its ranked list covers 200 videos from 79 creators.\n\nThese rankings are mostly by view count, so check upload dates, because n8n's AI and agent nodes change quickly. For AI workflows, look for videos updated within the last six months.\n\nIf you tell me your background (no-code, developer, or business owner), I can narrow this to a 3-video starter path.",
+          "citations": [
+            {
+              "uuid": "df5695a4-b0b7-4b93-9380-b17913d54a9d",
+              "title": "10 Best n8n Tutorials for AI Automation",
+              "url": "https://glasp.co/posts/10-best-n8n-tutorials-for-ai-automation",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "glasp.co",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=glasp.co",
+                "site_name": "glasp"
+              },
+              "origin_tool_name": "web_search",
+              "sources": [
+                {
+                  "title": "10 Best n8n Tutorials for AI Automation",
+                  "url": "https://glasp.co/posts/10-best-n8n-tutorials-for-ai-automation",
+                  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=glasp.co",
+                  "source": "glasp",
+                  "uuid": "df5695a4-b0b7-4b93-9380-b17913d54a9d"
+                }
+              ],
+              "start_index": 182,
+              "end_index": 423
+            },
+            {
+              "uuid": "cb297fe2-f89c-496f-bf1e-44d41dc952cf",
+              "title": "Best n8n Tutorial Videos",
+              "url": "https://developereducators.com/best/n8n/",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "developereducators.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                "site_name": "developereducators"
+              },
+              "origin_tool_name": "web_search",
+              "sources": [
+                {
+                  "title": "Best n8n Tutorial Videos",
+                  "url": "https://developereducators.com/best/n8n/",
+                  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                  "source": "developereducators",
+                  "uuid": "cb297fe2-f89c-496f-bf1e-44d41dc952cf"
+                }
+              ],
+              "start_index": 366,
+              "end_index": 423
+            },
+            {
+              "uuid": "2b5f42ca-bbf1-4a0f-93a7-424e6ac8a6d6",
+              "title": "Learn n8n — Free Video Roadmap",
+              "url": "https://developereducators.com/roadmap/n8n/",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "developereducators.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                "site_name": "developereducators"
+              },
+              "origin_tool_name": "web_search",
+              "sources": [
+                {
+                  "title": "Learn n8n — Free Video Roadmap",
+                  "url": "https://developereducators.com/roadmap/n8n/",
+                  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                  "source": "developereducators",
+                  "uuid": "2b5f42ca-bbf1-4a0f-93a7-424e6ac8a6d6"
+                }
+              ],
+              "start_index": 549,
+              "end_index": 666
+            },
+            {
+              "uuid": "321ebcc0-d7af-4ee8-8149-5db4dad39ec7",
+              "title": "Introduction to N8N",
+              "url": "https://community.n8n.io/t/introduction-to-n8n/230666?tl=ar",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "n8n.io",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=n8n.io",
+                "site_name": "n8n"
+              },
+              "origin_tool_name": "web_search",
+              "sources": [
+                {
+                  "title": "Introduction to N8N",
+                  "url": "https://community.n8n.io/t/introduction-to-n8n/230666?tl=ar",
+                  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=n8n.io",
+                  "source": "n8n",
+                  "uuid": "321ebcc0-d7af-4ee8-8149-5db4dad39ec7"
+                }
+              ],
+              "start_index": 605,
+              "end_index": 666
+            },
+            {
+              "uuid": "0b9b64e1-fcbf-40a3-8ef3-c056c9298453",
+              "title": "n8n tutorial 2026 complete learning roadmap for beginners",
+              "url": "https://www.createwith.com/video/n8n-tutorial-2026-complete-learning-roadmap-for-beginners",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "createwith.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=createwith.com",
+                "site_name": "createwith"
+              },
+              "origin_tool_name": "web_search",
+              "sources": [
+                {
+                  "title": "n8n tutorial 2026 complete learning roadmap for beginners",
+                  "url": "https://www.createwith.com/video/n8n-tutorial-2026-complete-learning-roadmap-for-beginners",
+                  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=createwith.com",
+                  "source": "createwith",
+                  "uuid": "0b9b64e1-fcbf-40a3-8ef3-c056c9298453"
+                }
+              ],
+              "start_index": 788,
+              "end_index": 1008
+            },
+            {
+              "uuid": "51d46fce-7903-4e57-b716-61fd40dd612c",
+              "title": "10 Best n8n Tutorials for AI Automation",
+              "url": "https://glasp.co/posts/10-best-n8n-tutorials-for-ai-automation",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "glasp.co",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=glasp.co",
+                "site_name": "glasp"
+              },
+              "origin_tool_name": "web_search",
+              "sources": [
+                {
+                  "title": "10 Best n8n Tutorials for AI Automation",
+                  "url": "https://glasp.co/posts/10-best-n8n-tutorials-for-ai-automation",
+                  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=glasp.co",
+                  "source": "glasp",
+                  "uuid": "51d46fce-7903-4e57-b716-61fd40dd612c"
+                }
+              ],
+              "start_index": 978,
+              "end_index": 1008
+            },
+            {
+              "uuid": "3d8bd20c-6f2d-41cc-89f8-68df7219d9d4",
+              "title": "genaiunplugged.substack.com",
+              "url": "https://genaiunplugged.substack.com/i/186556145/",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "substack.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=substack.com",
+                "site_name": "Substack"
+              },
+              "origin_tool_name": "web_search",
+              "sources": [
+                {
+                  "title": "genaiunplugged.substack.com",
+                  "url": "https://genaiunplugged.substack.com/i/186556145/",
+                  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=substack.com",
+                  "source": "Substack",
+                  "uuid": "3d8bd20c-6f2d-41cc-89f8-68df7219d9d4"
+                }
+              ],
+              "start_index": 1085,
+              "end_index": 1256
+            },
+            {
+              "uuid": "f6ac7470-e6d3-48e1-ae1f-343f3ca4214f",
+              "title": "Best n8n Tutorial Videos",
+              "url": "https://developereducators.com/best/n8n/",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "developereducators.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                "site_name": "developereducators"
+              },
+              "origin_tool_name": "web_search",
+              "sources": [
+                {
+                  "title": "Best n8n Tutorial Videos",
+                  "url": "https://developereducators.com/best/n8n/",
+                  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                  "source": "developereducators",
+                  "uuid": "f6ac7470-e6d3-48e1-ae1f-343f3ca4214f"
+                }
+              ],
+              "start_index": 1405,
+              "end_index": 1428
+            },
+            {
+              "uuid": "fa871aa4-8fa1-4c45-a209-b3a7b242beb3",
+              "title": "developereducators.com",
+              "url": "https://developereducators.com/tutorials/n8n/",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "developereducators.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                "site_name": "developereducators"
+              },
+              "origin_tool_name": "web_search",
+              "sources": [
+                {
+                  "title": "developereducators.com",
+                  "url": "https://developereducators.com/tutorials/n8n/",
+                  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                  "source": "developereducators",
+                  "uuid": "fa871aa4-8fa1-4c45-a209-b3a7b242beb3"
+                }
+              ],
+              "start_index": 1468,
+              "end_index": 1537
+            },
+            {
+              "uuid": "b6c2d44c-2941-4304-b11b-865f45521871",
+              "title": "Best n8n Tutorial Videos",
+              "url": "https://developereducators.com/best/n8n/",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "developereducators.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                "site_name": "developereducators"
+              },
+              "origin_tool_name": "web_search",
+              "sources": [
+                {
+                  "title": "Best n8n Tutorial Videos",
+                  "url": "https://developereducators.com/best/n8n/",
+                  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                  "source": "developereducators",
+                  "uuid": "b6c2d44c-2941-4304-b11b-865f45521871"
+                }
+              ],
+              "start_index": 1569,
+              "end_index": 1666
+            },
+            {
+              "uuid": "59a13f1d-bdfc-4263-a905-f10dd1d1d659",
+              "title": "10 Best n8n Tutorials for AI Automation",
+              "url": "https://glasp.co/posts/10-best-n8n-tutorials-for-ai-automation",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "glasp.co",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=glasp.co",
+                "site_name": "glasp"
+              },
+              "origin_tool_name": "web_search",
+              "sources": [
+                {
+                  "title": "10 Best n8n Tutorials for AI Automation",
+                  "url": "https://glasp.co/posts/10-best-n8n-tutorials-for-ai-automation",
+                  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=glasp.co",
+                  "source": "glasp",
+                  "uuid": "59a13f1d-bdfc-4263-a905-f10dd1d1d659"
+                }
+              ],
+              "start_index": 1950,
+              "end_index": 2014
+            },
+            {
+              "uuid": "5d733fd5-3a98-452e-be91-4ab1997e6f1e",
+              "title": "Learn n8n — Free Video Roadmap",
+              "url": "https://developereducators.com/roadmap/n8n/",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "developereducators.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                "site_name": "developereducators"
+              },
+              "origin_tool_name": "web_search",
+              "sources": [
+                {
+                  "title": "Learn n8n — Free Video Roadmap",
+                  "url": "https://developereducators.com/roadmap/n8n/",
+                  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                  "source": "developereducators",
+                  "uuid": "5d733fd5-3a98-452e-be91-4ab1997e6f1e"
+                }
+              ],
+              "start_index": 2074,
+              "end_index": 2135
+            },
+            {
+              "uuid": "7978a256-f4de-46db-b110-649f926130f4",
+              "title": "Best n8n Tutorial Videos",
+              "url": "https://developereducators.com/best/n8n/",
+              "metadata": {
+                "type": "webpage_metadata",
+                "site_domain": "developereducators.com",
+                "favicon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                "site_name": "developereducators"
+              },
+              "origin_tool_name": "web_search",
+              "sources": [
+                {
+                  "title": "Best n8n Tutorial Videos",
+                  "url": "https://developereducators.com/best/n8n/",
+                  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=developereducators.com",
+                  "source": "developereducators",
+                  "uuid": "7978a256-f4de-46db-b110-649f926130f4"
+                }
+              ],
+              "start_index": 2161,
+              "end_index": 2189
+            }
+          ],
+          "citations_grouping_mode": "paragraph_end"
+        }
+      ],
+      "sender": "assistant",
+      "index": 1,
+      "created_at": "2026-10-09T09:45:04.579904Z",
+      "updated_at": "2026-10-09T09:45:04.579904Z",
+      "truncated": false,
+      "stop_reason": "end_turn",
+      "attachments": [],
+      "files": [],
+      "sync_sources": [],
+      "parent_message_uuid": "01a1200d-3a99-78e4-86e8-57e8ef92ea2c"
+    }
+  ]
+}

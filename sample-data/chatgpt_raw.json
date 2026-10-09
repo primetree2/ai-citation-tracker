@@ -1,0 +1,3058 @@
+{
+  "title": "YouTube Tutorials n8n Automation",
+  "create_time": 1791538742.981039,
+  "update_time": 1791538761.903094,
+  "moderation_results": [],
+  "plugin_ids": null,
+  "conversation_id": "6ac8b635-3fb0-83e8-836c-8c9838133c65",
+  "conversation_template_id": null,
+  "gizmo_id": null,
+  "gizmo_type": null,
+  "is_archived": false,
+  "is_starred": null,
+  "safe_urls": [
+    "https://images.openai.com/static-rsc-4/HHyKW_HcsCX113LQdz4bb4oYxtbdT4Jgnlc4VJq-W2iIZTF382Qk7e0hGmbveABh9zmA8t70tEV9nvrFdFEWrdfofVj4C8wdtKtLdEtYoOEgglcHke_Pe9J41Z9hXPOnBg5bvx0NXlQY7Q7W8Jm6V39Gc-LSnrtcDqUN_EL6chv63bVQPlgzekApEiET0pSi?purpose=fullsize",
+    "https://support.n8n.io/article/learning-resources",
+    "https://developereducators.com/tutorials/n8n/",
+    "https://skilldential.com/learn-n8n-from-scratch-using-free-tools/",
+    "https://aiattention.ai/blog/best-ai-agents-educators-youtube-2026",
+    "https://gitlab.com",
+    "https://www.youtube.com/@ColeMedin",
+    "https://www.reddit.com/r/n8n_ai_agents/comments/1wg4e5o/best_channel_to_learn_n8n/",
+    "https://images.openai.com/static-rsc-4/O1UxeywPlfdapLu33bhwNXATiTI9yvo67djshAD1-PbDK5bvzpusSTI-pN5_XeTb7FnRGz95YsrA9gQ8Da50tOjQwhJOI-4NvEk1BAkgGxPlV98J2VPTlnAYNq8RptcYCGDq3A7ZAg8RTdx2RLPmEDEDihniiFwSk2XkPPzAjDf6ce9rwjCOIHX45aYo_UuA?purpose=fullsize",
+    "https://images.openai.com/static-rsc-4/zeA3hr3EcXWh6vH_JyTGRm6dvr808h3CInRVkAKRq2GPsJg7s1HyH0ehbk5YhR_frmVafcYiO08mVLrDEWRWGc86c5D3eLly_sQLNjXmhYiMuXXTEXQ4jQARRY6rM4RoK1FB43jej0ybEdwNZnXYhBn3WsBH0xtMPVRViGB58uM?purpose=inline",
+    "https://www.youtube.com/@n8n-io",
+    "https://www.classcentral.com/report/best-n8n-courses/",
+    "https://images.openai.com/static-rsc-4/iWT1MAbRkTg9JD1bsi9tMdZEmoaaxZ7QILffPUn7htALyQF9CoCckhZnK4qIpv7N-kv0ir13uoGn1eE2y9aOXQKKJ0olWxF_Xy5nsBTbaH0gTwK4laUSNsFXNx0MKmPTpynDKC1defCPLn0cJe1CQTpRY4olp9OLXsJQiyWMMjQ?purpose=inline",
+    "https://www.youtube.com/watch?v=HaSaDsn3AMg",
+    "https://images.openai.com/static-rsc-4/1xRv2Df1e9oBtEoLQGr6jf3vhFRJyKLPglkoEMz682S0ONvkN-GjDooOrFOUYkqgpDU0lixV-6YBnsjJpXFTRY7JiR9dAm4pghc2XjD4ZoVvNUZFstjxP8aSWWft0zdEYfyUA3qsb6ucAqpZMhlWFRuSUyFybr4RbsMovScvOdc?purpose=inline",
+    "https://academy.n8n.io/",
+    "https://youtu.be/56z15ZHxxPk",
+    "https://images.openai.com/static-rsc-4/y_tDGQwcvUvbY7x5ScDwVoyVmmT-UFNsx35mUp5I25iJsSI6zdpMVA5q8YaiFzlpy1XsFCy6rxkQ-Tic9a0-ajU1Ye_ICkHUDCSLiCiIsWiHjeKrgGkPA8UX3x-scDl_K0H_g2MRd_ypGWBs0N5wYdnaTYCvZZ5LTH3JvmYKbCDpnRn6_mcdL8G1jq_CQgYi?purpose=fullsize",
+    "https://images.openai.com/static-rsc-4/4xWrKSQvtb7Yg0ix1Kt-_PHDyD0-X1F95Ssnjr59NWrQhLUMXWUpgFfRRPhO4Sj0-aRxCHOPpVwdOFcYlJY11tdzu7xD_3qgJsIRabwtljRxWGtRL5Hbiw0yS_s4PcSVumll1uZl7utfXf5mMxTiOvLj1gmhOHwdI1Ggqr2C9Cg?purpose=inline",
+    "https://learnforge.dev/blog/best-n8n-course-2026/",
+    "https://www.classcentral.com/subject/n8n",
+    "https://community.n8n.io/t/beginner-course/48588",
+    "https://files.mindstudio-cdn.com/c1ecbf36-9ddb-4adb-85af-d13f05487bdf/documents/d57a7e08-876c-4fd5-967e-e375584ad05d.html",
+    "https://images.openai.com/static-rsc-4/P-sRHR6XS2uJ0K3emyOH1ujlcldQh-JcaePdsatppqSluG7l_N5hi8zR_vkKE4w9xmP-Qg1UNF22OjUkrWfCmHHz9CF2kPADUGZXyx_cztODL_YU18lqb1LNAcc9_2HOEy-Ymhkp7PqJ6LFryAZaZjjkhUcRjzvtCH5iwR3cCFBjPLWvPMn1Z_zNd4sW8HkM?purpose=fullsize",
+    "https://www.classcentral.com/course/youtube-how-i-d-learn-n8n-if-i-had-to-start-over-in-2026-511237",
+    "https://www.youtube.com/@LeonVanZyl",
+    "https://images.openai.com/static-rsc-4/LXd9vcqQIbX-O1-y-aMZyUT7jin8M8nq-SEwtM7Qsya-vcXeGkt8rN-isXtd25kIb7MhxTEoyIzv4xGtQWhPlO6cV7JriCuQnuSCJnIUUPtqX-qXf-DGOzG4AlmM2-Ow9K3qXwKjS2jUaufN0JOvDWrMiF05kRe7JjuTgJHgPjo?purpose=inline",
+    "https://www.openai.com",
+    "https://docs.n8n.io/",
+    "https://images.openai.com/static-rsc-4/g2P5DEvYlG98dCRRce9s1mFY3BkVITZqK9N7bfHUPWXJ8eUS_4Z9dkZxoiHEq07tnMVlwuOBwUAUQ-0n01kqP9sobNdwgcSaXGEl_WUMLsuhP5DSh9n-JR0xqtJckiytTQMmjV-65swu2N1pWWlkZdF-LPXZAuxdbrFwEORTznyf6KfgbnIms04Pe8u8kU5C?purpose=fullsize",
+    "https://www.youtube.com/watch?v=7_PeuTsx7UM",
+    "https://taa3lim.com/articles/n8n-ai-automation-course-2026-%D9%83%D9%8A%D9%81-%D8%AA%D8%A8%D9%8A%D8%B9-%D8%A7%D9%84%D8%A3%D9%88%D8%AA%D9%88%D9%85%D8%A7%D9%8A%D8%B4%D9%86-%D8%AF%D9%88%D8%B1%D8%A9",
+    "https://developereducators.com/roadmap/n8n/",
+    "https://blog.aakashdev.in/blog/ai-automation-langchain-n8n-youtube-resources",
+    "https://glasp.co/youtube/4cQWJViybAQ",
+    "https://images.openai.com/static-rsc-4/w-xdl6pMP9aDvgzEA1k5G9SQfiIg7ca5HdlcJJVxRXG-TfoI8df3chrjqS2LWQlNawkB-ReNPb3BaYf5iLAY56sozzcPgvkXum7B_YJUoXcKskw98NAU4wc0j98gl76pcHmTlRtmJIIMypNtDP5r5h8382J6XPQJXHVcwRHkNSHgahtsrZEixKctImGnoUpK?purpose=fullsize",
+    "https://growai.in/best-n8n-course-india-2026/",
+    "https://community.n8n.io/c/tutorials/28/l/top",
+    "https://www.youtube.com/watch?v=TZ43SRdTMs0",
+    "https://images.openai.com/static-rsc-4/t1z3wrhRZfxCQ7JcKBVKtNG8_0aXYdeOaLcAeokAsvk_acLwnzyiFbIBq-pvaRRiOv80SlaUN2SPG_C0XEegj7TYDze2nUjWJtzuZRkSxhp0MU1FJ31FOA1fWqMPYq9vshacNf0Ihh6dvMzW1ZEHCR3ntYXiQLz26EN-iEJMFVg?purpose=inline",
+    "https://images.openai.com/static-rsc-4/c5fLDmEpp9KW7xJxd0qbuBtC-qFir00KrXbOSTYqSip1vsurEeY77FdNJEceUIcxwLh2Ogi7IxzmDmPgUVzBmGA2PSGw4sWsa9g_I4BC1rYa7VW2McPxndAmRmtlcS7t8TaPEtimBlNVBso-LH2UTzERPwiKQyHfP7xdT-bBwn7JB8e2Dvrrilsy9Bv2Ztyg?purpose=fullsize",
+    "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg",
+    "https://www.linkedin.com/posts/n8n_leon-van-zyl-just-dropped-a-great-tutorial-activity-7355869766609162240-mD2Y",
+    "https://images.openai.com/static-rsc-4/tyulgnv39vzKPcCglsnc4QxeN39J-DZ0NiDWTHsHIT5Ocz0yi7iR6HFBbjA8B-CyP3Kp2WYTbex5OEO0D-sWgDn8fOgImfgMMkXqZfb4yHz_eaKkQsi6PgJwETrvLWAFKzIo_Tapv9BfU2Ks4Xy3pikRC6FczELpwWH4ABenxZc?purpose=inline",
+    "https://learnwithpath.com/blog/best-youtube-channels-for-ai-engineering-2026"
+  ],
+  "blocked_urls": [],
+  "default_model_slug": "gpt-6",
+  "atlas_mode_enabled": null,
+  "conversation_origin": null,
+  "is_read_only": null,
+  "voice": null,
+  "async_status": null,
+  "disabled_tool_ids": [],
+  "is_temporary_chat": false,
+  "is_do_not_remember": false,
+  "memory_scope": "global_enabled",
+  "context_scopes": null,
+  "sugar_item_id": null,
+  "sugar_item_visible": false,
+  "pinned_time": null,
+  "is_study_mode": false,
+  "owner": null,
+  "sectioned_conversation": null,
+  "mapping": {
+    "client-created-root": {
+      "id": "client-created-root",
+      "message": null,
+      "parent": null,
+      "children": [
+        "7eebb927-0dc7-41ae-bc88-ecacc018bdfa"
+      ]
+    },
+    "7eebb927-0dc7-41ae-bc88-ecacc018bdfa": {
+      "id": "7eebb927-0dc7-41ae-bc88-ecacc018bdfa",
+      "message": {
+        "id": "7eebb927-0dc7-41ae-bc88-ecacc018bdfa",
+        "author": {
+          "role": "user",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1791538733.496,
+        "update_time": 1791538761.3909,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "Search the web: best YouTube tutorials to learn n8n automation in 2026"
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": null,
+        "weight": 1,
+        "metadata": {
+          "request_id": "0a900cc6-2421-49e1-8ae3-08181a386843",
+          "message_source": null,
+          "turn_exchange_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "working_turn_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "can_save": false
+        },
+        "recipient": "all",
+        "channel": null
+      },
+      "parent": "client-created-root",
+      "children": [
+        "7a268f8f-ea70-48c5-99ec-64001572335e"
+      ]
+    },
+    "7a268f8f-ea70-48c5-99ec-64001572335e": {
+      "id": "7a268f8f-ea70-48c5-99ec-64001572335e",
+      "message": {
+        "id": "7a268f8f-ea70-48c5-99ec-64001572335e",
+        "author": {
+          "role": "assistant",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1791538745.535827,
+        "update_time": 1791538745.535827,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            ""
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": false,
+        "weight": 1,
+        "metadata": {
+          "finish_details": {
+            "type": "stop",
+            "stop_tokens": [
+              200012
+            ]
+          },
+          "is_complete": true,
+          "citations": [],
+          "content_references": [],
+          "resolved_model_slug": "gpt-6",
+          "hide_inline_actions": true,
+          "disable_turn_actions": true,
+          "cot_version": "v5",
+          "request_id": "0a900cc6-2421-49e1-8ae3-08181a386843",
+          "message_type": "next",
+          "turn_exchange_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "working_turn_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "model_slug": "gpt-6",
+          "default_model_slug": "gpt-6",
+          "parent_id": "7073550e-9013-4be1-b596-caa085a29b63",
+          "reasoning_titles": [
+            "Searching the web"
+          ],
+          "reasoning_title": "Searching the web",
+          "reasoning_status": "is_reasoning",
+          "tool_icons": [
+            "globe"
+          ],
+          "reasoning_start_time": 1791538743.8062034,
+          "model_switcher_deny": [],
+          "can_save": false
+        },
+        "recipient": "web.run",
+        "channel": null
+      },
+      "parent": "7eebb927-0dc7-41ae-bc88-ecacc018bdfa",
+      "children": [
+        "be3c0133-a646-4c81-9bc8-b4a40f2118ec"
+      ]
+    },
+    "be3c0133-a646-4c81-9bc8-b4a40f2118ec": {
+      "id": "be3c0133-a646-4c81-9bc8-b4a40f2118ec",
+      "message": {
+        "id": "be3c0133-a646-4c81-9bc8-b4a40f2118ec",
+        "author": {
+          "role": "tool",
+          "name": "web.run",
+          "metadata": {
+            "real_author": "tool:web.run"
+          }
+        },
+        "create_time": 1791538746.267179,
+        "update_time": 1791538746.267179,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            ""
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": null,
+        "weight": 1,
+        "metadata": {
+          "search_result_groups": [
+            {
+              "type": "search_result_group",
+              "domain": "developereducators.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://developereducators.com/tutorials/n8n/",
+                  "title": "Best n8n YouTube Channels for Tutorials in 2026 (137 creators)",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 0
+                  },
+                  "pub_date": null,
+                  "attribution": "developereducators.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://developereducators.com/roadmap/n8n/",
+                  "title": "Learn n8n: A Free YouTube Roadmap (2026)",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 4
+                  },
+                  "pub_date": null,
+                  "attribution": "developereducators.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "www.classcentral.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://www.classcentral.com/report/best-n8n-courses/",
+                  "title": "10 Best n8n Courses for 2026 — Class Central",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 1
+                  },
+                  "pub_date": 1770768000,
+                  "attribution": "www.classcentral.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://www.classcentral.com/subject/n8n",
+                  "title": "600+ n8n Online Courses for 2026 | Explore Free Courses & Certifications | Class Central",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 10
+                  },
+                  "pub_date": null,
+                  "attribution": "www.classcentral.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "support.n8n.io",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://support.n8n.io/article/learning-resources",
+                  "title": "FAQs - General Tips - Learning resources | n8n Help Center",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 2
+                  },
+                  "pub_date": 1754502740,
+                  "attribution": "support.n8n.io"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "www.youtube.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://www.youtube.com/watch?v=7_PeuTsx7UM",
+                  "title": "N8N Full Course: Build AI Automations in 2026 (For Beginners) - YouTube",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "youtube",
+                    "ref_index": 26
+                  },
+                  "pub_date": 1761868800,
+                  "attribution": "www.youtube.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://www.youtube.com/watch?v=TZ43SRdTMs0",
+                  "title": "Ultimate n8n Course: Beginner to Pro in 17 Hours (2026) - YouTube",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "youtube",
+                    "ref_index": 28
+                  },
+                  "pub_date": 1768176000,
+                  "attribution": "www.youtube.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "learnforge.dev",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://learnforge.dev/blog/best-n8n-course-2026/",
+                  "title": "Best n8n Course in 2026: Free vs Paid Options Compared | LearnForge",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 3
+                  },
+                  "pub_date": 1787011200,
+                  "attribution": "learnforge.dev"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "aiattention.ai",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://aiattention.ai/blog/best-ai-agents-educators-youtube-2026",
+                  "title": "Best YouTube Creators for Learning AI Agents & Automation 2026 | AIAttention Blog",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 5
+                  },
+                  "pub_date": 1776816000,
+                  "attribution": "aiattention.ai"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "growai.in",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://growai.in/best-n8n-course-india-2026/",
+                  "title": "Best N8N Course India 2026: Free vs Paid Learning Guide | GrowAI",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 6
+                  },
+                  "pub_date": 1778284800,
+                  "attribution": "growai.in"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "blog.aakashdev.in",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://blog.aakashdev.in/blog/ai-automation-langchain-n8n-youtube-resources",
+                  "title": "AI Automation & LangChain: Best YouTube Resources to Build Real AI Systems",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 7
+                  },
+                  "pub_date": 1780531200,
+                  "attribution": "blog.aakashdev.in"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "community.n8n.io",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://community.n8n.io/c/tutorials/28/l/top",
+                  "title": "Tutorials - n8n Community",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 8
+                  },
+                  "pub_date": null,
+                  "attribution": "community.n8n.io"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "www.reddit.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://www.reddit.com/r/n8n_ai_agents/comments/1wg4e5o/best_channel_to_learn_n8n/",
+                  "title": "Best channel to learn n8n",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "reddit",
+                    "ref_index": 30
+                  },
+                  "pub_date": 1789394734.978,
+                  "attribution": "www.reddit.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "learnwithpath.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://learnwithpath.com/blog/best-youtube-channels-for-ai-engineering-2026",
+                  "title": "10 Best AI YouTube Channels in 2026 for Learning AI",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 9
+                  },
+                  "pub_date": 1777766400,
+                  "attribution": "learnwithpath.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "natokhd.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg",
+                  "title": "n8n Full Course Masterclass 2026 - Part 1/2 | Installation, Core Nodes, Data, & Error Handling | NatokHD",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 11
+                  },
+                  "pub_date": 1780876800,
+                  "attribution": "natokhd.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "skilldential.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://skilldential.com/learn-n8n-from-scratch-using-free-tools/",
+                  "title": "11 Best Ways to Learn n8n from Scratch Using Free Tools",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 12
+                  },
+                  "pub_date": 1778544000,
+                  "attribution": "skilldential.com"
+                }
+              ]
+            }
+          ],
+          "debug_sonic_thread_id": "thread_6ac8b63962fc832fad99f1c640d869c5",
+          "resolved_model_slug": "gpt-6",
+          "hide_inline_actions": true,
+          "disable_turn_actions": true,
+          "cot_version": "v5",
+          "request_id": "0a900cc6-2421-49e1-8ae3-08181a386843",
+          "message_type": "next",
+          "turn_exchange_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "working_turn_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "model_slug": "gpt-6",
+          "default_model_slug": "gpt-6",
+          "parent_id": "75edad5d-7988-4fde-8ea8-688d75bf37ed",
+          "reasoning_title_content_transition": "numeric",
+          "reasoning_titles": [
+            "Searching 13 websites"
+          ],
+          "reasoning_title": "Searching 13 websites",
+          "reasoning_status": "is_reasoning",
+          "tool_icons": [
+            "https://www.google.com/s2/favicons?domain=developereducators.com&sz=128",
+            "https://www.google.com/s2/favicons?domain=www.classcentral.com&sz=128",
+            "https://www.google.com/s2/favicons?domain=support.n8n.io&sz=128",
+            "https://www.google.com/s2/favicons?domain=www.youtube.com&sz=128",
+            "https://www.google.com/s2/favicons?domain=learnforge.dev&sz=128",
+            "https://www.google.com/s2/favicons?domain=aiattention.ai&sz=128",
+            "https://www.google.com/s2/favicons?domain=growai.in&sz=128",
+            "https://www.google.com/s2/favicons?domain=blog.aakashdev.in&sz=128",
+            "https://www.google.com/s2/favicons?domain=community.n8n.io&sz=128",
+            "https://www.google.com/s2/favicons?domain=www.reddit.com&sz=128",
+            "https://www.google.com/s2/favicons?domain=learnwithpath.com&sz=128",
+            "https://www.google.com/s2/favicons?domain=natokhd.com&sz=128",
+            "https://www.google.com/s2/favicons?domain=skilldential.com&sz=128"
+          ],
+          "inline_cot_expandable_content": {
+            "search_result_groups": [
+              {
+                "type": "search_result_group",
+                "domain": "developereducators.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://developereducators.com/tutorials/n8n/",
+                    "title": "Best n8n YouTube Channels for Tutorials in 2026 (137 creators)",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 0
+                    },
+                    "pub_date": null,
+                    "attribution": "developereducators.com"
+                  },
+                  {
+                    "type": "search_result",
+                    "url": "https://developereducators.com/roadmap/n8n/",
+                    "title": "Learn n8n: A Free YouTube Roadmap (2026)",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 4
+                    },
+                    "pub_date": null,
+                    "attribution": "developereducators.com"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "www.classcentral.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://www.classcentral.com/report/best-n8n-courses/",
+                    "title": "10 Best n8n Courses for 2026 — Class Central",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 1
+                    },
+                    "pub_date": 1770768000,
+                    "attribution": "www.classcentral.com"
+                  },
+                  {
+                    "type": "search_result",
+                    "url": "https://www.classcentral.com/subject/n8n",
+                    "title": "600+ n8n Online Courses for 2026 | Explore Free Courses & Certifications | Class Central",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 10
+                    },
+                    "pub_date": null,
+                    "attribution": "www.classcentral.com"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "support.n8n.io",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://support.n8n.io/article/learning-resources",
+                    "title": "FAQs - General Tips - Learning resources | n8n Help Center",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 2
+                    },
+                    "pub_date": 1754502740,
+                    "attribution": "support.n8n.io"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "www.youtube.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://www.youtube.com/watch?v=7_PeuTsx7UM",
+                    "title": "N8N Full Course: Build AI Automations in 2026 (For Beginners) - YouTube",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "youtube",
+                      "ref_index": 26
+                    },
+                    "pub_date": 1761868800,
+                    "attribution": "www.youtube.com"
+                  },
+                  {
+                    "type": "search_result",
+                    "url": "https://www.youtube.com/watch?v=TZ43SRdTMs0",
+                    "title": "Ultimate n8n Course: Beginner to Pro in 17 Hours (2026) - YouTube",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "youtube",
+                      "ref_index": 28
+                    },
+                    "pub_date": 1768176000,
+                    "attribution": "www.youtube.com"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "learnforge.dev",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://learnforge.dev/blog/best-n8n-course-2026/",
+                    "title": "Best n8n Course in 2026: Free vs Paid Options Compared | LearnForge",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 3
+                    },
+                    "pub_date": 1787011200,
+                    "attribution": "learnforge.dev"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "aiattention.ai",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://aiattention.ai/blog/best-ai-agents-educators-youtube-2026",
+                    "title": "Best YouTube Creators for Learning AI Agents & Automation 2026 | AIAttention Blog",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 5
+                    },
+                    "pub_date": 1776816000,
+                    "attribution": "aiattention.ai"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "growai.in",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://growai.in/best-n8n-course-india-2026/",
+                    "title": "Best N8N Course India 2026: Free vs Paid Learning Guide | GrowAI",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 6
+                    },
+                    "pub_date": 1778284800,
+                    "attribution": "growai.in"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "blog.aakashdev.in",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://blog.aakashdev.in/blog/ai-automation-langchain-n8n-youtube-resources",
+                    "title": "AI Automation & LangChain: Best YouTube Resources to Build Real AI Systems",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 7
+                    },
+                    "pub_date": 1780531200,
+                    "attribution": "blog.aakashdev.in"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "community.n8n.io",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://community.n8n.io/c/tutorials/28/l/top",
+                    "title": "Tutorials - n8n Community",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 8
+                    },
+                    "pub_date": null,
+                    "attribution": "community.n8n.io"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "www.reddit.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://www.reddit.com/r/n8n_ai_agents/comments/1wg4e5o/best_channel_to_learn_n8n/",
+                    "title": "Best channel to learn n8n",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "reddit",
+                      "ref_index": 30
+                    },
+                    "pub_date": 1789394734.978,
+                    "attribution": "www.reddit.com"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "learnwithpath.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://learnwithpath.com/blog/best-youtube-channels-for-ai-engineering-2026",
+                    "title": "10 Best AI YouTube Channels in 2026 for Learning AI",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 9
+                    },
+                    "pub_date": 1777766400,
+                    "attribution": "learnwithpath.com"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "natokhd.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg",
+                    "title": "n8n Full Course Masterclass 2026 - Part 1/2 | Installation, Core Nodes, Data, & Error Handling | NatokHD",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 11
+                    },
+                    "pub_date": 1780876800,
+                    "attribution": "natokhd.com"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "skilldential.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://skilldential.com/learn-n8n-from-scratch-using-free-tools/",
+                    "title": "11 Best Ways to Learn n8n from Scratch Using Free Tools",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 12
+                    },
+                    "pub_date": 1778544000,
+                    "attribution": "skilldential.com"
+                  }
+                ]
+              }
+            ]
+          },
+          "reasoning_start_time": 1791538743.8062034,
+          "can_save": false
+        },
+        "recipient": "all",
+        "channel": null
+      },
+      "parent": "7a268f8f-ea70-48c5-99ec-64001572335e",
+      "children": [
+        "4fdfe27f-ab55-46c4-a4c4-c930d1b1c3ab"
+      ]
+    },
+    "4fdfe27f-ab55-46c4-a4c4-c930d1b1c3ab": {
+      "id": "4fdfe27f-ab55-46c4-a4c4-c930d1b1c3ab",
+      "message": {
+        "id": "4fdfe27f-ab55-46c4-a4c4-c930d1b1c3ab",
+        "author": {
+          "role": "assistant",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1791538753.572353,
+        "update_time": 1791538753.638359,
+        "content": {
+          "content_type": "thoughts",
+          "thoughts": [
+            {
+              "summary": "Searched 13 websites",
+              "content": "",
+              "chunks": [],
+              "finished": true
+            }
+          ],
+          "source_analysis_msg_id": "21f819a0-b8c8-4852-a6d4-506cb772b5d7"
+        },
+        "status": "finished_successfully",
+        "end_turn": false,
+        "weight": 1,
+        "metadata": {
+          "inline_cot_expandable_content": {
+            "search_result_groups": [
+              {
+                "type": "search_result_group",
+                "domain": "developereducators.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://developereducators.com/tutorials/n8n/",
+                    "title": "Best n8n YouTube Channels for Tutorials in 2026 (137 creators)",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 0
+                    },
+                    "pub_date": null,
+                    "attribution": "developereducators.com"
+                  },
+                  {
+                    "type": "search_result",
+                    "url": "https://developereducators.com/roadmap/n8n/",
+                    "title": "Learn n8n: A Free YouTube Roadmap (2026)",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 4
+                    },
+                    "pub_date": null,
+                    "attribution": "developereducators.com"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "www.classcentral.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://www.classcentral.com/report/best-n8n-courses/",
+                    "title": "10 Best n8n Courses for 2026 — Class Central",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 1
+                    },
+                    "pub_date": 1770768000,
+                    "attribution": "www.classcentral.com"
+                  },
+                  {
+                    "type": "search_result",
+                    "url": "https://www.classcentral.com/subject/n8n",
+                    "title": "600+ n8n Online Courses for 2026 | Explore Free Courses & Certifications | Class Central",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 10
+                    },
+                    "pub_date": null,
+                    "attribution": "www.classcentral.com"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "support.n8n.io",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://support.n8n.io/article/learning-resources",
+                    "title": "FAQs - General Tips - Learning resources | n8n Help Center",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 2
+                    },
+                    "pub_date": 1754502740,
+                    "attribution": "support.n8n.io"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "www.youtube.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://www.youtube.com/watch?v=7_PeuTsx7UM",
+                    "title": "N8N Full Course: Build AI Automations in 2026 (For Beginners) - YouTube",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "youtube",
+                      "ref_index": 26
+                    },
+                    "pub_date": 1761868800,
+                    "attribution": "www.youtube.com"
+                  },
+                  {
+                    "type": "search_result",
+                    "url": "https://www.youtube.com/watch?v=TZ43SRdTMs0",
+                    "title": "Ultimate n8n Course: Beginner to Pro in 17 Hours (2026) - YouTube",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "youtube",
+                      "ref_index": 28
+                    },
+                    "pub_date": 1768176000,
+                    "attribution": "www.youtube.com"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "learnforge.dev",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://learnforge.dev/blog/best-n8n-course-2026/",
+                    "title": "Best n8n Course in 2026: Free vs Paid Options Compared | LearnForge",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 3
+                    },
+                    "pub_date": 1787011200,
+                    "attribution": "learnforge.dev"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "aiattention.ai",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://aiattention.ai/blog/best-ai-agents-educators-youtube-2026",
+                    "title": "Best YouTube Creators for Learning AI Agents & Automation 2026 | AIAttention Blog",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 5
+                    },
+                    "pub_date": 1776816000,
+                    "attribution": "aiattention.ai"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "growai.in",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://growai.in/best-n8n-course-india-2026/",
+                    "title": "Best N8N Course India 2026: Free vs Paid Learning Guide | GrowAI",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 6
+                    },
+                    "pub_date": 1778284800,
+                    "attribution": "growai.in"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "blog.aakashdev.in",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://blog.aakashdev.in/blog/ai-automation-langchain-n8n-youtube-resources",
+                    "title": "AI Automation & LangChain: Best YouTube Resources to Build Real AI Systems",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 7
+                    },
+                    "pub_date": 1780531200,
+                    "attribution": "blog.aakashdev.in"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "community.n8n.io",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://community.n8n.io/c/tutorials/28/l/top",
+                    "title": "Tutorials - n8n Community",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 8
+                    },
+                    "pub_date": null,
+                    "attribution": "community.n8n.io"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "www.reddit.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://www.reddit.com/r/n8n_ai_agents/comments/1wg4e5o/best_channel_to_learn_n8n/",
+                    "title": "Best channel to learn n8n",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "reddit",
+                      "ref_index": 30
+                    },
+                    "pub_date": 1789394734.978,
+                    "attribution": "www.reddit.com"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "learnwithpath.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://learnwithpath.com/blog/best-youtube-channels-for-ai-engineering-2026",
+                    "title": "10 Best AI YouTube Channels in 2026 for Learning AI",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 9
+                    },
+                    "pub_date": 1777766400,
+                    "attribution": "learnwithpath.com"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "natokhd.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg",
+                    "title": "n8n Full Course Masterclass 2026 - Part 1/2 | Installation, Core Nodes, Data, & Error Handling | NatokHD",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 11
+                    },
+                    "pub_date": 1780876800,
+                    "attribution": "natokhd.com"
+                  }
+                ]
+              },
+              {
+                "type": "search_result_group",
+                "domain": "skilldential.com",
+                "entries": [
+                  {
+                    "type": "search_result",
+                    "url": "https://skilldential.com/learn-n8n-from-scratch-using-free-tools/",
+                    "title": "11 Best Ways to Learn n8n from Scratch Using Free Tools",
+                    "snippet": "",
+                    "ref_id": {
+                      "turn_index": 501059,
+                      "ref_type": "search",
+                      "ref_index": 12
+                    },
+                    "pub_date": 1778544000,
+                    "attribution": "skilldential.com"
+                  }
+                ]
+              }
+            ],
+            "source_message_ids": [
+              "7a268f8f-ea70-48c5-99ec-64001572335e",
+              "365fb489-2311-4d95-be70-c9907c81cc0b",
+              "be3c0133-a646-4c81-9bc8-b4a40f2118ec"
+            ]
+          },
+          "reasoning_status": "is_reasoning",
+          "tool_summary_type": "web",
+          "tool_icons": [
+            "https://www.google.com/s2/favicons?domain=developereducators.com&sz=128",
+            "https://www.google.com/s2/favicons?domain=www.classcentral.com&sz=128",
+            "https://www.google.com/s2/favicons?domain=support.n8n.io&sz=128",
+            "https://www.google.com/s2/favicons?domain=www.youtube.com&sz=128",
+            "https://www.google.com/s2/favicons?domain=learnforge.dev&sz=128",
+            "https://www.google.com/s2/favicons?domain=aiattention.ai&sz=128",
+            "https://www.google.com/s2/favicons?domain=growai.in&sz=128",
+            "https://www.google.com/s2/favicons?domain=blog.aakashdev.in&sz=128",
+            "https://www.google.com/s2/favicons?domain=community.n8n.io&sz=128",
+            "https://www.google.com/s2/favicons?domain=www.reddit.com&sz=128",
+            "https://www.google.com/s2/favicons?domain=learnwithpath.com&sz=128",
+            "https://www.google.com/s2/favicons?domain=natokhd.com&sz=128",
+            "https://www.google.com/s2/favicons?domain=skilldential.com&sz=128"
+          ],
+          "reasoning_start_time": 1791538743.8062034,
+          "cot_version": "v5",
+          "reasoning_group_id": "db6fe7e9-2c60-489e-9dda-5fcfd4cde1e7",
+          "conversation_followup_suggestions_eligible": false,
+          "request_id": "0a900cc6-2421-49e1-8ae3-08181a386843",
+          "message_type": "next",
+          "turn_exchange_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "working_turn_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "resolved_model_slug": "gpt-6",
+          "model_slug": "gpt-6",
+          "default_model_slug": "gpt-6",
+          "can_save": false,
+          "parent_id": "d5bb7597-e707-44e0-905e-9860db8dff21",
+          "hide_inline_actions": true,
+          "model_switcher_deny": []
+        },
+        "recipient": "all",
+        "channel": null
+      },
+      "parent": "be3c0133-a646-4c81-9bc8-b4a40f2118ec",
+      "children": [
+        "e9b0b03e-a093-416b-88fa-0add94d339a4"
+      ]
+    },
+    "e9b0b03e-a093-416b-88fa-0add94d339a4": {
+      "id": "e9b0b03e-a093-416b-88fa-0add94d339a4",
+      "message": {
+        "id": "e9b0b03e-a093-416b-88fa-0add94d339a4",
+        "author": {
+          "role": "assistant",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1791538753.575202,
+        "update_time": 1791538753.575202,
+        "content": {
+          "content_type": "reasoning_recap",
+          "content": "Worked for 9s"
+        },
+        "status": "finished_successfully",
+        "end_turn": false,
+        "weight": 1,
+        "metadata": {
+          "reasoning_status": "reasoning_ended",
+          "finished_duration_sec": 9,
+          "reasoning_start_time": 1791538743.8062034,
+          "reasoning_end_time": 1791538753.555826,
+          "reasoning_recap_type": "hide_all",
+          "cot_version": "v5",
+          "reasoning_group_id": "db6fe7e9-2c60-489e-9dda-5fcfd4cde1e7",
+          "conversation_followup_suggestions_eligible": false,
+          "request_id": "0a900cc6-2421-49e1-8ae3-08181a386843",
+          "message_type": "next",
+          "turn_exchange_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "working_turn_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "resolved_model_slug": "gpt-6",
+          "model_slug": "gpt-6",
+          "default_model_slug": "gpt-6",
+          "can_save": false,
+          "parent_id": "4fdfe27f-ab55-46c4-a4c4-c930d1b1c3ab",
+          "hide_inline_actions": true,
+          "model_switcher_deny": []
+        },
+        "recipient": "all",
+        "channel": null
+      },
+      "parent": "4fdfe27f-ab55-46c4-a4c4-c930d1b1c3ab",
+      "children": [
+        "21784fd9-ba77-42e8-9b3c-bfa8d4227a3a"
+      ]
+    },
+    "21784fd9-ba77-42e8-9b3c-bfa8d4227a3a": {
+      "id": "21784fd9-ba77-42e8-9b3c-bfa8d4227a3a",
+      "message": {
+        "id": "21784fd9-ba77-42e8-9b3c-bfa8d4227a3a",
+        "author": {
+          "role": "assistant",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1791538746.515228,
+        "update_time": 1791538755.680106,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "# Best YouTube tutorials to learn n8n automation in 2026\n\nIf you're starting from scratch, I'd recommend learning **n8n fundamentals first, then API integrations and webhooks, and finally AI agents and production-grade automations**. Don't start by binge-watching dozens of flashy AI-agent demos—you'll learn much faster by building workflows yourself.\n\nI searched for current 2026 courses and tutorials. These are my top recommendations based on curriculum depth, practical projects, and suitability for different skill levels. <Cite refs={[\"turn501059search1\",\"turn501059search2\",\"turn501059search11\"]}/>\n\n## Top 5 YouTube tutorials\n\n<box gap={4}>\n  <row align=start gap={3}>\n    <AsyncImage query=\"GenAI Unplugged n8n Full Course Masterclass 2026 Part 1 core nodes data error handling YouTube thumbnail\" aspectRatio=\"16:9\" width=\"144px\"/>\n    <box flex=\"1\" gap={1}>\n      <badge color=\"success\">Best starting point</badge>\n      **1. n8n Full Course Masterclass 2026 — GenAI Unplugged**\n\n      <text color=\"secondary\" size=\"sm\">Published June 2026 · Approximately 11 hours</text>\n\n      A structured course covering installation, the interface, core nodes, JSON data, expressions, HTTP requests, webhooks, debugging and workflow design. Excellent for building solid foundations. <Cite refs={[\"turn501059search11\"]}/>\n\n      [Watch Part 1 on YouTube](https://www.youtube.com/watch?v=HaSaDsn3AMg)\n\n      [Watch Part 2](https://youtu.be/56z15ZHxxPk)\n    </box>\n  </row>\n  <divider color=\"subtle\"/>\n  <row align=start gap={3}>\n    <AsyncImage query=\"Ryan Matt Data Science Ultimate n8n Course Beginner to Pro 17 Hours 2026 YouTube thumbnail\" aspectRatio=\"16:9\" width=\"144px\"/>\n    <box flex=\"1\" gap={1}>\n      <badge color=\"info\">Best comprehensive course</badge>\n      **2. Ultimate n8n Course: Beginner to Pro — Ryan & Matt Data Science**\n\n      <text color=\"secondary\" size=\"sm\">Published January 2026 · 17+ hours</text>\n\n      Covers core automation, Google integrations, APIs, web scraping, AI agents, error handling, security, MCP and RAG. A good choice if you want a broad, long-term curriculum. <Cite refs={[\"turn501059youtube28\"]}/>\n\n      [Watch the full course](https://www.youtube.com/watch?v=TZ43SRdTMs0)\n    </box>\n  </row>\n  <divider color=\"subtle\"/>\n  <row align=start gap={3}>\n    <AsyncImage query=\"Michele Torti N8N Full Course Build AI Automations in 2026 For Beginners YouTube thumbnail\" aspectRatio=\"16:9\" width=\"144px\"/>\n    <box flex=\"1\" gap={1}>\n      **3. n8n Full Course: Build AI Automations — Michele Torti**\n\n      <text color=\"secondary\" size=\"sm\">Published October 2025 · Approximately 12 hours</text>\n\n      Best if your goal is to build AI-powered business automations. Includes API fundamentals, AI-agent concepts, RAG, customer support, invoice processing, research assistants and content automation. <Cite refs={[\"turn501059youtube26\"]}/>\n\n      [Watch the full course](https://www.youtube.com/watch?v=7_PeuTsx7UM)\n    </box>\n  </row>\n  <divider color=\"subtle\"/>\n  <row align=start gap={3}>\n    <AsyncImage query=\"Leon van Zyl n8n workflow automation beginner tutorial YouTube thumbnail\" aspectRatio=\"16:9\" width=\"144px\"/>\n    <box flex=\"1\" gap={1}>\n      **4. Leon van Zyl — n8n beginner tutorials**\n\n      Great for learning at a manageable pace through individual workflow builds, integrations and practical examples. I'd use this when the longer courses move too quickly or when you want to reinforce a particular concept. <Cite refs={[\"turn501059search3\"]}/>\n\n      [Explore Leon van Zyl's YouTube tutorials](https://www.youtube.com/@LeonVanZyl)\n    </box>\n  </row>\n  <divider color=\"subtle\"/>\n  <row align=start gap={3}>\n    <AsyncImage query=\"Cole Medin n8n AI agents RAG automation YouTube thumbnail\" aspectRatio=\"16:9\" width=\"144px\"/>\n    <box flex=\"1\" gap={1}>\n      <badge>Best for advanced AI workflows</badge>\n      **5. Cole Medin — AI agents and n8n**\n\n      Move here after mastering basic nodes and data flow. Focus on AI-agent architecture, retrieval-augmented generation (RAG), vector databases and more sophisticated AI integrations. <Cite refs={[\"turn501059search3\",\"turn501059search6\"]}/>\n\n      [Explore Cole Medin's YouTube channel](https://www.youtube.com/@ColeMedin)\n    </box>\n  </row>\n</box>\n\n## Also use these official n8n resources\n\n<box gap={3}>\n  <row align=start gap={3}>\n    <AsyncImage query=\"n8n official YouTube channel workflow automation tutorials\" aspectRatio=\"1:1\" width=\"88px\"/>\n    <box flex=\"1\" gap={1}>\n      **<Entity value=\"n8n\" category=\"software\" disambig=\"workflow automation platform\"/> official YouTube channel**\n\n      Best for feature-specific tutorials, node explanations and newer integrations.\n\n      [Open @n8n-io on YouTube](https://www.youtube.com/@n8n-io)\n    </box>\n  </row>\n  <row align=start gap={3}>\n    <AsyncImage query=\"n8n Academy official learning platform course screenshot\" aspectRatio=\"1:1\" width=\"88px\"/>\n    <box flex=\"1\" gap={1}>\n      **n8n Academy**\n\n      Free, structured, hands-on learning with quizzes and certificates. The official learning resources recommend its Introduction to Automation series for beginners. <Cite refs={[\"turn501059search2\",\"turn501059search1\"]}/>\n\n      [Start at n8n Academy](https://academy.n8n.io/)\n    </box>\n  </row>\n</box>\n\n## My recommended learning roadmap\n\nSince you already have a CSE background, you can move beyond simple no-code workflows and learn API-driven automation, JavaScript and AI integrations.\n\n<box border radius=\"xl\" padding={3} gap={3}>\n  <row align=start gap={3}>\n    <box background=\"surface-secondary\" radius=\"lg\" size=\"44px\" align=center justify=center>\n      <icon name=\"play-circle\" size=\"xl\"/>\n    </box>\n    <box flex=\"1\" gap={1}>\n      **Week 1 — Fundamentals**\n\n      Watch GenAI Unplugged, Part 1. Practise triggers, nodes, expressions, JSON, conditional logic, loops and error handling.\n    </box>\n  </row>\n  <divider color=\"subtle\"/>\n  <row align=start gap={3}>\n    <box background=\"surface-secondary\" radius=\"lg\" size=\"44px\" align=center justify=center>\n      <icon name=\"workflow\" size=\"xl\"/>\n    </box>\n    <box flex=\"1\" gap={1}>\n      **Week 2 — Real-world integrations**\n\n      Learn HTTP requests, REST APIs, authentication, webhooks, scheduled triggers and integrations with Google Sheets, Gmail or Notion.\n    </box>\n  </row>\n  <divider color=\"subtle\"/>\n  <row align=start gap={3}>\n    <box background=\"surface-secondary\" radius=\"lg\" size=\"44px\" align=center justify=center>\n      <icon name=\"brain-circuit\" size=\"xl\"/>\n    </box>\n    <box flex=\"1\" gap={1}>\n      **Week 3 — AI automation**\n\n      Study AI agents, LLM APIs, structured outputs, tool calling, retrieval-augmented generation and human approval steps.\n    </box>\n  </row>\n  <divider color=\"subtle\"/>\n  <row align=start gap={3}>\n    <box background=\"surface-secondary\" radius=\"lg\" size=\"44px\" align=center justify=center>\n      <icon name=\"rocket\" size=\"xl\"/>\n    </box>\n    <box flex=\"1\" gap={1}>\n      **Week 4 — Build portfolio projects**\n\n      Build a lead-processing workflow, an AI email assistant and a document-processing automation. Add retries, logging, credential security and failure notifications.\n    </box>\n  </row>\n  <text color=\"secondary\" size=\"sm\">Suggested schedule: 1–2 hours daily, with most of your time spent building rather than watching.</text>\n</box>\n\n## What I'd do first\n\n1. Start with [GenAI Unplugged — Part 1](https://www.youtube.com/watch?v=HaSaDsn3AMg).\n2. Build every example yourself instead of simply copying the workflow JSON.\n3. Use the [official n8n documentation](https://docs.n8n.io/) whenever a node, API or configuration differs from the video.\n4. Move to Cole Medin once the basics feel comfortable.\n\n**One important tip:** Learn ordinary workflow automation before AI agents. Reliable data handling, authentication, APIs and error handling are what make automations useful in real projects.\n\n"
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": true,
+        "weight": 1,
+        "metadata": {
+          "model_dil_v2": {
+            "code": "function __dilSafe(evaluate,failureValue){try{return evaluate()}catch{return failureValue}}\n\nDIL.render(__dil.jsx(()=>{const __dilConstants=DIL.useConstants();const __dilModelDataBindings=DIL.useAppData((appData)=>appData.opGenui?.modelDataBindings??{});return __dil.jsx(__dil.Fragment,null,__dil.jsx(\"title\",{\"size\":\"xl\"},__dilConstants[\"0\"]),__dil.jsx(\"text\",null,__dilConstants[\"1\"],__dil.jsx(\"bold\",null,__dilConstants[\"2\"]),__dilConstants[\"3\"]),__dil.jsx(\"text\",null,__dilConstants[\"4\"],__dilSafe(()=>(__dil.jsx(Cite,{\"refs\":__dilConstants[\"5\"],\"__resolutionId\":__dilConstants[\"6\"]})),null)),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"7\"]),__dil.jsx(\"box\",{\"gap\":4},__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dilSafe(()=>(__dil.jsx(AsyncImage,{\"query\":\"GenAI Unplugged n8n Full Course Masterclass 2026 Part 1 core nodes data error handling YouTube thumbnail\",\"aspectRatio\":\"16:9\",\"width\":\"144px\",\"__resolutionId\":__dilConstants[\"8\"]})),null),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"badge\",{\"color\":\"success\"},__dilConstants[\"9\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"10\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"11\"]),__dil.jsx(\"text\",null,__dilConstants[\"12\"],__dilSafe(()=>(__dil.jsx(Cite,{\"refs\":__dilConstants[\"13\"],\"__resolutionId\":__dilConstants[\"14\"]})),null)),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(Link,{\"url\":\"https://www.youtube.com/watch?v=HaSaDsn3AMg\",\"__resolutionId\":__dilConstants[\"15\"]},__dilConstants[\"16\"])),null)),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(Link,{\"url\":\"https://youtu.be/56z15ZHxxPk\",\"__resolutionId\":__dilConstants[\"17\"]},__dilConstants[\"18\"])),null)))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dilSafe(()=>(__dil.jsx(AsyncImage,{\"query\":\"Ryan Matt Data Science Ultimate n8n Course Beginner to Pro 17 Hours 2026 YouTube thumbnail\",\"aspectRatio\":\"16:9\",\"width\":\"144px\",\"__resolutionId\":__dilConstants[\"19\"]})),null),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"badge\",{\"color\":\"info\"},__dilConstants[\"20\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"21\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"22\"]),__dil.jsx(\"text\",null,__dilConstants[\"23\"],__dilSafe(()=>(__dil.jsx(Cite,{\"refs\":__dilConstants[\"24\"],\"__resolutionId\":__dilConstants[\"25\"]})),null)),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(Link,{\"url\":\"https://www.youtube.com/watch?v=TZ43SRdTMs0\",\"__resolutionId\":__dilConstants[\"26\"]},__dilConstants[\"27\"])),null)))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dilSafe(()=>(__dil.jsx(AsyncImage,{\"query\":\"Michele Torti N8N Full Course Build AI Automations in 2026 For Beginners YouTube thumbnail\",\"aspectRatio\":\"16:9\",\"width\":\"144px\",\"__resolutionId\":__dilConstants[\"28\"]})),null),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"29\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"30\"]),__dil.jsx(\"text\",null,__dilConstants[\"31\"],__dilSafe(()=>(__dil.jsx(Cite,{\"refs\":__dilConstants[\"32\"],\"__resolutionId\":__dilConstants[\"33\"]})),null)),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(Link,{\"url\":\"https://www.youtube.com/watch?v=7_PeuTsx7UM\",\"__resolutionId\":__dilConstants[\"34\"]},__dilConstants[\"35\"])),null)))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dilSafe(()=>(__dil.jsx(AsyncImage,{\"query\":\"Leon van Zyl n8n workflow automation beginner tutorial YouTube thumbnail\",\"aspectRatio\":\"16:9\",\"width\":\"144px\",\"__resolutionId\":__dilConstants[\"36\"]})),null),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"37\"])),__dil.jsx(\"text\",null,__dilConstants[\"38\"],__dilSafe(()=>(__dil.jsx(Cite,{\"refs\":__dilConstants[\"39\"],\"__resolutionId\":__dilConstants[\"40\"]})),null)),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(Link,{\"url\":\"https://www.youtube.com/@LeonVanZyl\",\"__resolutionId\":__dilConstants[\"41\"]},__dilConstants[\"42\"])),null)))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dilSafe(()=>(__dil.jsx(AsyncImage,{\"query\":\"Cole Medin n8n AI agents RAG automation YouTube thumbnail\",\"aspectRatio\":\"16:9\",\"width\":\"144px\",\"__resolutionId\":__dilConstants[\"43\"]})),null),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"badge\",null,__dilConstants[\"44\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"45\"])),__dil.jsx(\"text\",null,__dilConstants[\"46\"],__dilSafe(()=>(__dil.jsx(Cite,{\"refs\":__dilConstants[\"47\"],\"__resolutionId\":__dilConstants[\"48\"]})),null)),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(Link,{\"url\":\"https://www.youtube.com/@ColeMedin\",\"__resolutionId\":__dilConstants[\"49\"]},__dilConstants[\"50\"])),null))))),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"51\"]),__dil.jsx(\"box\",{\"gap\":3},__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dilSafe(()=>(__dil.jsx(AsyncImage,{\"query\":\"n8n official YouTube channel workflow automation tutorials\",\"aspectRatio\":\"1:1\",\"width\":\"88px\",\"__resolutionId\":__dilConstants[\"52\"]})),null),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilSafe(()=>(__dil.jsx(Entity,{\"value\":__dilConstants[\"53\"],\"category\":\"software\",\"disambig\":\"workflow automation platform\",\"__resolutionId\":__dilConstants[\"54\"]})),null),__dilConstants[\"55\"])),__dil.jsx(\"text\",null,__dilConstants[\"56\"]),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(Link,{\"url\":\"https://www.youtube.com/@n8n-io\",\"__resolutionId\":__dilConstants[\"57\"]},__dilConstants[\"58\"])),null)))),__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dilSafe(()=>(__dil.jsx(AsyncImage,{\"query\":\"n8n Academy official learning platform course screenshot\",\"aspectRatio\":\"1:1\",\"width\":\"88px\",\"__resolutionId\":__dilConstants[\"59\"]})),null),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"60\"])),__dil.jsx(\"text\",null,__dilConstants[\"61\"],__dilSafe(()=>(__dil.jsx(Cite,{\"refs\":__dilConstants[\"62\"],\"__resolutionId\":__dilConstants[\"63\"]})),null)),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(Link,{\"url\":\"https://academy.n8n.io/\",\"__resolutionId\":__dilConstants[\"64\"]},__dilConstants[\"65\"])),null))))),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"66\"]),__dil.jsx(\"text\",null,__dilConstants[\"67\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"size\":\"44px\",\"align\":\"center\",\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"play-circle\",\"size\":\"xl\"})),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"68\"])),__dil.jsx(\"text\",null,__dilConstants[\"69\"]))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"size\":\"44px\",\"align\":\"center\",\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"workflow\",\"size\":\"xl\"})),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"70\"])),__dil.jsx(\"text\",null,__dilConstants[\"71\"]))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"size\":\"44px\",\"align\":\"center\",\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"brain-circuit\",\"size\":\"xl\"})),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"72\"])),__dil.jsx(\"text\",null,__dilConstants[\"73\"]))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"size\":\"44px\",\"align\":\"center\",\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"rocket\",\"size\":\"xl\"})),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"74\"])),__dil.jsx(\"text\",null,__dilConstants[\"75\"]))),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"76\"])),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"77\"]),__dil.jsx(\"list\",{\"marker\":\"number\"},__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dilConstants[\"78\"],__dilSafe(()=>(__dil.jsx(Link,{\"url\":\"https://www.youtube.com/watch?v=HaSaDsn3AMg\",\"__resolutionId\":__dilConstants[\"79\"]},__dilConstants[\"80\"])),null),__dilConstants[\"81\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dilConstants[\"82\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dilConstants[\"83\"],__dilSafe(()=>(__dil.jsx(Link,{\"url\":\"https://docs.n8n.io/\",\"__resolutionId\":__dilConstants[\"84\"]},__dilConstants[\"85\"])),null),__dilConstants[\"86\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dilConstants[\"87\"]))),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"88\"]),__dilConstants[\"89\"]));},{\"key\":\"body:0\"}));",
+            "constants": {
+              "0": "Best YouTube tutorials to learn n8n automation in 2026",
+              "1": "If you're starting from scratch, I'd recommend learning ",
+              "2": "n8n fundamentals first, then API integrations and webhooks, and finally AI agents and production-grade automations",
+              "3": ". Don't start by binge-watching dozens of flashy AI-agent demos—you'll learn much faster by building workflows yourself.",
+              "4": "I searched for current 2026 courses and tutorials. These are my top recommendations based on curriculum depth, practical projects, and suitability for different skill levels. ",
+              "5": [
+                "turn501059search1",
+                "turn501059search2",
+                "turn501059search11"
+              ],
+              "6": "624eac0f-78cb-533b-95ff-98c4c916401a",
+              "7": "Top 5 YouTube tutorials",
+              "8": "a588d0a9-b3f2-5d84-b96a-e7dbc7573701",
+              "9": "Best starting point",
+              "10": "1. n8n Full Course Masterclass 2026 — GenAI Unplugged",
+              "11": "Published June 2026 · Approximately 11 hours",
+              "12": "A structured course covering installation, the interface, core nodes, JSON data, expressions, HTTP requests, webhooks, debugging and workflow design. Excellent for building solid foundations. ",
+              "13": [
+                "turn501059search11"
+              ],
+              "14": "942d2c4a-6ecd-545a-a687-b8420b25b9e3",
+              "15": "25bfac6e-fbcd-5e68-a028-1e13eb99de53",
+              "16": "Watch Part 1 on YouTube",
+              "17": "dedf923e-efb9-5796-821d-1bd07d4a9183",
+              "18": "Watch Part 2",
+              "19": "339f3929-b005-5464-9db1-8a1b00da4b7e",
+              "20": "Best comprehensive course",
+              "21": "2. Ultimate n8n Course: Beginner to Pro — Ryan & Matt Data Science",
+              "22": "Published January 2026 · 17+ hours",
+              "23": "Covers core automation, Google integrations, APIs, web scraping, AI agents, error handling, security, MCP and RAG. A good choice if you want a broad, long-term curriculum. ",
+              "24": [
+                "turn501059youtube28"
+              ],
+              "25": "965e8727-dd6e-5984-99ee-d31eb3b63259",
+              "26": "4ddbf0e3-3cd8-5180-91fb-b24f383fd167",
+              "27": "Watch the full course",
+              "28": "caeda85d-331b-5956-b5d3-e030ea256046",
+              "29": "3. n8n Full Course: Build AI Automations — Michele Torti",
+              "30": "Published October 2025 · Approximately 12 hours",
+              "31": "Best if your goal is to build AI-powered business automations. Includes API fundamentals, AI-agent concepts, RAG, customer support, invoice processing, research assistants and content automation. ",
+              "32": [
+                "turn501059youtube26"
+              ],
+              "33": "f6f56486-f9e8-5487-bada-8d928fdfc15f",
+              "34": "3e979f04-30fe-57ef-933b-57fafb04a40e",
+              "35": "Watch the full course",
+              "36": "6a501449-4b60-543b-91b6-71a191bd9f68",
+              "37": "4. Leon van Zyl — n8n beginner tutorials",
+              "38": "Great for learning at a manageable pace through individual workflow builds, integrations and practical examples. I'd use this when the longer courses move too quickly or when you want to reinforce a particular concept. ",
+              "39": [
+                "turn501059search3"
+              ],
+              "40": "4d343fcd-41df-5b74-81df-63c72367c41d",
+              "41": "a517026a-f527-57b2-baac-bce3110104a1",
+              "42": "Explore Leon van Zyl's YouTube tutorials",
+              "43": "eac36d13-dd19-5522-8e8e-ff2ed1602705",
+              "44": "Best for advanced AI workflows",
+              "45": "5. Cole Medin — AI agents and n8n",
+              "46": "Move here after mastering basic nodes and data flow. Focus on AI-agent architecture, retrieval-augmented generation (RAG), vector databases and more sophisticated AI integrations. ",
+              "47": [
+                "turn501059search3",
+                "turn501059search6"
+              ],
+              "48": "567c4e78-901e-511d-a9d6-a65480f3d154",
+              "49": "9585d04c-d99c-5f6a-b2c6-bf3666979b46",
+              "50": "Explore Cole Medin's YouTube channel",
+              "51": "Also use these official n8n resources",
+              "52": "a4e63692-5937-5d73-bfab-3b417068dc56",
+              "53": "n8n",
+              "54": "3ffebd24-1b61-5e95-8b90-4667c80853e6",
+              "55": " official YouTube channel",
+              "56": "Best for feature-specific tutorials, node explanations and newer integrations.",
+              "57": "05cf746e-e22c-51fd-8ada-3bf559716798",
+              "58": "Open @n8n-io on YouTube",
+              "59": "5119788c-1d78-53c4-8c97-c032929b9315",
+              "60": "n8n Academy",
+              "61": "Free, structured, hands-on learning with quizzes and certificates. The official learning resources recommend its Introduction to Automation series for beginners. ",
+              "62": [
+                "turn501059search2",
+                "turn501059search1"
+              ],
+              "63": "77220593-0372-59ec-91ea-c8522e0f86d0",
+              "64": "942925b5-27e4-5ff3-9291-fc0c09d4195d",
+              "65": "Start at n8n Academy",
+              "66": "My recommended learning roadmap",
+              "67": "Since you already have a CSE background, you can move beyond simple no-code workflows and learn API-driven automation, JavaScript and AI integrations.",
+              "68": "Week 1 — Fundamentals",
+              "69": "Watch GenAI Unplugged, Part 1. Practise triggers, nodes, expressions, JSON, conditional logic, loops and error handling.",
+              "70": "Week 2 — Real-world integrations",
+              "71": "Learn HTTP requests, REST APIs, authentication, webhooks, scheduled triggers and integrations with Google Sheets, Gmail or Notion.",
+              "72": "Week 3 — AI automation",
+              "73": "Study AI agents, LLM APIs, structured outputs, tool calling, retrieval-augmented generation and human approval steps.",
+              "74": "Week 4 — Build portfolio projects",
+              "75": "Build a lead-processing workflow, an AI email assistant and a document-processing automation. Add retries, logging, credential security and failure notifications.",
+              "76": "Suggested schedule: 1–2 hours daily, with most of your time spent building rather than watching.",
+              "77": "What I'd do first",
+              "78": "Start with ",
+              "79": "25bfac6e-fbcd-5e68-a028-1e13eb99de53",
+              "80": "GenAI Unplugged — Part 1",
+              "81": ".",
+              "82": "Build every example yourself instead of simply copying the workflow JSON.",
+              "83": "Use the ",
+              "84": "6b119e4f-0eba-5d21-8ea8-0c369eff09bd",
+              "85": "official n8n documentation",
+              "86": " whenever a node, API or configuration differs from the video.",
+              "87": "Move to Cole Medin once the basics feel comfortable.",
+              "88": "One important tip:",
+              "89": " Learn ordinary workflow automation before AI agents. Reliable data handling, authentication, APIs and error handling are what make automations useful in real projects."
+            },
+            "fallbackMarkdown": "# Best YouTube tutorials to learn n8n automation in 2026\n\nIf you're starting from scratch, I'd recommend learning **n8n fundamentals first, then API integrations and webhooks, and finally AI agents and production-grade automations**\\. Don't start by binge-watching dozens of flashy AI-agent demos—you'll learn much faster by building workflows yourself.\n\nI searched for current 2026 courses and tutorials. These are my top recommendations based on curriculum depth, practical projects, and suitability for different skill levels. citeturn501059search1turn501059search2turn501059search11\n\n## Top 5 YouTube tutorials\n\nimage_group{\"query\":[\"GenAI Unplugged n8n Full Course Masterclass 2026 Part 1 core nodes data error handling YouTube thumbnail\"],\"aspect_ratio\":\"16:9\",\"layout\":\"carousel\",\"num_per_query\":1}\n\n(Best starting point)\n\n**1\\. n8n Full Course Masterclass 2026 — GenAI Unplugged**\n\nPublished June 2026 · Approximately 11 hours\n\nA structured course covering installation, the interface, core nodes, JSON data, expressions, HTTP requests, webhooks, debugging and workflow design. Excellent for building solid foundations. citeturn501059search11\n\nurlWatch Part 1 on YouTubehttps://www.youtube.com/watch?v=HaSaDsn3AMg\n\nurlWatch Part 2https://youtu.be/56z15ZHxxPk\n\n---\n\nimage_group{\"query\":[\"Ryan Matt Data Science Ultimate n8n Course Beginner to Pro 17 Hours 2026 YouTube thumbnail\"],\"aspect_ratio\":\"16:9\",\"layout\":\"carousel\",\"num_per_query\":1}\n\n(Best comprehensive course)\n\n**2\\. Ultimate n8n Course: Beginner to Pro — Ryan &amp; Matt Data Science**\n\nPublished January 2026 · 17+ hours\n\nCovers core automation, Google integrations, APIs, web scraping, AI agents, error handling, security, MCP and RAG. A good choice if you want a broad, long-term curriculum. citeturn501059youtube28\n\nurlWatch the full coursehttps://www.youtube.com/watch?v=TZ43SRdTMs0\n\n---\n\nimage_group{\"query\":[\"Michele Torti N8N Full Course Build AI Automations in 2026 For Beginners YouTube thumbnail\"],\"aspect_ratio\":\"16:9\",\"layout\":\"carousel\",\"num_per_query\":1}\n\n**3\\. n8n Full Course: Build AI Automations — Michele Torti**\n\nPublished October 2025 · Approximately 12 hours\n\nBest if your goal is to build AI-powered business automations. Includes API fundamentals, AI-agent concepts, RAG, customer support, invoice processing, research assistants and content automation. citeturn501059youtube26\n\nurlWatch the full coursehttps://www.youtube.com/watch?v=7_PeuTsx7UM\n\n---\n\nimage_group{\"query\":[\"Leon van Zyl n8n workflow automation beginner tutorial YouTube thumbnail\"],\"aspect_ratio\":\"16:9\",\"layout\":\"carousel\",\"num_per_query\":1}\n\n**4\\. Leon van Zyl — n8n beginner tutorials**\n\nGreat for learning at a manageable pace through individual workflow builds, integrations and practical examples. I'd use this when the longer courses move too quickly or when you want to reinforce a particular concept. citeturn501059search3\n\nurlExplore Leon van Zyl's YouTube tutorialshttps://www.youtube.com/@LeonVanZyl\n\n---\n\nimage_group{\"query\":[\"Cole Medin n8n AI agents RAG automation YouTube thumbnail\"],\"aspect_ratio\":\"16:9\",\"layout\":\"carousel\",\"num_per_query\":1}\n\n(Best for advanced AI workflows)\n\n**5\\. Cole Medin — AI agents and n8n**\n\nMove here after mastering basic nodes and data flow. Focus on AI-agent architecture, retrieval-augmented generation (RAG), vector databases and more sophisticated AI integrations. citeturn501059search3turn501059search6\n\nurlExplore Cole Medin's YouTube channelhttps://www.youtube.com/@ColeMedin\n\n## Also use these official n8n resources\n\nimage_group{\"query\":[\"n8n official YouTube channel workflow automation tutorials\"],\"aspect_ratio\":\"1:1\",\"layout\":\"carousel\",\"num_per_query\":1}\n\n**entity[\"software\",\"n8n\",\"workflow automation platform\"] official YouTube channel**\n\nBest for feature-specific tutorials, node explanations and newer integrations.\n\nurlOpen \\@n8n-io on YouTubehttps://www.youtube.com/@n8n-io\n\nimage_group{\"query\":[\"n8n Academy official learning platform course screenshot\"],\"aspect_ratio\":\"1:1\",\"layout\":\"carousel\",\"num_per_query\":1}\n\n**n8n Academy**\n\nFree, structured, hands-on learning with quizzes and certificates. The official learning resources recommend its Introduction to Automation series for beginners. citeturn501059search2turn501059search1\n\nurlStart at n8n Academyhttps://academy.n8n.io/\n\n## My recommended learning roadmap\n\nSince you already have a CSE background, you can move beyond simple no-code workflows and learn API-driven automation, JavaScript and AI integrations.\n\n**Week 1 — Fundamentals**\n\nWatch GenAI Unplugged, Part 1. Practise triggers, nodes, expressions, JSON, conditional logic, loops and error handling.\n\n---\n\n**Week 2 — Real-world integrations**\n\nLearn HTTP requests, REST APIs, authentication, webhooks, scheduled triggers and integrations with Google Sheets, Gmail or Notion.\n\n---\n\n**Week 3 — AI automation**\n\nStudy AI agents, LLM APIs, structured outputs, tool calling, retrieval-augmented generation and human approval steps.\n\n---\n\n**Week 4 — Build portfolio projects**\n\nBuild a lead-processing workflow, an AI email assistant and a document-processing automation. Add retries, logging, credential security and failure notifications.\n\nSuggested schedule: 1–2 hours daily, with most of your time spent building rather than watching.\n\n## What I'd do first\n\n1. Start with urlGenAI Unplugged — Part 1https://www.youtube.com/watch?v=HaSaDsn3AMg\\.\n2. Build every example yourself instead of simply copying the workflow JSON.\n3. Use the urlofficial n8n documentationhttps://docs.n8n.io/ whenever a node, API or configuration differs from the video.\n4. Move to Cole Medin once the basics feel comfortable.\n\n**One important tip\\:** Learn ordinary workflow automation before AI agents. Reliable data handling, authentication, APIs and error handling are what make automations useful in real projects.",
+            "fallbackMarkdownVersion": 1,
+            "requiredComponents": [
+              "AsyncImage",
+              "Cite",
+              "Entity",
+              "Link"
+            ],
+            "appData": {
+              "opGenui": {
+                "componentResults": {
+                  "a588d0a9-b3f2-5d84-b96a-e7dbc7573701": {
+                    "status": "resolved",
+                    "state": {
+                      "frame_aspect_ratio": "16:9",
+                      "frame_width": "144px",
+                      "frame_max_width": "100%",
+                      "frame_height": "auto",
+                      "max_height": null,
+                      "presentation": {
+                        "min_width": "0px",
+                        "min_height": null,
+                        "radius": "xl",
+                        "frame": true
+                      },
+                      "has_fallback": false,
+                      "image_fit": "cover",
+                      "is_loading": false,
+                      "images": [
+                        {
+                          "url": "https://taa3lim.com/articles/n8n-ai-automation-course-2026-%D9%83%D9%8A%D9%81-%D8%AA%D8%A8%D9%8A%D8%B9-%D8%A7%D9%84%D8%A3%D9%88%D8%AA%D9%88%D9%85%D8%A7%D9%8A%D8%B4%D9%86-%D8%AF%D9%88%D8%B1%D8%A9",
+                          "content_url": "https://images.openai.com/static-rsc-4/c5fLDmEpp9KW7xJxd0qbuBtC-qFir00KrXbOSTYqSip1vsurEeY77FdNJEceUIcxwLh2Ogi7IxzmDmPgUVzBmGA2PSGw4sWsa9g_I4BC1rYa7VW2McPxndAmRmtlcS7t8TaPEtimBlNVBso-LH2UTzERPwiKQyHfP7xdT-bBwn7JB8e2Dvrrilsy9Bv2Ztyg?purpose=fullsize",
+                          "thumbnail_url": "https://images.openai.com/static-rsc-4/1xRv2Df1e9oBtEoLQGr6jf3vhFRJyKLPglkoEMz682S0ONvkN-GjDooOrFOUYkqgpDU0lixV-6YBnsjJpXFTRY7JiR9dAm4pghc2XjD4ZoVvNUZFstjxP8aSWWft0zdEYfyUA3qsb6ucAqpZMhlWFRuSUyFybr4RbsMovScvOdc?purpose=inline",
+                          "original_content_url": "https://taa3lim.com/articles/images/n8n-full-course-2026-beginner-to-pro-build-sell-ai-agents-t3-Ms0EJ8RqJW7jIhR.jpg",
+                          "save_target": "image",
+                          "title": "N8N Full Course: Build AI Automations in 2026 (For Beginners)",
+                          "show_url": true,
+                          "content_size": {
+                            "width": 1280,
+                            "height": 720
+                          },
+                          "thumbnail_size": {
+                            "width": 1280,
+                            "height": 720
+                          },
+                          "thumbnail_crop_info": {
+                            "center_x_percent": 0.8171875,
+                            "center_y_percent": 0.425
+                          },
+                          "shop_eligible": false
+                        }
+                      ],
+                      "default_on_click_action": null
+                    },
+                    "safe_urls": [
+                      "https://taa3lim.com/articles/n8n-ai-automation-course-2026-%D9%83%D9%8A%D9%81-%D8%AA%D8%A8%D9%8A%D8%B9-%D8%A7%D9%84%D8%A3%D9%88%D8%AA%D9%88%D9%85%D8%A7%D9%8A%D8%B4%D9%86-%D8%AF%D9%88%D8%B1%D8%A9",
+                      "https://images.openai.com/static-rsc-4/c5fLDmEpp9KW7xJxd0qbuBtC-qFir00KrXbOSTYqSip1vsurEeY77FdNJEceUIcxwLh2Ogi7IxzmDmPgUVzBmGA2PSGw4sWsa9g_I4BC1rYa7VW2McPxndAmRmtlcS7t8TaPEtimBlNVBso-LH2UTzERPwiKQyHfP7xdT-bBwn7JB8e2Dvrrilsy9Bv2Ztyg?purpose=fullsize",
+                      "https://images.openai.com/static-rsc-4/1xRv2Df1e9oBtEoLQGr6jf3vhFRJyKLPglkoEMz682S0ONvkN-GjDooOrFOUYkqgpDU0lixV-6YBnsjJpXFTRY7JiR9dAm4pghc2XjD4ZoVvNUZFstjxP8aSWWft0zdEYfyUA3qsb6ucAqpZMhlWFRuSUyFybr4RbsMovScvOdc?purpose=inline"
+                    ],
+                    "componentName": "AsyncImage"
+                  },
+                  "25bfac6e-fbcd-5e68-a028-1e13eb99de53": {
+                    "status": "resolved",
+                    "state": {
+                      "url": "https://www.youtube.com/watch?v=HaSaDsn3AMg",
+                      "title": "youtube.com",
+                      "source_label": "youtube.com",
+                      "domain": "youtube.com",
+                      "snippet": null,
+                      "metadata_label": null,
+                      "refid": null,
+                      "title_before_last_word": "",
+                      "title_last_word": "youtube.com"
+                    },
+                    "safe_urls": [
+                      "https://www.youtube.com/watch?v=HaSaDsn3AMg"
+                    ],
+                    "componentName": "Link"
+                  },
+                  "dedf923e-efb9-5796-821d-1bd07d4a9183": {
+                    "status": "resolved",
+                    "state": {
+                      "url": "https://youtu.be/56z15ZHxxPk",
+                      "title": "youtu.be",
+                      "source_label": "youtu.be",
+                      "domain": "youtu.be",
+                      "snippet": null,
+                      "metadata_label": null,
+                      "refid": null,
+                      "title_before_last_word": "",
+                      "title_last_word": "youtu.be"
+                    },
+                    "safe_urls": [
+                      "https://youtu.be/56z15ZHxxPk"
+                    ],
+                    "componentName": "Link"
+                  },
+                  "339f3929-b005-5464-9db1-8a1b00da4b7e": {
+                    "status": "resolved",
+                    "state": {
+                      "frame_aspect_ratio": "16:9",
+                      "frame_width": "144px",
+                      "frame_max_width": "100%",
+                      "frame_height": "auto",
+                      "max_height": null,
+                      "presentation": {
+                        "min_width": "0px",
+                        "min_height": null,
+                        "radius": "xl",
+                        "frame": true
+                      },
+                      "has_fallback": false,
+                      "image_fit": "cover",
+                      "is_loading": false,
+                      "images": [
+                        {
+                          "url": "https://www.classcentral.com/course/youtube-how-i-d-learn-n8n-if-i-had-to-start-over-in-2026-511237",
+                          "content_url": "https://images.openai.com/static-rsc-4/P-sRHR6XS2uJ0K3emyOH1ujlcldQh-JcaePdsatppqSluG7l_N5hi8zR_vkKE4w9xmP-Qg1UNF22OjUkrWfCmHHz9CF2kPADUGZXyx_cztODL_YU18lqb1LNAcc9_2HOEy-Ymhkp7PqJ6LFryAZaZjjkhUcRjzvtCH5iwR3cCFBjPLWvPMn1Z_zNd4sW8HkM?purpose=fullsize",
+                          "thumbnail_url": "https://images.openai.com/static-rsc-4/t1z3wrhRZfxCQ7JcKBVKtNG8_0aXYdeOaLcAeokAsvk_acLwnzyiFbIBq-pvaRRiOv80SlaUN2SPG_C0XEegj7TYDze2nUjWJtzuZRkSxhp0MU1FJ31FOA1fWqMPYq9vshacNf0Ihh6dvMzW1ZEHCR3ntYXiQLz26EN-iEJMFVg?purpose=inline",
+                          "original_content_url": "https://d3f1iyfxxz8i1e.cloudfront.net/courses/course_image/a3d2b859e503.jpg",
+                          "save_target": "image",
+                          "title": "Free Video: How I'd Learn n8n if I Had to Start Over in 2026 from Nate Herk | AI Automation | Class Central",
+                          "show_url": true,
+                          "content_size": {
+                            "width": 640,
+                            "height": 480
+                          },
+                          "thumbnail_size": {
+                            "width": 640,
+                            "height": 480
+                          },
+                          "thumbnail_crop_info": {
+                            "center_x_percent": 0.365625,
+                            "center_y_percent": 0.25833333333333336
+                          },
+                          "shop_eligible": false
+                        }
+                      ],
+                      "default_on_click_action": null
+                    },
+                    "safe_urls": [
+                      "https://www.classcentral.com/course/youtube-how-i-d-learn-n8n-if-i-had-to-start-over-in-2026-511237",
+                      "https://images.openai.com/static-rsc-4/P-sRHR6XS2uJ0K3emyOH1ujlcldQh-JcaePdsatppqSluG7l_N5hi8zR_vkKE4w9xmP-Qg1UNF22OjUkrWfCmHHz9CF2kPADUGZXyx_cztODL_YU18lqb1LNAcc9_2HOEy-Ymhkp7PqJ6LFryAZaZjjkhUcRjzvtCH5iwR3cCFBjPLWvPMn1Z_zNd4sW8HkM?purpose=fullsize",
+                      "https://images.openai.com/static-rsc-4/t1z3wrhRZfxCQ7JcKBVKtNG8_0aXYdeOaLcAeokAsvk_acLwnzyiFbIBq-pvaRRiOv80SlaUN2SPG_C0XEegj7TYDze2nUjWJtzuZRkSxhp0MU1FJ31FOA1fWqMPYq9vshacNf0Ihh6dvMzW1ZEHCR3ntYXiQLz26EN-iEJMFVg?purpose=inline"
+                    ],
+                    "componentName": "AsyncImage"
+                  },
+                  "4ddbf0e3-3cd8-5180-91fb-b24f383fd167": {
+                    "status": "resolved",
+                    "state": {
+                      "url": "https://www.youtube.com/watch?v=TZ43SRdTMs0",
+                      "title": "youtube.com",
+                      "source_label": "youtube.com",
+                      "domain": "youtube.com",
+                      "snippet": null,
+                      "metadata_label": null,
+                      "refid": null,
+                      "title_before_last_word": "",
+                      "title_last_word": "youtube.com"
+                    },
+                    "safe_urls": [
+                      "https://www.youtube.com/watch?v=TZ43SRdTMs0"
+                    ],
+                    "componentName": "Link"
+                  },
+                  "caeda85d-331b-5956-b5d3-e030ea256046": {
+                    "status": "resolved",
+                    "state": {
+                      "frame_aspect_ratio": "16:9",
+                      "frame_width": "144px",
+                      "frame_max_width": "100%",
+                      "frame_height": "auto",
+                      "max_height": null,
+                      "presentation": {
+                        "min_width": "0px",
+                        "min_height": null,
+                        "radius": "xl",
+                        "frame": true
+                      },
+                      "has_fallback": false,
+                      "image_fit": "cover",
+                      "is_loading": false,
+                      "images": [
+                        {
+                          "url": "https://taa3lim.com/articles/n8n-ai-automation-course-2026-%D9%83%D9%8A%D9%81-%D8%AA%D8%A8%D9%8A%D8%B9-%D8%A7%D9%84%D8%A3%D9%88%D8%AA%D9%88%D9%85%D8%A7%D9%8A%D8%B4%D9%86-%D8%AF%D9%88%D8%B1%D8%A9",
+                          "content_url": "https://images.openai.com/static-rsc-4/w-xdl6pMP9aDvgzEA1k5G9SQfiIg7ca5HdlcJJVxRXG-TfoI8df3chrjqS2LWQlNawkB-ReNPb3BaYf5iLAY56sozzcPgvkXum7B_YJUoXcKskw98NAU4wc0j98gl76pcHmTlRtmJIIMypNtDP5r5h8382J6XPQJXHVcwRHkNSHgahtsrZEixKctImGnoUpK?purpose=fullsize",
+                          "thumbnail_url": "https://images.openai.com/static-rsc-4/LXd9vcqQIbX-O1-y-aMZyUT7jin8M8nq-SEwtM7Qsya-vcXeGkt8rN-isXtd25kIb7MhxTEoyIzv4xGtQWhPlO6cV7JriCuQnuSCJnIUUPtqX-qXf-DGOzG4AlmM2-Ow9K3qXwKjS2jUaufN0JOvDWrMiF05kRe7JjuTgJHgPjo?purpose=inline",
+                          "original_content_url": "https://taa3lim.com/articles/images/how-i-d-learn-n8n-if-i-had-to-start-over-in-2026-t3-MsFqeo8q8-nJghR.jpg",
+                          "save_target": "image",
+                          "title": "N8N Full Course: Build AI Automations in 2026 (For Beginners)",
+                          "show_url": true,
+                          "content_size": {
+                            "width": 1280,
+                            "height": 720
+                          },
+                          "thumbnail_size": {
+                            "width": 1280,
+                            "height": 720
+                          },
+                          "thumbnail_crop_info": {
+                            "center_x_percent": 0.3578125,
+                            "center_y_percent": 0.15
+                          },
+                          "shop_eligible": false
+                        }
+                      ],
+                      "default_on_click_action": null
+                    },
+                    "safe_urls": [
+                      "https://taa3lim.com/articles/n8n-ai-automation-course-2026-%D9%83%D9%8A%D9%81-%D8%AA%D8%A8%D9%8A%D8%B9-%D8%A7%D9%84%D8%A3%D9%88%D8%AA%D9%88%D9%85%D8%A7%D9%8A%D8%B4%D9%86-%D8%AF%D9%88%D8%B1%D8%A9",
+                      "https://images.openai.com/static-rsc-4/w-xdl6pMP9aDvgzEA1k5G9SQfiIg7ca5HdlcJJVxRXG-TfoI8df3chrjqS2LWQlNawkB-ReNPb3BaYf5iLAY56sozzcPgvkXum7B_YJUoXcKskw98NAU4wc0j98gl76pcHmTlRtmJIIMypNtDP5r5h8382J6XPQJXHVcwRHkNSHgahtsrZEixKctImGnoUpK?purpose=fullsize",
+                      "https://images.openai.com/static-rsc-4/LXd9vcqQIbX-O1-y-aMZyUT7jin8M8nq-SEwtM7Qsya-vcXeGkt8rN-isXtd25kIb7MhxTEoyIzv4xGtQWhPlO6cV7JriCuQnuSCJnIUUPtqX-qXf-DGOzG4AlmM2-Ow9K3qXwKjS2jUaufN0JOvDWrMiF05kRe7JjuTgJHgPjo?purpose=inline"
+                    ],
+                    "componentName": "AsyncImage"
+                  },
+                  "3e979f04-30fe-57ef-933b-57fafb04a40e": {
+                    "status": "resolved",
+                    "state": {
+                      "url": "https://www.youtube.com/watch?v=7_PeuTsx7UM",
+                      "title": "youtube.com",
+                      "source_label": "youtube.com",
+                      "domain": "youtube.com",
+                      "snippet": null,
+                      "metadata_label": null,
+                      "refid": null,
+                      "title_before_last_word": "",
+                      "title_last_word": "youtube.com"
+                    },
+                    "safe_urls": [
+                      "https://www.youtube.com/watch?v=7_PeuTsx7UM"
+                    ],
+                    "componentName": "Link"
+                  },
+                  "6a501449-4b60-543b-91b6-71a191bd9f68": {
+                    "status": "resolved",
+                    "state": {
+                      "frame_aspect_ratio": "16:9",
+                      "frame_width": "144px",
+                      "frame_max_width": "100%",
+                      "frame_height": "auto",
+                      "max_height": null,
+                      "presentation": {
+                        "min_width": "0px",
+                        "min_height": null,
+                        "radius": "xl",
+                        "frame": true
+                      },
+                      "has_fallback": false,
+                      "image_fit": "cover",
+                      "is_loading": false,
+                      "images": [
+                        {
+                          "url": "https://www.linkedin.com/posts/n8n_leon-van-zyl-just-dropped-a-great-tutorial-activity-7355869766609162240-mD2Y",
+                          "content_url": "https://images.openai.com/static-rsc-4/HHyKW_HcsCX113LQdz4bb4oYxtbdT4Jgnlc4VJq-W2iIZTF382Qk7e0hGmbveABh9zmA8t70tEV9nvrFdFEWrdfofVj4C8wdtKtLdEtYoOEgglcHke_Pe9J41Z9hXPOnBg5bvx0NXlQY7Q7W8Jm6V39Gc-LSnrtcDqUN_EL6chv63bVQPlgzekApEiET0pSi?purpose=fullsize",
+                          "thumbnail_url": "https://images.openai.com/static-rsc-4/tyulgnv39vzKPcCglsnc4QxeN39J-DZ0NiDWTHsHIT5Ocz0yi7iR6HFBbjA8B-CyP3Kp2WYTbex5OEO0D-sWgDn8fOgImfgMMkXqZfb4yHz_eaKkQsi6PgJwETrvLWAFKzIo_Tapv9BfU2Ks4Xy3pikRC6FczELpwWH4ABenxZc?purpose=inline",
+                          "original_content_url": "https://media.licdn.com/dms/image/v2/D4E22AQEZX1fIkJitYA/feedshare-shrink_800/B4EZhRZAEAGoAs-/0/1753712165936?e=2147483647&t=XJfmxxEk4ZuhjZB7R7LJDEZ637zcQ-NOmz5u6oo0EWE&v=beta",
+                          "save_target": "image",
+                          "title": "Leon van Zyl just dropped a great tutorial for beginners. \n\nIt walks you through building smart email automations, support bots, and intelligent workflows using tools like ChatGPT, Claude, and other… | n8n | 19 comments",
+                          "show_url": true,
+                          "content_size": {
+                            "width": 800,
+                            "height": 450
+                          },
+                          "thumbnail_size": {
+                            "width": 800,
+                            "height": 450
+                          },
+                          "thumbnail_crop_info": {
+                            "center_x_percent": 0.76125,
+                            "center_y_percent": 0.3
+                          },
+                          "shop_eligible": false
+                        }
+                      ],
+                      "default_on_click_action": null
+                    },
+                    "safe_urls": [
+                      "https://www.linkedin.com/posts/n8n_leon-van-zyl-just-dropped-a-great-tutorial-activity-7355869766609162240-mD2Y",
+                      "https://images.openai.com/static-rsc-4/HHyKW_HcsCX113LQdz4bb4oYxtbdT4Jgnlc4VJq-W2iIZTF382Qk7e0hGmbveABh9zmA8t70tEV9nvrFdFEWrdfofVj4C8wdtKtLdEtYoOEgglcHke_Pe9J41Z9hXPOnBg5bvx0NXlQY7Q7W8Jm6V39Gc-LSnrtcDqUN_EL6chv63bVQPlgzekApEiET0pSi?purpose=fullsize",
+                      "https://images.openai.com/static-rsc-4/tyulgnv39vzKPcCglsnc4QxeN39J-DZ0NiDWTHsHIT5Ocz0yi7iR6HFBbjA8B-CyP3Kp2WYTbex5OEO0D-sWgDn8fOgImfgMMkXqZfb4yHz_eaKkQsi6PgJwETrvLWAFKzIo_Tapv9BfU2Ks4Xy3pikRC6FczELpwWH4ABenxZc?purpose=inline"
+                    ],
+                    "componentName": "AsyncImage"
+                  },
+                  "a517026a-f527-57b2-baac-bce3110104a1": {
+                    "status": "resolved",
+                    "state": {
+                      "url": "https://www.youtube.com/@LeonVanZyl",
+                      "title": "youtube.com",
+                      "source_label": "youtube.com",
+                      "domain": "youtube.com",
+                      "snippet": null,
+                      "metadata_label": null,
+                      "refid": null,
+                      "title_before_last_word": "",
+                      "title_last_word": "youtube.com"
+                    },
+                    "safe_urls": [
+                      "https://www.youtube.com/@LeonVanZyl"
+                    ],
+                    "componentName": "Link"
+                  },
+                  "eac36d13-dd19-5522-8e8e-ff2ed1602705": {
+                    "status": "resolved",
+                    "state": {
+                      "frame_aspect_ratio": "16:9",
+                      "frame_width": "144px",
+                      "frame_max_width": "100%",
+                      "frame_height": "auto",
+                      "max_height": null,
+                      "presentation": {
+                        "min_width": "0px",
+                        "min_height": null,
+                        "radius": "xl",
+                        "frame": true
+                      },
+                      "has_fallback": false,
+                      "image_fit": "cover",
+                      "is_loading": false,
+                      "images": [
+                        {
+                          "url": "https://files.mindstudio-cdn.com/c1ecbf36-9ddb-4adb-85af-d13f05487bdf/documents/d57a7e08-876c-4fd5-967e-e375584ad05d.html",
+                          "content_url": "https://images.openai.com/static-rsc-4/g2P5DEvYlG98dCRRce9s1mFY3BkVITZqK9N7bfHUPWXJ8eUS_4Z9dkZxoiHEq07tnMVlwuOBwUAUQ-0n01kqP9sobNdwgcSaXGEl_WUMLsuhP5DSh9n-JR0xqtJckiytTQMmjV-65swu2N1pWWlkZdF-LPXZAuxdbrFwEORTznyf6KfgbnIms04Pe8u8kU5C?purpose=fullsize",
+                          "thumbnail_url": "https://images.openai.com/static-rsc-4/iWT1MAbRkTg9JD1bsi9tMdZEmoaaxZ7QILffPUn7htALyQF9CoCckhZnK4qIpv7N-kv0ir13uoGn1eE2y9aOXQKKJ0olWxF_Xy5nsBTbaH0gTwK4laUSNsFXNx0MKmPTpynDKC1defCPLn0cJe1CQTpRY4olp9OLXsJQiyWMMjQ?purpose=inline",
+                          "original_content_url": "https://i.ytimg.com/vi/mQt1hOjBH9o/maxresdefault.jpg",
+                          "save_target": "image",
+                          "title": "I Built the ULTIMATE n8n RAG AI Agent Template",
+                          "show_url": true,
+                          "content_size": {
+                            "width": 1280,
+                            "height": 720
+                          },
+                          "thumbnail_size": {
+                            "width": 1280,
+                            "height": 720
+                          },
+                          "thumbnail_crop_info": {
+                            "center_x_percent": 0.84921875,
+                            "center_y_percent": 0.1
+                          },
+                          "shop_eligible": false
+                        }
+                      ],
+                      "default_on_click_action": null
+                    },
+                    "safe_urls": [
+                      "https://files.mindstudio-cdn.com/c1ecbf36-9ddb-4adb-85af-d13f05487bdf/documents/d57a7e08-876c-4fd5-967e-e375584ad05d.html",
+                      "https://images.openai.com/static-rsc-4/g2P5DEvYlG98dCRRce9s1mFY3BkVITZqK9N7bfHUPWXJ8eUS_4Z9dkZxoiHEq07tnMVlwuOBwUAUQ-0n01kqP9sobNdwgcSaXGEl_WUMLsuhP5DSh9n-JR0xqtJckiytTQMmjV-65swu2N1pWWlkZdF-LPXZAuxdbrFwEORTznyf6KfgbnIms04Pe8u8kU5C?purpose=fullsize",
+                      "https://images.openai.com/static-rsc-4/iWT1MAbRkTg9JD1bsi9tMdZEmoaaxZ7QILffPUn7htALyQF9CoCckhZnK4qIpv7N-kv0ir13uoGn1eE2y9aOXQKKJ0olWxF_Xy5nsBTbaH0gTwK4laUSNsFXNx0MKmPTpynDKC1defCPLn0cJe1CQTpRY4olp9OLXsJQiyWMMjQ?purpose=inline"
+                    ],
+                    "componentName": "AsyncImage"
+                  },
+                  "9585d04c-d99c-5f6a-b2c6-bf3666979b46": {
+                    "status": "resolved",
+                    "state": {
+                      "url": "https://www.youtube.com/@ColeMedin",
+                      "title": "youtube.com",
+                      "source_label": "youtube.com",
+                      "domain": "youtube.com",
+                      "snippet": null,
+                      "metadata_label": null,
+                      "refid": null,
+                      "title_before_last_word": "",
+                      "title_last_word": "youtube.com"
+                    },
+                    "safe_urls": [
+                      "https://www.youtube.com/@ColeMedin"
+                    ],
+                    "componentName": "Link"
+                  },
+                  "3ffebd24-1b61-5e95-8b90-4667c80853e6": {
+                    "status": "resolved",
+                    "state": {
+                      "value": "n8n",
+                      "action_payload": {
+                        "query": "n8n",
+                        "category": "software",
+                        "extraParams": {
+                          "disambiguation": "workflow automation platform"
+                        },
+                        "event_name": "chatgpt_entity_action",
+                        "event_data": {
+                          "action_type": "clicked",
+                          "surface_location": "response",
+                          "entity_affordance": "inline",
+                          "content_reference_type": "entity",
+                          "entity_category": "software"
+                        }
+                      },
+                      "click_action": {
+                        "handler": "client",
+                        "type": "open_entity_detail",
+                        "payload": {
+                          "query": "n8n",
+                          "category": "software",
+                          "extraParams": {
+                            "disambiguation": "workflow automation platform"
+                          },
+                          "event_name": "chatgpt_entity_action",
+                          "event_data": {
+                            "action_type": "clicked",
+                            "surface_location": "response",
+                            "entity_affordance": "inline",
+                            "content_reference_type": "entity",
+                            "entity_category": "software"
+                          }
+                        }
+                      },
+                      "entity_data": null,
+                      "image_url": null,
+                      "directions_url": null
+                    },
+                    "componentName": "Entity"
+                  },
+                  "05cf746e-e22c-51fd-8ada-3bf559716798": {
+                    "status": "resolved",
+                    "state": {
+                      "url": "https://www.youtube.com/@n8n-io",
+                      "title": "youtube.com",
+                      "source_label": "youtube.com",
+                      "domain": "youtube.com",
+                      "snippet": null,
+                      "metadata_label": null,
+                      "refid": null,
+                      "title_before_last_word": "",
+                      "title_last_word": "youtube.com"
+                    },
+                    "safe_urls": [
+                      "https://www.youtube.com/@n8n-io"
+                    ],
+                    "componentName": "Link"
+                  },
+                  "942925b5-27e4-5ff3-9291-fc0c09d4195d": {
+                    "status": "resolved",
+                    "state": {
+                      "url": "https://academy.n8n.io/",
+                      "title": "academy.n8n.io",
+                      "source_label": "academy.n8n.io",
+                      "domain": "academy.n8n.io",
+                      "snippet": null,
+                      "metadata_label": null,
+                      "refid": null,
+                      "title_before_last_word": "",
+                      "title_last_word": "academy.n8n.io"
+                    },
+                    "safe_urls": [
+                      "https://academy.n8n.io/"
+                    ],
+                    "componentName": "Link"
+                  },
+                  "6b119e4f-0eba-5d21-8ea8-0c369eff09bd": {
+                    "status": "resolved",
+                    "state": {
+                      "url": "https://docs.n8n.io/",
+                      "title": "docs.n8n.io",
+                      "source_label": "docs.n8n.io",
+                      "domain": "docs.n8n.io",
+                      "snippet": null,
+                      "metadata_label": null,
+                      "refid": null,
+                      "title_before_last_word": "",
+                      "title_last_word": "docs.n8n.io"
+                    },
+                    "safe_urls": [
+                      "https://docs.n8n.io/"
+                    ],
+                    "componentName": "Link"
+                  },
+                  "624eac0f-78cb-533b-95ff-98c4c916401a": {
+                    "status": "resolved",
+                    "state": {
+                      "items": [
+                        {
+                          "url": "https://www.classcentral.com/report/best-n8n-courses/",
+                          "ref_id": "turn501059search1",
+                          "refs": [
+                            {
+                              "turn_index": 501059,
+                              "ref_type": "search",
+                              "ref_index": 1
+                            }
+                          ],
+                          "source_label": "Class Central",
+                          "title": "10 Best n8n Courses for 2026",
+                          "snippet": null,
+                          "pub_timestamp": 1770768000,
+                          "metadata_label": "February 11, 2026"
+                        },
+                        {
+                          "url": "https://support.n8n.io/article/learning-resources",
+                          "ref_id": "turn501059search2",
+                          "refs": [
+                            {
+                              "turn_index": 501059,
+                              "ref_type": "search",
+                              "ref_index": 2
+                            }
+                          ],
+                          "source_label": "n8n Help Center",
+                          "title": "FAQs - General Tips - Learning resources",
+                          "snippet": null,
+                          "pub_timestamp": 1754502740,
+                          "metadata_label": "August 6, 2025"
+                        },
+                        {
+                          "url": "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg",
+                          "ref_id": "turn501059search11",
+                          "refs": [
+                            {
+                              "turn_index": 501059,
+                              "ref_type": "search",
+                              "ref_index": 11
+                            }
+                          ],
+                          "source_label": "NatokHD",
+                          "title": "n8n Full Course Masterclass 2026 - Part 1/2 | Installation, Core Nodes, Data, & Error Handling",
+                          "snippet": null,
+                          "pub_timestamp": 1780876800,
+                          "metadata_label": "June 8, 2026"
+                        }
+                      ],
+                      "active_index": 0,
+                      "sources_title": "3 Sources"
+                    },
+                    "safe_urls": [
+                      "https://www.classcentral.com/report/best-n8n-courses/",
+                      "https://support.n8n.io/article/learning-resources",
+                      "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg"
+                    ],
+                    "componentName": "Cite"
+                  },
+                  "942d2c4a-6ecd-545a-a687-b8420b25b9e3": {
+                    "status": "resolved",
+                    "state": {
+                      "items": [
+                        {
+                          "url": "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg",
+                          "ref_id": "turn501059search11",
+                          "refs": [
+                            {
+                              "turn_index": 501059,
+                              "ref_type": "search",
+                              "ref_index": 11
+                            }
+                          ],
+                          "source_label": "NatokHD",
+                          "title": "n8n Full Course Masterclass 2026 - Part 1/2 | Installation, Core Nodes, Data, & Error Handling",
+                          "snippet": null,
+                          "pub_timestamp": 1780876800,
+                          "metadata_label": "June 8, 2026"
+                        }
+                      ],
+                      "active_index": 0,
+                      "sources_title": "1 Source"
+                    },
+                    "safe_urls": [
+                      "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg"
+                    ],
+                    "componentName": "Cite"
+                  },
+                  "965e8727-dd6e-5984-99ee-d31eb3b63259": {
+                    "status": "resolved",
+                    "state": {
+                      "items": [
+                        {
+                          "url": "https://www.youtube.com/watch?v=TZ43SRdTMs0",
+                          "ref_id": "turn501059youtube28",
+                          "refs": [
+                            {
+                              "turn_index": 501059,
+                              "ref_type": "youtube",
+                              "ref_index": 28
+                            }
+                          ],
+                          "source_label": "YouTube",
+                          "title": "Ultimate n8n Course: Beginner to Pro in 17 Hours (2026)",
+                          "snippet": null,
+                          "pub_timestamp": 1768176000,
+                          "metadata_label": "January 12, 2026"
+                        }
+                      ],
+                      "active_index": 0,
+                      "sources_title": "1 Source"
+                    },
+                    "safe_urls": [
+                      "https://www.youtube.com/watch?v=TZ43SRdTMs0"
+                    ],
+                    "componentName": "Cite"
+                  },
+                  "f6f56486-f9e8-5487-bada-8d928fdfc15f": {
+                    "status": "resolved",
+                    "state": {
+                      "items": [
+                        {
+                          "url": "https://www.youtube.com/watch?v=7_PeuTsx7UM",
+                          "ref_id": "turn501059youtube26",
+                          "refs": [
+                            {
+                              "turn_index": 501059,
+                              "ref_type": "youtube",
+                              "ref_index": 26
+                            }
+                          ],
+                          "source_label": "YouTube",
+                          "title": "N8N Full Course: Build AI Automations in 2026 (For Beginners)",
+                          "snippet": null,
+                          "pub_timestamp": 1761868800,
+                          "metadata_label": "October 31, 2025"
+                        }
+                      ],
+                      "active_index": 0,
+                      "sources_title": "1 Source"
+                    },
+                    "safe_urls": [
+                      "https://www.youtube.com/watch?v=7_PeuTsx7UM"
+                    ],
+                    "componentName": "Cite"
+                  },
+                  "4d343fcd-41df-5b74-81df-63c72367c41d": {
+                    "status": "resolved",
+                    "state": {
+                      "items": [
+                        {
+                          "url": "https://learnforge.dev/blog/best-n8n-course-2026/",
+                          "ref_id": "turn501059search3",
+                          "refs": [
+                            {
+                              "turn_index": 501059,
+                              "ref_type": "search",
+                              "ref_index": 3
+                            }
+                          ],
+                          "source_label": "LearnForge",
+                          "title": "Best n8n Course in 2026: Free vs Paid Options Compared",
+                          "snippet": null,
+                          "pub_timestamp": 1787011200,
+                          "metadata_label": "August 18, 2026"
+                        }
+                      ],
+                      "active_index": 0,
+                      "sources_title": "1 Source"
+                    },
+                    "safe_urls": [
+                      "https://learnforge.dev/blog/best-n8n-course-2026/"
+                    ],
+                    "componentName": "Cite"
+                  },
+                  "567c4e78-901e-511d-a9d6-a65480f3d154": {
+                    "status": "resolved",
+                    "state": {
+                      "items": [
+                        {
+                          "url": "https://learnforge.dev/blog/best-n8n-course-2026/",
+                          "ref_id": "turn501059search3",
+                          "refs": [
+                            {
+                              "turn_index": 501059,
+                              "ref_type": "search",
+                              "ref_index": 3
+                            }
+                          ],
+                          "source_label": "LearnForge",
+                          "title": "Best n8n Course in 2026: Free vs Paid Options Compared",
+                          "snippet": null,
+                          "pub_timestamp": 1787011200,
+                          "metadata_label": "August 18, 2026"
+                        },
+                        {
+                          "url": "https://growai.in/best-n8n-course-india-2026/",
+                          "ref_id": "turn501059search6",
+                          "refs": [
+                            {
+                              "turn_index": 501059,
+                              "ref_type": "search",
+                              "ref_index": 6
+                            }
+                          ],
+                          "source_label": "GrowAI",
+                          "title": "Best N8N Course India 2026: Free vs Paid Learning Guide",
+                          "snippet": null,
+                          "pub_timestamp": 1778284800,
+                          "metadata_label": "May 9, 2026"
+                        }
+                      ],
+                      "active_index": 0,
+                      "sources_title": "2 Sources"
+                    },
+                    "safe_urls": [
+                      "https://learnforge.dev/blog/best-n8n-course-2026/",
+                      "https://growai.in/best-n8n-course-india-2026/"
+                    ],
+                    "componentName": "Cite"
+                  },
+                  "a4e63692-5937-5d73-bfab-3b417068dc56": {
+                    "status": "resolved",
+                    "state": {
+                      "frame_aspect_ratio": "1:1",
+                      "frame_width": "88px",
+                      "frame_max_width": "100%",
+                      "frame_height": "auto",
+                      "max_height": null,
+                      "presentation": {
+                        "min_width": "0px",
+                        "min_height": null,
+                        "radius": "xl",
+                        "frame": true
+                      },
+                      "has_fallback": false,
+                      "image_fit": "cover",
+                      "is_loading": false,
+                      "images": [
+                        {
+                          "url": "https://glasp.co/youtube/4cQWJViybAQ",
+                          "content_url": "https://images.openai.com/static-rsc-4/O1UxeywPlfdapLu33bhwNXATiTI9yvo67djshAD1-PbDK5bvzpusSTI-pN5_XeTb7FnRGz95YsrA9gQ8Da50tOjQwhJOI-4NvEk1BAkgGxPlV98J2VPTlnAYNq8RptcYCGDq3A7ZAg8RTdx2RLPmEDEDihniiFwSk2XkPPzAjDf6ce9rwjCOIHX45aYo_UuA?purpose=fullsize",
+                          "thumbnail_url": "https://images.openai.com/static-rsc-4/4xWrKSQvtb7Yg0ix1Kt-_PHDyD0-X1F95Ssnjr59NWrQhLUMXWUpgFfRRPhO4Sj0-aRxCHOPpVwdOFcYlJY11tdzu7xD_3qgJsIRabwtljRxWGtRL5Hbiw0yS_s4PcSVumll1uZl7utfXf5mMxTiOvLj1gmhOHwdI1Ggqr2C9Cg?purpose=inline",
+                          "original_content_url": "https://glasp.co/_next/image?q=75&url=https%3A%2F%2Fi.ytimg.com%2Fvi%2F4cQWJViybAQ%2Fmaxresdefault.jpg&w=1920",
+                          "save_target": "image",
+                          "title": "How to Build Your First n8n Workflow | Glasp",
+                          "show_url": true,
+                          "content_size": {
+                            "width": 1280,
+                            "height": 720
+                          },
+                          "thumbnail_size": {
+                            "width": 1280,
+                            "height": 720
+                          },
+                          "thumbnail_crop_info": {
+                            "center_x_percent": 0.8193359375,
+                            "center_y_percent": 0.3888888888888889
+                          },
+                          "shop_eligible": false
+                        }
+                      ],
+                      "default_on_click_action": null
+                    },
+                    "safe_urls": [
+                      "https://glasp.co/youtube/4cQWJViybAQ",
+                      "https://images.openai.com/static-rsc-4/O1UxeywPlfdapLu33bhwNXATiTI9yvo67djshAD1-PbDK5bvzpusSTI-pN5_XeTb7FnRGz95YsrA9gQ8Da50tOjQwhJOI-4NvEk1BAkgGxPlV98J2VPTlnAYNq8RptcYCGDq3A7ZAg8RTdx2RLPmEDEDihniiFwSk2XkPPzAjDf6ce9rwjCOIHX45aYo_UuA?purpose=fullsize",
+                      "https://images.openai.com/static-rsc-4/4xWrKSQvtb7Yg0ix1Kt-_PHDyD0-X1F95Ssnjr59NWrQhLUMXWUpgFfRRPhO4Sj0-aRxCHOPpVwdOFcYlJY11tdzu7xD_3qgJsIRabwtljRxWGtRL5Hbiw0yS_s4PcSVumll1uZl7utfXf5mMxTiOvLj1gmhOHwdI1Ggqr2C9Cg?purpose=inline"
+                    ],
+                    "componentName": "AsyncImage"
+                  },
+                  "5119788c-1d78-53c4-8c97-c032929b9315": {
+                    "status": "resolved",
+                    "state": {
+                      "frame_aspect_ratio": "1:1",
+                      "frame_width": "88px",
+                      "frame_max_width": "100%",
+                      "frame_height": "auto",
+                      "max_height": null,
+                      "presentation": {
+                        "min_width": "0px",
+                        "min_height": null,
+                        "radius": "xl",
+                        "frame": true
+                      },
+                      "has_fallback": false,
+                      "image_fit": "cover",
+                      "is_loading": false,
+                      "images": [
+                        {
+                          "url": "https://community.n8n.io/t/beginner-course/48588",
+                          "content_url": "https://images.openai.com/static-rsc-4/y_tDGQwcvUvbY7x5ScDwVoyVmmT-UFNsx35mUp5I25iJsSI6zdpMVA5q8YaiFzlpy1XsFCy6rxkQ-Tic9a0-ajU1Ye_ICkHUDCSLiCiIsWiHjeKrgGkPA8UX3x-scDl_K0H_g2MRd_ypGWBs0N5wYdnaTYCvZZ5LTH3JvmYKbCDpnRn6_mcdL8G1jq_CQgYi?purpose=fullsize",
+                          "thumbnail_url": "https://images.openai.com/static-rsc-4/zeA3hr3EcXWh6vH_JyTGRm6dvr808h3CInRVkAKRq2GPsJg7s1HyH0ehbk5YhR_frmVafcYiO08mVLrDEWRWGc86c5D3eLly_sQLNjXmhYiMuXXTEXQ4jQARRY6rM4RoK1FB43jej0ybEdwNZnXYhBn3WsBH0xtMPVRViGB58uM?purpose=inline",
+                          "original_content_url": "https://europe1.discourse-cdn.com/n8n/optimized/3X/9/2/92e1752b1bd29ec64bb96e0ab0d19aa1742cc284_2_1380x776.jpeg",
+                          "save_target": "image",
+                          "title": "Beginner course - Tutorials - n8n Community",
+                          "show_url": true,
+                          "content_size": {
+                            "width": 1380,
+                            "height": 776
+                          },
+                          "thumbnail_size": {
+                            "width": 1380,
+                            "height": 776
+                          },
+                          "thumbnail_crop_info": {
+                            "center_x_percent": 0.1435546875,
+                            "center_y_percent": 0.10069444444444445
+                          },
+                          "shop_eligible": false
+                        }
+                      ],
+                      "default_on_click_action": null
+                    },
+                    "safe_urls": [
+                      "https://community.n8n.io/t/beginner-course/48588",
+                      "https://images.openai.com/static-rsc-4/y_tDGQwcvUvbY7x5ScDwVoyVmmT-UFNsx35mUp5I25iJsSI6zdpMVA5q8YaiFzlpy1XsFCy6rxkQ-Tic9a0-ajU1Ye_ICkHUDCSLiCiIsWiHjeKrgGkPA8UX3x-scDl_K0H_g2MRd_ypGWBs0N5wYdnaTYCvZZ5LTH3JvmYKbCDpnRn6_mcdL8G1jq_CQgYi?purpose=fullsize",
+                      "https://images.openai.com/static-rsc-4/zeA3hr3EcXWh6vH_JyTGRm6dvr808h3CInRVkAKRq2GPsJg7s1HyH0ehbk5YhR_frmVafcYiO08mVLrDEWRWGc86c5D3eLly_sQLNjXmhYiMuXXTEXQ4jQARRY6rM4RoK1FB43jej0ybEdwNZnXYhBn3WsBH0xtMPVRViGB58uM?purpose=inline"
+                    ],
+                    "componentName": "AsyncImage"
+                  },
+                  "77220593-0372-59ec-91ea-c8522e0f86d0": {
+                    "status": "resolved",
+                    "state": {
+                      "items": [
+                        {
+                          "url": "https://support.n8n.io/article/learning-resources",
+                          "ref_id": "turn501059search2",
+                          "refs": [
+                            {
+                              "turn_index": 501059,
+                              "ref_type": "search",
+                              "ref_index": 2
+                            }
+                          ],
+                          "source_label": "n8n Help Center",
+                          "title": "FAQs - General Tips - Learning resources",
+                          "snippet": null,
+                          "pub_timestamp": 1754502740,
+                          "metadata_label": "August 6, 2025"
+                        },
+                        {
+                          "url": "https://www.classcentral.com/report/best-n8n-courses/",
+                          "ref_id": "turn501059search1",
+                          "refs": [
+                            {
+                              "turn_index": 501059,
+                              "ref_type": "search",
+                              "ref_index": 1
+                            }
+                          ],
+                          "source_label": "Class Central",
+                          "title": "10 Best n8n Courses for 2026",
+                          "snippet": null,
+                          "pub_timestamp": 1770768000,
+                          "metadata_label": "February 11, 2026"
+                        }
+                      ],
+                      "active_index": 0,
+                      "sources_title": "2 Sources"
+                    },
+                    "safe_urls": [
+                      "https://support.n8n.io/article/learning-resources",
+                      "https://www.classcentral.com/report/best-n8n-courses/"
+                    ],
+                    "componentName": "Cite"
+                  }
+                },
+                "modelDataBindings": {}
+              }
+            }
+          },
+          "view_state": {},
+          "safe_urls": [
+            "https://academy.n8n.io/",
+            "https://aiattention.ai/blog/best-ai-agents-educators-youtube-2026",
+            "https://blog.aakashdev.in/blog/ai-automation-langchain-n8n-youtube-resources",
+            "https://community.n8n.io/c/tutorials/28/l/top",
+            "https://community.n8n.io/t/beginner-course/48588",
+            "https://developereducators.com/roadmap/n8n/",
+            "https://developereducators.com/tutorials/n8n/",
+            "https://docs.n8n.io/",
+            "https://files.mindstudio-cdn.com/c1ecbf36-9ddb-4adb-85af-d13f05487bdf/documents/d57a7e08-876c-4fd5-967e-e375584ad05d.html",
+            "https://glasp.co/youtube/4cQWJViybAQ",
+            "https://growai.in/best-n8n-course-india-2026/",
+            "https://images.openai.com/static-rsc-4/1xRv2Df1e9oBtEoLQGr6jf3vhFRJyKLPglkoEMz682S0ONvkN-GjDooOrFOUYkqgpDU0lixV-6YBnsjJpXFTRY7JiR9dAm4pghc2XjD4ZoVvNUZFstjxP8aSWWft0zdEYfyUA3qsb6ucAqpZMhlWFRuSUyFybr4RbsMovScvOdc?purpose=inline",
+            "https://images.openai.com/static-rsc-4/4xWrKSQvtb7Yg0ix1Kt-_PHDyD0-X1F95Ssnjr59NWrQhLUMXWUpgFfRRPhO4Sj0-aRxCHOPpVwdOFcYlJY11tdzu7xD_3qgJsIRabwtljRxWGtRL5Hbiw0yS_s4PcSVumll1uZl7utfXf5mMxTiOvLj1gmhOHwdI1Ggqr2C9Cg?purpose=inline",
+            "https://images.openai.com/static-rsc-4/HHyKW_HcsCX113LQdz4bb4oYxtbdT4Jgnlc4VJq-W2iIZTF382Qk7e0hGmbveABh9zmA8t70tEV9nvrFdFEWrdfofVj4C8wdtKtLdEtYoOEgglcHke_Pe9J41Z9hXPOnBg5bvx0NXlQY7Q7W8Jm6V39Gc-LSnrtcDqUN_EL6chv63bVQPlgzekApEiET0pSi?purpose=fullsize",
+            "https://images.openai.com/static-rsc-4/LXd9vcqQIbX-O1-y-aMZyUT7jin8M8nq-SEwtM7Qsya-vcXeGkt8rN-isXtd25kIb7MhxTEoyIzv4xGtQWhPlO6cV7JriCuQnuSCJnIUUPtqX-qXf-DGOzG4AlmM2-Ow9K3qXwKjS2jUaufN0JOvDWrMiF05kRe7JjuTgJHgPjo?purpose=inline",
+            "https://images.openai.com/static-rsc-4/O1UxeywPlfdapLu33bhwNXATiTI9yvo67djshAD1-PbDK5bvzpusSTI-pN5_XeTb7FnRGz95YsrA9gQ8Da50tOjQwhJOI-4NvEk1BAkgGxPlV98J2VPTlnAYNq8RptcYCGDq3A7ZAg8RTdx2RLPmEDEDihniiFwSk2XkPPzAjDf6ce9rwjCOIHX45aYo_UuA?purpose=fullsize",
+            "https://images.openai.com/static-rsc-4/P-sRHR6XS2uJ0K3emyOH1ujlcldQh-JcaePdsatppqSluG7l_N5hi8zR_vkKE4w9xmP-Qg1UNF22OjUkrWfCmHHz9CF2kPADUGZXyx_cztODL_YU18lqb1LNAcc9_2HOEy-Ymhkp7PqJ6LFryAZaZjjkhUcRjzvtCH5iwR3cCFBjPLWvPMn1Z_zNd4sW8HkM?purpose=fullsize",
+            "https://images.openai.com/static-rsc-4/c5fLDmEpp9KW7xJxd0qbuBtC-qFir00KrXbOSTYqSip1vsurEeY77FdNJEceUIcxwLh2Ogi7IxzmDmPgUVzBmGA2PSGw4sWsa9g_I4BC1rYa7VW2McPxndAmRmtlcS7t8TaPEtimBlNVBso-LH2UTzERPwiKQyHfP7xdT-bBwn7JB8e2Dvrrilsy9Bv2Ztyg?purpose=fullsize",
+            "https://images.openai.com/static-rsc-4/g2P5DEvYlG98dCRRce9s1mFY3BkVITZqK9N7bfHUPWXJ8eUS_4Z9dkZxoiHEq07tnMVlwuOBwUAUQ-0n01kqP9sobNdwgcSaXGEl_WUMLsuhP5DSh9n-JR0xqtJckiytTQMmjV-65swu2N1pWWlkZdF-LPXZAuxdbrFwEORTznyf6KfgbnIms04Pe8u8kU5C?purpose=fullsize",
+            "https://images.openai.com/static-rsc-4/iWT1MAbRkTg9JD1bsi9tMdZEmoaaxZ7QILffPUn7htALyQF9CoCckhZnK4qIpv7N-kv0ir13uoGn1eE2y9aOXQKKJ0olWxF_Xy5nsBTbaH0gTwK4laUSNsFXNx0MKmPTpynDKC1defCPLn0cJe1CQTpRY4olp9OLXsJQiyWMMjQ?purpose=inline",
+            "https://images.openai.com/static-rsc-4/t1z3wrhRZfxCQ7JcKBVKtNG8_0aXYdeOaLcAeokAsvk_acLwnzyiFbIBq-pvaRRiOv80SlaUN2SPG_C0XEegj7TYDze2nUjWJtzuZRkSxhp0MU1FJ31FOA1fWqMPYq9vshacNf0Ihh6dvMzW1ZEHCR3ntYXiQLz26EN-iEJMFVg?purpose=inline",
+            "https://images.openai.com/static-rsc-4/tyulgnv39vzKPcCglsnc4QxeN39J-DZ0NiDWTHsHIT5Ocz0yi7iR6HFBbjA8B-CyP3Kp2WYTbex5OEO0D-sWgDn8fOgImfgMMkXqZfb4yHz_eaKkQsi6PgJwETrvLWAFKzIo_Tapv9BfU2Ks4Xy3pikRC6FczELpwWH4ABenxZc?purpose=inline",
+            "https://images.openai.com/static-rsc-4/w-xdl6pMP9aDvgzEA1k5G9SQfiIg7ca5HdlcJJVxRXG-TfoI8df3chrjqS2LWQlNawkB-ReNPb3BaYf5iLAY56sozzcPgvkXum7B_YJUoXcKskw98NAU4wc0j98gl76pcHmTlRtmJIIMypNtDP5r5h8382J6XPQJXHVcwRHkNSHgahtsrZEixKctImGnoUpK?purpose=fullsize",
+            "https://images.openai.com/static-rsc-4/y_tDGQwcvUvbY7x5ScDwVoyVmmT-UFNsx35mUp5I25iJsSI6zdpMVA5q8YaiFzlpy1XsFCy6rxkQ-Tic9a0-ajU1Ye_ICkHUDCSLiCiIsWiHjeKrgGkPA8UX3x-scDl_K0H_g2MRd_ypGWBs0N5wYdnaTYCvZZ5LTH3JvmYKbCDpnRn6_mcdL8G1jq_CQgYi?purpose=fullsize",
+            "https://images.openai.com/static-rsc-4/zeA3hr3EcXWh6vH_JyTGRm6dvr808h3CInRVkAKRq2GPsJg7s1HyH0ehbk5YhR_frmVafcYiO08mVLrDEWRWGc86c5D3eLly_sQLNjXmhYiMuXXTEXQ4jQARRY6rM4RoK1FB43jej0ybEdwNZnXYhBn3WsBH0xtMPVRViGB58uM?purpose=inline",
+            "https://learnforge.dev/blog/best-n8n-course-2026/",
+            "https://learnwithpath.com/blog/best-youtube-channels-for-ai-engineering-2026",
+            "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg",
+            "https://skilldential.com/learn-n8n-from-scratch-using-free-tools/",
+            "https://support.n8n.io/article/learning-resources",
+            "https://taa3lim.com/articles/n8n-ai-automation-course-2026-%D9%83%D9%8A%D9%81-%D8%AA%D8%A8%D9%8A%D8%B9-%D8%A7%D9%84%D8%A3%D9%88%D8%AA%D9%88%D9%85%D8%A7%D9%8A%D8%B4%D9%86-%D8%AF%D9%88%D8%B1%D8%A9",
+            "https://www.classcentral.com/course/youtube-how-i-d-learn-n8n-if-i-had-to-start-over-in-2026-511237",
+            "https://www.classcentral.com/report/best-n8n-courses/",
+            "https://www.classcentral.com/subject/n8n",
+            "https://www.linkedin.com/posts/n8n_leon-van-zyl-just-dropped-a-great-tutorial-activity-7355869766609162240-mD2Y",
+            "https://www.reddit.com/r/n8n_ai_agents/comments/1wg4e5o/best_channel_to_learn_n8n/",
+            "https://www.youtube.com/@ColeMedin",
+            "https://www.youtube.com/@LeonVanZyl",
+            "https://www.youtube.com/@n8n-io",
+            "https://www.youtube.com/watch?v=7_PeuTsx7UM",
+            "https://www.youtube.com/watch?v=HaSaDsn3AMg",
+            "https://www.youtube.com/watch?v=TZ43SRdTMs0",
+            "https://youtu.be/56z15ZHxxPk"
+          ],
+          "finish_details": {
+            "type": "stop",
+            "stop_tokens": [
+              200002
+            ]
+          },
+          "is_complete": true,
+          "citations": [],
+          "content_references": [],
+          "resolved_model_slug": "gpt-6",
+          "search_result_groups": [
+            {
+              "type": "search_result_group",
+              "domain": "developereducators.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://developereducators.com/tutorials/n8n/",
+                  "title": "Best n8n YouTube Channels for Tutorials in 2026 (137 creators)",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 0
+                  },
+                  "pub_date": null,
+                  "attribution": "developereducators.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://developereducators.com/roadmap/n8n/",
+                  "title": "Learn n8n: A Free YouTube Roadmap (2026)",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 4
+                  },
+                  "pub_date": null,
+                  "attribution": "developereducators.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "www.classcentral.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://www.classcentral.com/report/best-n8n-courses/",
+                  "title": "10 Best n8n Courses for 2026 — Class Central",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 1
+                  },
+                  "pub_date": 1770768000,
+                  "attribution": "www.classcentral.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://www.classcentral.com/subject/n8n",
+                  "title": "600+ n8n Online Courses for 2026 | Explore Free Courses & Certifications | Class Central",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 10
+                  },
+                  "pub_date": null,
+                  "attribution": "www.classcentral.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "support.n8n.io",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://support.n8n.io/article/learning-resources",
+                  "title": "FAQs - General Tips - Learning resources | n8n Help Center",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 2
+                  },
+                  "pub_date": 1754502740,
+                  "attribution": "support.n8n.io"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "www.youtube.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://www.youtube.com/watch?v=7_PeuTsx7UM",
+                  "title": "N8N Full Course: Build AI Automations in 2026 (For Beginners) - YouTube",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "youtube",
+                    "ref_index": 26
+                  },
+                  "pub_date": 1761868800,
+                  "attribution": "www.youtube.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://www.youtube.com/watch?v=TZ43SRdTMs0",
+                  "title": "Ultimate n8n Course: Beginner to Pro in 17 Hours (2026) - YouTube",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "youtube",
+                    "ref_index": 28
+                  },
+                  "pub_date": 1768176000,
+                  "attribution": "www.youtube.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "learnforge.dev",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://learnforge.dev/blog/best-n8n-course-2026/",
+                  "title": "Best n8n Course in 2026: Free vs Paid Options Compared | LearnForge",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 3
+                  },
+                  "pub_date": 1787011200,
+                  "attribution": "learnforge.dev"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "aiattention.ai",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://aiattention.ai/blog/best-ai-agents-educators-youtube-2026",
+                  "title": "Best YouTube Creators for Learning AI Agents & Automation 2026 | AIAttention Blog",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 5
+                  },
+                  "pub_date": 1776816000,
+                  "attribution": "aiattention.ai"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "growai.in",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://growai.in/best-n8n-course-india-2026/",
+                  "title": "Best N8N Course India 2026: Free vs Paid Learning Guide | GrowAI",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 6
+                  },
+                  "pub_date": 1778284800,
+                  "attribution": "growai.in"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "blog.aakashdev.in",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://blog.aakashdev.in/blog/ai-automation-langchain-n8n-youtube-resources",
+                  "title": "AI Automation & LangChain: Best YouTube Resources to Build Real AI Systems",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 7
+                  },
+                  "pub_date": 1780531200,
+                  "attribution": "blog.aakashdev.in"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "community.n8n.io",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://community.n8n.io/c/tutorials/28/l/top",
+                  "title": "Tutorials - n8n Community",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 8
+                  },
+                  "pub_date": null,
+                  "attribution": "community.n8n.io"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "www.reddit.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://www.reddit.com/r/n8n_ai_agents/comments/1wg4e5o/best_channel_to_learn_n8n/",
+                  "title": "Best channel to learn n8n",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "reddit",
+                    "ref_index": 30
+                  },
+                  "pub_date": 1789394734.978,
+                  "attribution": "www.reddit.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "learnwithpath.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://learnwithpath.com/blog/best-youtube-channels-for-ai-engineering-2026",
+                  "title": "10 Best AI YouTube Channels in 2026 for Learning AI",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 9
+                  },
+                  "pub_date": 1777766400,
+                  "attribution": "learnwithpath.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "natokhd.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg",
+                  "title": "n8n Full Course Masterclass 2026 - Part 1/2 | Installation, Core Nodes, Data, & Error Handling | NatokHD",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 11
+                  },
+                  "pub_date": 1780876800,
+                  "attribution": "natokhd.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "skilldential.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://skilldential.com/learn-n8n-from-scratch-using-free-tools/",
+                  "title": "11 Best Ways to Learn n8n from Scratch Using Free Tools",
+                  "snippet": "",
+                  "ref_id": {
+                    "turn_index": 501059,
+                    "ref_type": "search",
+                    "ref_index": 12
+                  },
+                  "pub_date": 1778544000,
+                  "attribution": "skilldential.com"
+                }
+              ]
+            }
+          ],
+          "cot_version": "v5",
+          "conversation_followup_suggestions_eligible": true,
+          "request_id": "0a900cc6-2421-49e1-8ae3-08181a386843",
+          "message_type": "next",
+          "turn_exchange_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "working_turn_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "model_slug": "gpt-6",
+          "default_model_slug": "gpt-6",
+          "can_save": true,
+          "parent_id": "e9b0b03e-a093-416b-88fa-0add94d339a4",
+          "model_switcher_deny": []
+        },
+        "recipient": "all",
+        "channel": "final"
+      },
+      "parent": "e9b0b03e-a093-416b-88fa-0add94d339a4",
+      "children": [
+        "13c8ac8d-9084-4759-8218-2d60341374b3"
+      ]
+    },
+    "13c8ac8d-9084-4759-8218-2d60341374b3": {
+      "id": "13c8ac8d-9084-4759-8218-2d60341374b3",
+      "message": {
+        "id": "13c8ac8d-9084-4759-8218-2d60341374b3",
+        "author": {
+          "role": "assistant",
+          "name": null,
+          "metadata": {
+            "real_author": "tool:web"
+          }
+        },
+        "create_time": 1791538753.586811,
+        "update_time": 1791538757.702158,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "## Also use these official n8n resources\n\n<box gap={3}>\n  <row align=start gap={3}>\n    <AsyncImage query=\"n8n official YouTube channel workflow automation tutorials\" aspectRatio=\"1:1\" width=\"88px\"/>\n    <box flex=\"1\" gap={1}>\n      **<Entity value=\"n8n\" category=\"software\" disambig=\"workflow automation platform\"/> official YouTube channel**\n\n      Best for feature-specific tutorials, node explanations and newer integrations.\n\n      [Open @n8n-io on YouTube](https://www.youtube.com/@n8n-io)\n    </box>\n  </row>\n  <row align=start gap={3}>\n    <AsyncImage query=\"n8n Academy official learning platform course screenshot\" aspectRatio=\"1:1\" width=\"88px\"/>\n    <box flex=\"1\" gap={1}>\n      **n8n Academy**\n\n      Free, structured, hands-on learning with quizzes and certificates. The official learning resources recommend its Introduction to Automation series for beginners. <Cite refs={[\"turn501059search2\",\"turn501059search1\"]}/>\n\n      [Start at n8n Academy](https://academy.n8n.io/)\n    </box>\n  </row>\n</box>\n\n## My recommended learning roadmap\n\nSince you already have a CSE background, you can move beyond simple no-code workflows and learn API-driven automation, JavaScript and AI integrations.\n\n<box border radius=\"xl\" padding={3} gap={3}>\n  <row align=start gap={3}>\n    <box background=\"surface-secondary\" radius=\"lg\" size=\"44px\" align=center justify=center>\n      <icon name=\"play-circle\" size=\"xl\"/>\n    </box>\n    <box flex=\"1\" gap={1}>\n      **Week 1 — Fundamentals**\n\n      Watch GenAI Unplugged, Part 1. Practise triggers, nodes, expressions, JSON, conditional logic, loops and error handling.\n    </box>\n  </row>\n  <divider color=\"subtle\"/>\n  <row align=start gap={3}>\n    <box background=\"surface-secondary\" radius=\"lg\" size=\"44px\" align=center justify=center>\n      <icon name=\"workflow\" size=\"xl\"/>\n    </box>\n    <box flex=\"1\" gap={1}>\n      **Week 2 — Real-world integrations**\n\n      Learn HTTP requests, REST APIs, authentication, webhooks, scheduled triggers and integrations with Google Sheets, Gmail or Notion.\n    </box>\n  </row>\n  <divider color=\"subtle\"/>\n  <row align=start gap={3}>\n    <box background=\"surface-secondary\" radius=\"lg\" size=\"44px\" align=center justify=center>\n      <icon name=\"brain-circuit\" size=\"xl\"/>\n    </box>\n    <box flex=\"1\" gap={1}>\n      **Week 3 — AI automation**\n\n      Study AI agents, LLM APIs, structured outputs, tool calling, retrieval-augmented generation and human approval steps.\n    </box>\n  </row>\n  <divider color=\"subtle\"/>\n  <row align=start gap={3}>\n    <box background=\"surface-secondary\" radius=\"lg\" size=\"44px\" align=center justify=center>\n      <icon name=\"rocket\" size=\"xl\"/>\n    </box>\n    <box flex=\"1\" gap={1}>\n      **Week 4 — Build portfolio projects**\n\n      Build a lead-processing workflow, an AI email assistant and a document-processing automation. Add retries, logging, credential security and failure notifications.\n    </box>\n  </row>\n  <text color=\"secondary\" size=\"sm\">Suggested schedule: 1–2 hours daily, with most of your time spent building rather than watching.</text>\n</box>\n\n## What I'd do first\n\n1. Start with [GenAI Unplugged — Part 1](https://www.youtube.com/watch?v=HaSaDsn3AMg).\n2. Build every example yourself instead of simply copying the workflow JSON.\n3. Use the [official n8n documentation](https://docs.n8n.io/) whenever a node, API or configuration differs from the video.\n4. Move to Cole Medin once the basics feel comfortable.\n\n**One important tip:** Learn ordinary workflow automation before AI agents. Reliable data handling, authentication, APIs and error handling are what make automations useful in real projects.\n\n"
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": true,
+        "weight": 1,
+        "metadata": {
+          "finish_details": {
+            "type": "stop",
+            "stop_tokens": [
+              200002
+            ]
+          },
+          "is_complete": true,
+          "content_references": [
+            {
+              "matched_text": " ",
+              "prefix": null,
+              "start_idx": 3625,
+              "end_idx": 3626,
+              "safe_urls": [],
+              "refs": [],
+              "alt": "",
+              "prompt_text": null,
+              "type": "sources_footnote",
+              "sources": [],
+              "has_images": false
+            }
+          ],
+          "search_result_groups": [
+            {
+              "type": "search_result_group",
+              "domain": "developereducators.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://developereducators.com/tutorials/n8n/?utm_source=chatgpt.com",
+                  "title": "Best n8n YouTube Channels for Tutorials in 2026 (137 creators)",
+                  "snippet": "AI & Machine Learning  LEARN N8N — BEST YOUTUBE CHANNELS  YouTube channels teaching n8n, the open-source workflow automation platform. Learn to build AI agents, automate business processes, and conne...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 0
+                  },
+                  "pub_date": null,
+                  "attribution": "developereducators.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://developereducators.com/roadmap/n8n/?utm_source=chatgpt.com",
+                  "title": "Learn n8n: A Free YouTube Roadmap (2026)",
+                  "snippet": "Roadmap  LEARN N8N — FREE VIDEO ROADMAP  A step-by-step path through the best free n8n videos on YouTube — beginner to advanced, in the order that actually makes sense. YouTube channels teaching n8n,...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 4
+                  },
+                  "pub_date": null,
+                  "attribution": "developereducators.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "classcentral.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://www.classcentral.com/report/best-n8n-courses/?utm_source=chatgpt.com",
+                  "title": "10 Best n8n Courses for 2026 — Class Central",
+                  "snippet": "Disclosure: Class Central is learner-supported. When you buy through links on our site, we may earn an affiliate commission.  Best Courses Guides  10 BEST N8N COURSES FOR 2026  Level up your automati...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 1
+                  },
+                  "pub_date": 1770768000,
+                  "attribution": "classcentral.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://www.classcentral.com/subject/n8n?utm_source=chatgpt.com",
+                  "title": "600+ n8n Online Courses for 2026 | Explore Free Courses & Certifications | Class Central",
+                  "snippet": "Online  N8N COURSES AND CERTIFICATIONS  Build powerful no-code automations and AI agents using n8n's visual workflow builder to streamline business processes and integrate APIs. Learn through hands-o...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 10
+                  },
+                  "pub_date": null,
+                  "attribution": "classcentral.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://www.classcentral.com/institution/n8n?utm_source=chatgpt.com",
+                  "title": "50+ Top n8n Online Courses [2026] | Class Central",
+                  "snippet": "Free Online  N8N COURSES  Follow 6  53 courses  Showing 53 courses  Filter  Sort by Relevancy  [Select]  Filter by [Button: Clear All]  Filters  1.     1. [Input] Free course (53) 2. Level 1. [Input]...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 15
+                  },
+                  "pub_date": null,
+                  "attribution": "classcentral.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://www.classcentral.com/course/youtube-n8n-crash-course-in-3-hours-complete-tutorial-for-beginners-455776?utm_source=chatgpt.com",
+                  "title": "Free Video: n8n Crash Course - Complete Tutorial for Beginners from Data Science with Harshit | Class Central",
+                  "snippet": "N8N CRASH COURSE - COMPLETE TUTORIAL FOR BEGINNERS  Data Science with Harshit via YouTube [Button: Help ]  0 reviews  DETAILS  Image  [Button: Play Course Trailer ]  Start learning  * Provider  YouTu...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 17
+                  },
+                  "pub_date": null,
+                  "attribution": "classcentral.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://www.classcentral.com/course/youtube-n8n-beginner-course-513875?utm_source=chatgpt.com",
+                  "title": "Free Video: n8n Beginner Course - Introduction to Automation and Workflow Management from n8n | Class Central",
+                  "snippet": "N8N BEGINNER COURSE - INTRODUCTION TO AUTOMATION AND WORKFLOW MANAGEMENT  n8n via YouTube [Button: Help ]  3 reviews  *   * [Button: Add to list ] * [Button: Mark complete ]  * Write review  Start le...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 19
+                  },
+                  "pub_date": null,
+                  "attribution": "classcentral.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://www.classcentral.com/course/youtube-n8n-quick-start-build-your-first-workflow-2025-461634?utm_source=chatgpt.com",
+                  "title": "Free Video: n8n Quick Start - Build Your First Workflow [2025] from n8n | Class Central",
+                  "snippet": "N8N QUICK START - BUILD YOUR FIRST WORKFLOW [2025]  n8n via YouTube [Button: Help ]  1 review  *   * [Button: Add to list ] * [Button: Mark complete ]  * Write review  Start learning Write review  Af...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 21
+                  },
+                  "pub_date": null,
+                  "attribution": "classcentral.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://www.classcentral.com/course/youtube-master-n8n-in-2-hours-complete-beginner-s-guide-for-2025-489791?utm_source=chatgpt.com",
+                  "title": "Free Video: Master N8N in 2 Hours - Complete Beginner's Guide for 2025 from Jono Catliff | Class Central",
+                  "snippet": "MASTER N8N IN 2 HOURS - COMPLETE BEGINNER'S GUIDE FOR 2025  Jono Catliff via YouTube [Button: Help ]  1 review  *   * [Button: Add to list ] * [Button: Mark complete ]  * Write review  Start learning...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 24
+                  },
+                  "pub_date": null,
+                  "attribution": "classcentral.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "n8n.io",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://support.n8n.io/article/learning-resources?utm_source=chatgpt.com",
+                  "title": "FAQs - General Tips - Learning resources | n8n Help Center",
+                  "snippet": "LEARNING RESOURCES  New to n8n, or want to go deeper? Here's where to start ⬇️  Docs: the best starting point for setup, node documentation, and concepts.  Academy: interactive, hands-on courses with...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 2
+                  },
+                  "pub_date": 1754502740,
+                  "attribution": "n8n.io"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://community.n8n.io/c/tutorials/28/l/top?utm_source=chatgpt.com",
+                  "title": "Tutorials - n8n Community",
+                  "snippet": "TUTORIALS  English 🇬🇧 Thai 🇹🇭 Italian 🇮🇹 French 🇫🇷 Spanish 🇪🇸 Brazilian Portuguese 🇧🇷 German 🇩🇪  Topic  |  | Replies  | Views  | Activity --- | --- | --- | --- | --- Beginner Course (1/9) - Introduct...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 8
+                  },
+                  "pub_date": null,
+                  "attribution": "n8n.io"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://community.n8n.io/t/n8n-tutorial-for-beginners-2026-part-1-build-your-first-ai-workflow/261168?tl=en&utm_source=chatgpt.com",
+                  "title": "N8n Tutorial for Beginners (2026) | Part 1: Build Your First AI Workflow - Built with n8n - n8n Community",
+                  "snippet": "N8N TUTORIAL FOR BEGINNERS (2026) | PART 1: BUILD YOUR FIRST AI WORKFLOW  Msquare_Automation February 5, 2026, 4:17pm 1  This beginner-friendly n8n tutorial will help you understand how automation wo...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 14
+                  },
+                  "pub_date": 1770249600,
+                  "attribution": "n8n.io"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://n8n.io/workflows/18-n8n-nodemation-basic-getting-started-on-the-workflow-canvas-13/?utm_source=chatgpt.com",
+                  "title": "n8n nodemation basic - getting started on the workflow canvas (1/3) | n8n workflow template",
+                  "snippet": "n8n nodemation basic - getting started on the workflow canvas (1/3) | n8n workflow template  N8N NODEMATION BASIC - GETTING STARTED ON THE WORKFLOW CANVAS (1/3)  Use for free  Created by  sven  Last...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 20
+                  },
+                  "pub_date": null,
+                  "attribution": "n8n.io"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://n8n.io/ai-agents/?utm_source=chatgpt.com",
+                  "title": "Build Custom AI Agents With Logic & Control | n8n Automation Platform",
+                  "snippet": "AI AGENT VIDEO TUTORIALS PREPARE TO BE AI-MAZED  Watch our community’s most popular videos on building AI agents.  BUILDING AI AGENTS: CHAT TRIGGER, MEMORY, AND SYSTEM/USER MESSAGES EXPLAINED  Welcome...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 23
+                  },
+                  "pub_date": null,
+                  "attribution": "n8n.io"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://community.n8n.io/t/n8n-tutorial-what-is-n8n-and-how-to-automate-anything-no-code/228297?utm_source=chatgpt.com",
+                  "title": "N8n Tutorial: What is n8n and How To Automate Anything (No Code) - English 🇬🇧 - n8n Community",
+                  "snippet": "N8N TUTORIAL: WHAT IS N8N AND HOW TO AUTOMATE ANYTHING (NO CODE)  Tutorials English 🇬🇧  proflead November 29, 2025, 10:09am 1  Automate your daily tasks with n8n – the free, open-source tool that let...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 25
+                  },
+                  "pub_date": 1764374400,
+                  "attribution": "n8n.io"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "learnforge.dev",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://learnforge.dev/blog/best-n8n-course-2026/?utm_source=chatgpt.com",
+                  "title": "Best n8n Course in 2026: Free vs Paid Options Compared | LearnForge",
+                  "snippet": "* Seeing complete real-world use cases * Non-technical learners who need visual explanation  Cost: $0  Time to first workflow: 6–10 hrs  Best for: Developers  YOUTUBE: COLE MEDIN & LEON VAN ZYL  Two c...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 3
+                  },
+                  "pub_date": 1787011200,
+                  "attribution": "learnforge.dev"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "aiattention.ai",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://aiattention.ai/blog/best-ai-agents-educators-youtube-2026?utm_source=chatgpt.com",
+                  "title": "Best YouTube Creators for Learning AI Agents & Automation 2026 | AIAttention Blog",
+                  "snippet": "Blog/Research Report  Research Report 2026-04-22 6 min read  BEST YOUTUBE CREATORS FOR LEARNING AI AGENTS & AUTOMATION 2026  Which AI agents creators do ChatGPT, Gemini, and Perplexity recommend in 2...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 5
+                  },
+                  "pub_date": 1776816000,
+                  "attribution": "aiattention.ai"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "growai.in",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://growai.in/best-n8n-course-india-2026/?utm_source=chatgpt.com",
+                  "title": "Best N8N Course India 2026: Free vs Paid Learning Guide | GrowAI",
+                  "snippet": "BEST N8N COURSE IN INDIA 2026: FREE VS PAID — HOW TO LEARN AUTOMATION FAST  May 9, 2026  Image  BEST N8N COURSE IN INDIA 2026: FREE VS PAID — HOW TO LEARN AUTOMATION FAST  What is the best way to lea...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 6
+                  },
+                  "pub_date": 1778284800,
+                  "attribution": "growai.in"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "aakashdev.in",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://blog.aakashdev.in/blog/ai-automation-langchain-n8n-youtube-resources?utm_source=chatgpt.com",
+                  "title": "AI Automation & LangChain: Best YouTube Resources to Build Real AI Systems",
+                  "snippet": "AI AUTOMATION & LANGCHAIN: BEST YOUTUBE RESOURCES TO BUILD REAL AI SYSTEMS  Want to go beyond theory and actually build AI agents, automate workflows, and ship real LLM-powered applications? This she...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 7
+                  },
+                  "pub_date": 1780531200,
+                  "attribution": "aakashdev.in"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "learnwithpath.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://learnwithpath.com/blog/best-youtube-channels-for-ai-engineering-2026?utm_source=chatgpt.com",
+                  "title": "10 Best AI YouTube Channels in 2026 for Learning AI",
+                  "snippet": "5. DAVID ONDREJ - BEST FOR LOW-CODE AGENT BUILDS  Subscribers: ~415K | Level: Beginner | Focus: n8n, Make, no-code agents, AI workflow automation  David Ondrej publishes the fastest practical agent de...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 9
+                  },
+                  "pub_date": 1777766400,
+                  "attribution": "learnwithpath.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "natokhd.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg?utm_source=chatgpt.com",
+                  "title": "n8n Full Course Masterclass 2026 - Part 1/2 | Installation, Core Nodes, Data, & Error Handling | NatokHD",
+                  "snippet": "n8n Full Course Masterclass 2026 - Part 1/2 | Installation, Core Nodes, Data, & Error Handling  N8N FULL COURSE MASTERCLASS 2026 - PART 1/2 | INSTALLATION, CORE NODES, DATA, & ERROR HANDLING  GenAI U...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 11
+                  },
+                  "pub_date": 1780876800,
+                  "attribution": "natokhd.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://natokhd.com/video/n8n-tutorial-for-beginners-2026-build-ai-automations-step-by-step-full-course/pkSu5HW2RWs?utm_source=chatgpt.com",
+                  "title": "n8n course for beginner (2026) | NatokHD",
+                  "snippet": "n8n course for beginner (2026)  N8N COURSE FOR BEGINNER (2026)  Uzair Wahab20 subscribers  Share  502 views  Sep 11, 2026  1:34:52  Master n8n and AI automation from scratch in this complete 2026 beg...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 16
+                  },
+                  "pub_date": 1789084800,
+                  "attribution": "natokhd.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "skilldential.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://skilldential.com/learn-n8n-from-scratch-using-free-tools/?utm_source=chatgpt.com",
+                  "title": "11 Best Ways to Learn n8n from Scratch Using Free Tools",
+                  "snippet": "WHICH YOUTUBE CHANNELS TEACH N8N TECHNICALLY?  To learn n8n from Scratch, your YouTube curriculum must prioritize technical architecture over generic “get rich quick” automation. The following channel...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 12
+                  },
+                  "pub_date": 1778544000,
+                  "attribution": "skilldential.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "linkedin.com",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://www.linkedin.com/posts/i423_the-top-6-n8n-youtube-channels-2026-activity-7413933068190883840-gMvK?utm_source=chatgpt.com",
+                  "title": "Top n8n YouTube Channels for AI Automation | Iqra M. posted on the topic | LinkedIn",
+                  "snippet": "TOP N8N YOUTUBE CHANNELS FOR AI AUTOMATION  Iqra M.  8mo Edited  🎥 The Top 6 n8n YouTube Channels (2026) n8n (Official) – The source of truth for new nodes, AI agent features, and high-level architec...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 13
+                  },
+                  "pub_date": null,
+                  "attribution": "linkedin.com"
+                },
+                {
+                  "type": "search_result",
+                  "url": "https://www.linkedin.com/posts/himanshu-chhimpa_aiautomation-aiagents-n8n-activity-7506563124800712704-tSpC?utm_source=chatgpt.com",
+                  "title": "Learn AI Automation for Free on YouTube with Top Channels | Himanshu Chhimpa posted on the topic | LinkedIn",
+                  "snippet": "LEARN AI AUTOMATION FOR FREE ON YOUTUBE WITH TOP CHANNELS  Himanshu Chhimpa  6d  You don't need a $20,000 course to learn AI automation. Honestly, you can learn a LOT for free on YouTube. If I were s...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 18
+                  },
+                  "pub_date": null,
+                  "attribution": "linkedin.com"
+                }
+              ]
+            },
+            {
+              "type": "search_result_group",
+              "domain": "n8n.academy",
+              "entries": [
+                {
+                  "type": "search_result",
+                  "url": "https://n8n.academy/?utm_source=chatgpt.com",
+                  "title": "N8N.academy — Learn n8n no-code in one page",
+                  "snippet": "N8N.academy · The non-technical programme 5 modules · 24 lessons · ~6h  N8N MADE POSSIBLE…  The clearest n8n course on the internet. Every lesson embeds the Ultimate n8n video at the exact second — p...",
+                  "ref_id": {
+                    "turn_index": 0,
+                    "ref_type": "search",
+                    "ref_index": 22
+                  },
+                  "pub_date": null,
+                  "attribution": "n8n.academy"
+                }
+              ]
+            }
+          ],
+          "resolved_model_slug": "gpt-6",
+          "is_visually_hidden_from_conversation": true,
+          "cot_version": "v5",
+          "conversation_followup_suggestions_eligible": true,
+          "request_id": "0a900cc6-2421-49e1-8ae3-08181a386843",
+          "message_type": "next",
+          "turn_exchange_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "working_turn_id": "ac4d42d6-e3ab-443b-a97c-89eaf8151046",
+          "model_slug": "gpt-6",
+          "default_model_slug": "gpt-6",
+          "can_save": false,
+          "parent_id": "21784fd9-ba77-42e8-9b3c-bfa8d4227a3a",
+          "model_switcher_deny": []
+        },
+        "recipient": "all",
+        "channel": "final"
+      },
+      "parent": "21784fd9-ba77-42e8-9b3c-bfa8d4227a3a",
+      "children": []
+    }
+  },
+  "current_node": "13c8ac8d-9084-4759-8218-2d60341374b3",
+  "context_truncation_continuation": null
+}

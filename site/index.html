@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📌</text></svg>">
+  <title>AI Citation Tracker · prototype</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="logo">◎</div>
+    <div>
+      <div class="name">AI Citation Tracker</div>
+      <div class="sub">Retrieved vs cited, across ChatGPT and Claude · prototype by Harsh Raj</div>
+    </div>
+  </div>
+  <nav id="tabs">
+    <button data-tab="overview" class="active">Overview</button>
+    <button data-tab="runs">Runs</button>
+    <button data-tab="add">Add data</button>
+    <button data-tab="how">How it works</button>
+  </nav>
+</header>
+
+<main>
+    <section id="tab-overview" class="tab active">
+    <div id="demo-banner" class="banner hidden">
+      Showing <b>demo data</b> from my own test chats. Add your own on the <a href="#" data-goto="add">Add data</a> tab.
+    </div>
+    <div class="cards" id="kpis"></div>
+    <div class="grid2">
+      <div class="panel">
+        <h3>Cite rate by platform</h3>
+        <p class="muted">Share of retrieved pages that end up cited in the answer.</p>
+        <div id="platform-bars"></div>
+      </div>
+      <div class="panel">
+        <h3>Domains: retrieved vs cited</h3>
+        <p class="muted">Across all runs. Grey = retrieved, green = cited.</p>
+        <div id="domain-bars"></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Latest runs</h3>
+      <div id="latest-runs"></div>
+    </div>
+  </section>
+
+    <section id="tab-runs" class="tab">
+    <div class="panel">
+      <div class="row-between">
+        <h3>All runs</h3>
+        <div class="actions">
+          <button class="btn" id="export-csv">Export sources CSV</button>
+          <button class="btn" id="export-json">Export JSON</button>
+          <button class="btn danger" id="clear-all">Clear all</button>
+        </div>
+      </div>
+      <div id="runs-table"></div>
+    </div>
+    <div id="run-detail"></div>
+  </section>
+
+    <section id="tab-add" class="tab">
+    <div class="grid2">
+      <div class="panel">
+        <h3>1 · One-click capture (bookmarklet)</h3>
+        <ol class="steps">
+          <li>Show your bookmarks bar (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>).</li>
+          <li>Drag this button onto the bookmarks bar:
+            <div class="center"><a id="bookmarklet" class="bookmarklet" href="#">📌 Send to Citation Tracker</a></div>
+          </li>
+          <li>Open any ChatGPT or Claude chat that searched the web, then click the bookmark.</li>
+          <li>This dashboard opens and the run appears automatically.</li>
+        </ol>
+        <p class="muted small">If your browser blocks the hand-off, the bookmark downloads the chat as a JSON file instead. Drop that file in box 2.</p>
+      </div>
+      <div class="panel">
+        <h3>2 · Upload saved conversation files</h3>
+        <label id="drop" class="drop">
+          <input type="file" id="file-input" accept=".json,application/json" multiple hidden>
+          <div class="drop-icon">⇪</div>
+          <div><b>Drop JSON files here</b> or click to choose</div>
+          <div class="muted small">chatgpt_raw.json, claude_raw.json, or files from the batch runner</div>
+        </label>
+        <h4>…or paste JSON</h4>
+        <textarea id="paste" placeholder='{"mapping": ...}  or  {"chat_messages": ...}'></textarea>
+        <button class="btn primary" id="paste-btn">Import pasted JSON</button>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>3 · Batch automation (many prompts)</h3>
+      <p>The <code>runner/batch_runner.py</code> script opens a logged-in browser, sends every prompt in <code>prompts.txt</code> to ChatGPT and Claude, waits for each answer, and saves the conversations to <code>runner/out/</code>. Drop that whole folder's files in box 2.</p>
+      <pre>python batch_runner.py --login          # first time only: log in to both sites
+python batch_runner.py                  # runs prompts.txt on chatgpt + claude</pre>
+    </div>
+  </section>
+
+    <section id="tab-how" class="tab">
+    <div class="panel">
+      <h3>How I built it</h3>
+      <div class="flow">
+        <div class="node">ChatGPT / Claude chat<br><span>in your browser</span></div><div class="arrow">→</div>
+        <div class="node">Bookmarklet or batch runner<br><span>fetches the saved conversation with your own session</span></div><div class="arrow">→</div>
+        <div class="node">parser.js<br><span>queries · retrieved · cited</span></div><div class="arrow">→</div>
+        <div class="node">Dashboard<br><span>stored in your browser, export CSV/JSON</span></div>
+      </div>
+      <h4>Where I get the data from</h4>
+      <table class="tbl">
+        <tr><th></th><th>ChatGPT</th><th>Claude</th></tr>
+        <tr><td>Endpoint</td><td><code>/backend-api/conversation/&lt;id&gt;</code></td><td><code>/api/organizations/&lt;org&gt;/chat_conversations/&lt;id&gt;</code></td></tr>
+        <tr><td>Retrieved</td><td><code>metadata.search_result_groups[].entries[]</code></td><td><code>tool_result</code> block (web_search)</td></tr>
+        <tr><td>Cited</td><td>inline <code>&lt;Cite refs=[…]&gt;</code> markers → matched to <code>ref_id</code></td><td><code>citations[]</code> on text blocks</td></tr>
+        <tr><td>Fan-out queries</td><td>live stream only (not in saved chat)</td><td><code>tool_use.input.query</code></td></tr>
+      </table>
+      <h4>Privacy</h4>
+      <p>I don't run a server, so nothing gets uploaded anywhere. Runs are saved in your browser's localStorage. The bookmarklet only reads the chat you have open, with your own login.</p>
+      <h4>What doesn't work yet</h4>
+      <ul>
+        <li>ChatGPT doesn't save its fan-out queries in the conversation. To get them I need to capture the live stream, which is my next step.</li>
+        <li>These sites change their formats often. I kept the parser small so I can fix it quickly when that happens.</li>
+        <li>The batch runner drives a real browser on my own account, so I only use it for a handful of prompts. It won't scale as-is (captchas, terms of service).</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<div id="toast" class="toast hidden"></div>
+<script src="parser.js"></script>
+<script src="demo-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

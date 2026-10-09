@@ -1,0 +1,5 @@
+# One prompt per line. Lines starting with # are ignored.
+# "Search the web:" nudges the model to actually use web search.
+Search the web: best YouTube tutorials to learn n8n automation in 2026
+Search the web: best project management tools for small startups in 2026
+Search the web: top AI visibility / GEO tools for brands
