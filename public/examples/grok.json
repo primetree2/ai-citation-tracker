@@ -1,0 +1,17 @@
+{
+  "id": "fixture-grok",
+  "model": "grok-fixture",
+  "created": 1750000000,
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "Cited answer"
+      }
+    }
+  ],
+  "citations": [
+    "https://example.net/method",
+    "https://example.org/guide"
+  ]
+}

@@ -2,11 +2,52 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>AI Citation Tracker</title>
-<meta http-equiv="refresh" content="0; url=site/">
-<link rel="canonical" href="site/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Inspect sources retrieved and cited by AI responses, with local-first imports across seven provider formats.">
+<meta name="color-scheme" content="light dark">
+<title>AI Citation Tracker · Evidence workspace</title>
+<link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="src/ui/styles.css">
+<script type="module" src="src/ui/app.js"></script>
 </head>
 <body>
-<p>Opening the dashboard… <a href="site/">click here</a> if nothing happens.</p>
+<a class="skip" href="#main">Skip to workspace</a>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="./" aria-label="Citation Tracker home"><span class="brandmark">ct<span>•</span></span><span>Citation Tracker<small>Evidence workspace</small></span></a>
+    <button id="mobile-menu" class="mobile-menu" aria-controls="workspace-nav" aria-expanded="false">Menu</button>
+    <div class="workspace-id"><span class="avatar">ME</span><div>Local workspace<small>Stored in this browser</small></div><span class="local-dot" aria-label="Local storage"></span></div>
+    <span class="nav-label">WORKSPACE</span>
+    <nav id="workspace-nav" aria-label="Workspace navigation">
+      <button data-page="overview" class="active"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12"/></svg></span> Overview</button>
+      <button data-page="runs"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span> Runs <span id="run-count" class="count">0</span></button>
+      <button data-page="sources"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 3h7v7M21 3 11 13M10 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg></span> Source library</button>
+      <button data-page="providers"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Provider formats</button>
+      <button data-page="settings"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2"/></svg></span> Data &amp; privacy</button>
+    </nav>
+    <div class="sidebar-bottom"><p>Observed evidence.<br>No inferred hidden searches.</p><a href="https://github.com/primetree2/ai-citation-tracker" target="_blank" rel="noopener noreferrer">Repository ↗</a><span>v3.0.1 · No backend</span></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <strong id="crumb">Overview</strong></div><div class="top-actions"><span class="local-label"><i></i> Local processing</span><button id="theme" class="quiet" aria-label="Change theme">Theme: auto</button><button id="import-top" class="primary">+ Import data</button></div></header>
+    <main id="main" tabindex="-1">
+      <div class="page-heading"><div><div class="eyebrow">CITATION INTELLIGENCE</div><h1 id="page-title">Evidence, in focus.</h1><p id="page-description">Track the gap between sources retrieved and sources cited.</p></div><button id="export" class="secondary">↓ Export workspace</button></div>
+      <div id="notice" class="notice" hidden></div>
+      <div id="filterbar" class="filterbar"><label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="search" type="search" placeholder="Search prompts, titles or URLs…" aria-label="Search runs and sources"><kbd>/</kbd></label><label class="select-label">Provider<select id="provider"><option value="">All providers</option></select></label><label class="select-label">Period<select id="period"><option value="">All dates</option><option value="7">Last 7 days</option><option value="30">Last 30 days</option></select></label><button id="reset-filters" class="quiet">Reset filters</button></div>
+      <div id="view"></div>
+      <footer class="page-footer"><span>Local-first imports. No provider calls.</span><a href="docs/PROVIDERS.md">Format reference ↗</a></footer>
+    </main>
+  </div>
+</div>
+<dialog id="import-dialog" aria-labelledby="import-title">
+  <div class="dialog-heading"><div><div class="eyebrow">IMPORT DATA</div><h2 id="import-title">Import evidence</h2></div><button class="icon-button" data-close="import-dialog" aria-label="Close import dialog">×</button></div>
+  <p>Import provider JSON, JSONL, or a v3 workspace backup. Preview each batch before saving.</p>
+  <label class="dropzone" id="dropzone"><svg class="upload-symbol" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg><strong>Drop files here</strong><span>or choose files · 15 MB per file · JSON / JSONL</span><input id="files" type="file" multiple accept=".json,.jsonl,application/json"></label>
+  <details><summary>Paste a JSON response instead</summary><label for="paste" class="field-label">JSON response</label><textarea id="paste" rows="5" spellcheck="false" placeholder='{"object":"response","output":[…]}'></textarea><button id="parse-paste" class="secondary">Preview JSON</button></details>
+  <div id="import-results" aria-live="polite"></div>
+  <div class="dialog-actions"><a href="public/examples/workspace.json" download>Download example ↗</a><button id="commit-import" class="primary" disabled>Save previewed runs</button></div>
+</dialog>
+<dialog id="run-dialog" class="wide" aria-labelledby="run-title"><div id="run-detail"></div></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+<noscript>Enable JavaScript to parse evidence locally.</noscript>
 </body>
 </html>

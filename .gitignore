@@ -1,5 +1,11 @@
-runner/browser-profile/
-runner/out/
-__pycache__/
-*_final.json
-*_sources.csv
+node_modules/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+coverage/
+playwright-report/
+test-results/
+my-data/
+*.log

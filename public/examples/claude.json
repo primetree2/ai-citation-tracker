@@ -1,0 +1,57 @@
+{
+  "uuid": "fixture-claude",
+  "name": "Evidence checklist",
+  "created_at": "2025-06-15T15:06:40Z",
+  "model": "fixture-model",
+  "chat_messages": [
+    {
+      "sender": "human",
+      "content": [
+        {
+          "type": "text",
+          "text": "How can I inspect source evidence?"
+        }
+      ]
+    },
+    {
+      "sender": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "name": "web_search",
+          "input": {
+            "query": "source evidence checklist"
+          }
+        },
+        {
+          "type": "tool_result",
+          "name": "web_search",
+          "content": [
+            {
+              "url": "https://example.org/checklist",
+              "title": "Evidence checklist"
+            },
+            {
+              "url": "https://example.net/method",
+              "title": "Method notes"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Answer",
+          "citations": [
+            {
+              "sources": [
+                {
+                  "url": "https://example.org/checklist",
+                  "title": "Evidence checklist"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

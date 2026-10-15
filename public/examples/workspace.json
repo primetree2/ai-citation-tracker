@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 3,
+  "runs": [
+    {
+      "schemaVersion": 3,
+      "id": "fixture-chatgpt",
+      "platform": "chatgpt",
+      "title": "Automation research",
+      "prompt": "How can I evaluate automation tutorials?",
+      "model": "fixture-model",
+      "createdAt": "2025-06-15T15:06:40.000Z",
+      "queries": [
+        "automation tutorial evaluation"
+      ],
+      "sources": [
+        {
+          "url": "https://example.org/guide",
+          "title": "Automation guide",
+          "domain": "example.org",
+          "retrieved": true,
+          "cited": true,
+          "evidence": [
+            "metadata.search_result_groups.entries",
+            "assistant citation reference"
+          ],
+          "refs": [
+            "turn0search0"
+          ]
+        },
+        {
+          "url": "https://example.org/checklist",
+          "title": "Research checklist",
+          "domain": "example.org",
+          "retrieved": true,
+          "cited": false,
+          "evidence": [
+            "metadata.search_result_groups.entries"
+          ],
+          "refs": [
+            "turn0search1"
+          ]
+        }
+      ],
+      "warnings": [],
+      "provenance": "Synthetic adapter fixture; not a real provider run",
+      "synthetic": true
+    },
+    {
+      "schemaVersion": 3,
+      "id": "fixture-claude",
+      "platform": "claude",
+      "title": "Evidence checklist",
+      "prompt": "How can I inspect source evidence?",
+      "model": "fixture-model",
+      "createdAt": "2025-06-15T15:06:40.000Z",
+      "queries": [
+        "source evidence checklist"
+      ],
+      "sources": [
+        {
+          "url": "https://example.org/checklist",
+          "title": "Evidence checklist",
+          "domain": "example.org",
+          "retrieved": true,
+          "cited": true,
+          "evidence": [
+            "tool_result.content",
+            "text.citations"
+          ],
+          "refs": []
+        },
+        {
+          "url": "https://example.net/method",
+          "title": "Method notes",
+          "domain": "example.net",
+          "retrieved": true,
+          "cited": false,
+          "evidence": [
+            "tool_result.content"
+          ],
+          "refs": []
+        }
+      ],
+      "warnings": [],
+      "provenance": "Synthetic adapter fixture; not a real provider run",
+      "synthetic": true
+    },
+    {
+      "schemaVersion": 3,
+      "id": "fixture-openai",
+      "platform": "openai",
+      "title": "Provenance review",
+      "prompt": "",
+      "model": "fixture-model",
+      "createdAt": "2025-06-15T15:06:40.000Z",
+      "queries": [
+        "citation evidence provenance"
+      ],
+      "sources": [
+        {
+          "url": "https://example.org/guide",
+          "title": "Provenance guide",
+          "domain": "example.org",
+          "retrieved": true,
+          "cited": true,
+          "evidence": [
+            "web_search_call.action.sources",
+            "output.message.annotations.url_citation"
+          ],
+          "refs": []
+        },
+        {
+          "url": "https://example.net/method",
+          "title": "Method notes",
+          "domain": "example.net",
+          "retrieved": true,
+          "cited": false,
+          "evidence": [
+            "web_search_call.action.sources"
+          ],
+          "refs": []
+        }
+      ],
+      "warnings": [],
+      "provenance": "Synthetic adapter fixture; not a real provider run",
+      "synthetic": true
+    },
+    {
+      "schemaVersion": 3,
+      "id": "fixture-anthropic",
+      "platform": "anthropic",
+      "title": "Citation method",
+      "prompt": "",
+      "model": "fixture-model",
+      "createdAt": null,
+      "queries": [
+        "research methods citations"
+      ],
+      "sources": [
+        {
+          "url": "https://example.net/method",
+          "title": "Method notes",
+          "domain": "example.net",
+          "retrieved": true,
+          "cited": true,
+          "evidence": [
+            "web_search_tool_result.content",
+            "text.citations"
+          ],
+          "refs": []
+        },
+        {
+          "url": "https://example.org/guide",
+          "title": "Provenance guide",
+          "domain": "example.org",
+          "retrieved": true,
+          "cited": false,
+          "evidence": [
+            "web_search_tool_result.content"
+          ],
+          "refs": []
+        }
+      ],
+      "warnings": [
+        "A valid response timestamp is not available."
+      ],
+      "provenance": "Synthetic adapter fixture; not a real provider run",
+      "synthetic": true
+    },
+    {
+      "schemaVersion": 3,
+      "id": "fixture-gemini",
+      "platform": "gemini",
+      "title": "Grounding audit",
+      "prompt": "",
+      "model": "fixture-model",
+      "createdAt": null,
+      "queries": [
+        "grounded research methods"
+      ],
+      "sources": [
+        {
+          "url": "https://example.org/guide",
+          "title": "Provenance guide",
+          "domain": "example.org",
+          "retrieved": true,
+          "cited": true,
+          "evidence": [
+            "candidates[0].groundingMetadata.groundingChunks / groundingSupports"
+          ],
+          "refs": []
+        },
+        {
+          "url": "https://example.net/method",
+          "title": "Method notes",
+          "domain": "example.net",
+          "retrieved": true,
+          "cited": false,
+          "evidence": [
+            "candidates[0].groundingMetadata.groundingChunks / groundingSupports"
+          ],
+          "refs": []
+        }
+      ],
+      "warnings": [
+        "Grounding chunks are treated as observed retrievals, not a complete search log. Provider-supplied grounding redirect URLs are retained.",
+        "A valid response timestamp is not available."
+      ],
+      "provenance": "Synthetic adapter fixture; not a real provider run",
+      "synthetic": true
+    },
+    {
+      "schemaVersion": 3,
+      "id": "fixture-perplexity",
+      "platform": "perplexity",
+      "title": "Source discovery",
+      "prompt": "",
+      "model": "sonar-fixture",
+      "createdAt": "2025-06-15T15:06:40.000Z",
+      "queries": [],
+      "sources": [
+        {
+          "url": "https://example.org/guide",
+          "title": "example.org",
+          "domain": "example.org",
+          "retrieved": true,
+          "cited": true,
+          "evidence": [
+            "search_results",
+            "citations"
+          ],
+          "refs": []
+        },
+        {
+          "url": "https://example.net/method",
+          "title": "Method notes",
+          "domain": "example.net",
+          "retrieved": true,
+          "cited": false,
+          "evidence": [
+            "search_results"
+          ],
+          "refs": []
+        }
+      ],
+      "warnings": [
+        "Search queries are not available in this file. Missing queries do not mean zero searches."
+      ],
+      "provenance": "Synthetic adapter fixture; not a real provider run",
+      "synthetic": true
+    },
+    {
+      "schemaVersion": 3,
+      "id": "fixture-grok",
+      "platform": "grok",
+      "title": "Citation-only review",
+      "prompt": "",
+      "model": "grok-fixture",
+      "createdAt": "2025-06-15T15:06:40.000Z",
+      "queries": [],
+      "sources": [
+        {
+          "url": "https://example.net/method",
+          "title": "example.net",
+          "domain": "example.net",
+          "retrieved": false,
+          "cited": true,
+          "evidence": [
+            "citations"
+          ],
+          "refs": []
+        },
+        {
+          "url": "https://example.org/guide",
+          "title": "example.org",
+          "domain": "example.org",
+          "retrieved": false,
+          "cited": true,
+          "evidence": [
+            "citations"
+          ],
+          "refs": []
+        }
+      ],
+      "warnings": [
+        "Citation evidence only. No retrieval set or citation rate can be established.",
+        "Search queries are not available in this file. Missing queries do not mean zero searches."
+      ],
+      "provenance": "Synthetic adapter fixture; not a real provider run",
+      "synthetic": true
+    }
+  ]
+}

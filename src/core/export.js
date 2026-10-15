@@ -1,0 +1,13 @@
+export function workspaceJson(runs) {
+  return JSON.stringify({ schemaVersion: 3, exportedAt: new Date().toISOString(), runs }, null, 2);
+}
+export function sourcesCsv(runs) {
+  const cell = v => {
+    let s = String(v ?? '');
+    if (/^[\s]*[=+@-]/.test(s)) s = "'" + s;
+    return '"' + s.replaceAll('"', '""') + '"';
+  };
+  const rows = [['run_id','provider','model','title','url','domain','retrieved','cited','evidence']];
+  for (const r of runs) for (const s of r.sources) rows.push([r.id,r.platform,r.model,s.title,s.url,s.domain,s.retrieved,s.cited,s.evidence.join('; ')]);
+  return '\ufeff' + rows.map(row => row.map(cell).join(',')).join('\r\n');
+}

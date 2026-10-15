@@ -1,0 +1,41 @@
+{
+  "type": "message",
+  "id": "fixture-anthropic",
+  "model": "fixture-model",
+  "content": [
+    {
+      "type": "server_tool_use",
+      "name": "web_search",
+      "input": {
+        "query": "research methods citations"
+      }
+    },
+    {
+      "type": "web_search_tool_result",
+      "content": [
+        {
+          "type": "web_search_result",
+          "url": "https://example.net/method",
+          "title": "Method notes"
+        },
+        {
+          "type": "web_search_result",
+          "url": "https://example.org/guide",
+          "title": "Provenance guide"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Cited answer",
+      "citations": [
+        {
+          "type": "web_search_result_location",
+          "url": "https://example.net/method",
+          "title": "Method notes",
+          "cited_text": "Evidence"
+        }
+      ]
+    }
+  ]
+}
