@@ -46,7 +46,10 @@
                     "turn_index": 0,
                     "ref_type": "search",
                     "ref_index": 0
-                  }
+                  },
+                  "snippet": "Synthetic excerpt for parser and interface testing.",
+                  "pub_date": 1750000000,
+                  "attribution": "example.org"
                 },
                 {
                   "url": "https://example.org/checklist",

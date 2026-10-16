@@ -9,7 +9,7 @@ npm run check
 npm test
 ```
 
-I check JavaScript syntax and entry-page asset paths. I run **40 regression tests** covering all seven synthetic provider fixtures, normalized custom imports, batch envelopes, JSONL errors, size limits, unknown formats, URL safety, duplicate evidence merging, string-boolean rejection, unknown dates, matched-rate semantics, ChatGPT branch selection and citation markers, Claude citation ordering, Gemini candidate scope, round-trip backups, CSV injection handling, local persistence, corrupt storage, v1 migration, replacement keys, deterministic IDs, and epoch timestamps.
+I check JavaScript syntax and entry-page asset paths. I run **46 regression tests** covering all seven synthetic provider fixtures, normalized custom imports, batch envelopes, JSONL errors, size limits, unknown formats, URL safety, duplicate evidence merging, string-boolean rejection, unknown dates, matched-rate semantics, ChatGPT branch selection and citation markers, Claude citation ordering, Gemini candidate scope, round-trip backups, CSV injection handling, local persistence, corrupt storage, v1 migration, replacement keys, deterministic IDs, and epoch timestamps.
 
 I do not substitute syntax checks for a working UI. I use a separate browser smoke tool and visual review.
 
@@ -60,3 +60,7 @@ I also parsed the earlier project’s two saved conversation files locally. I re
 ## What I have not certified
 
 I have not certified WCAG conformance, performed a security penetration test, live-tested all provider API versions, exercised Safari/Firefox, verified Windows Chrome automation on a Windows machine, tested huge adversarial inputs, or provided multi-tab consistency. I describe these as release limits rather than hiding them behind passing fixture tests.
+
+## How I verify my beginner path
+
+I check that the guided demo never writes to saved-workspace storage, that exiting restores the previous workspace, that the quick-start glossary is reachable, and that bundled-example and original-case imports remain previews until explicitly saved. I test source snapshot preservation, metadata merge rules, and expanded exports. I keep original saved-chat evidence separate from synthetic samples.

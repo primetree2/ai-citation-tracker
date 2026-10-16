@@ -56,3 +56,7 @@ I use compact deterministic IDs when a provider omits one. They are not cryptogr
 I use tables rather than decorative charts because I want auditable provider coverage and exact source evidence. I intentionally keep missing denominators visible. I don’t interpret sample metrics as a ranking of provider quality.
 
 I keep the UI in one module at this size, while retaining a separate pure core. I would split view renderers into modules when additional workflows make that boundary worthwhile, not simply to increase the file count.
+
+## How I isolate my guided demo
+
+I retain the current workspace in memory, show synthetic runs without writing them to localStorage, and restore the retained workspace on exit. I leave demo mode before opening a personal import. I block destructive saved-data actions while the demo is active. I keep quick-start guidance accessible in a native dialog and test the guided path in Chromium.

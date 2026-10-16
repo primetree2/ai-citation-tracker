@@ -11,6 +11,14 @@ I still need to publish this v3 repository before those links show the upgraded 
 
 ![My overview with clearly labeled synthetic sample evidence](docs/overview.png)
 
+## How I make this easy to review
+
+I open the hosted site and choose **Quick start → Try 60-second demo**. I do not need an account, API key, upload, or installation to try the deployed demo. My guided steps cover the overview, one run inspector, citation-only sources, and export. I keep demo data in memory, separate from saved runs; **Exit demo** restores the existing workspace.
+
+I use **Quick start → Preview example import** to test ingestion without finding a file. I can also choose **Preview original case evidence** to review the earlier supplied ChatGPT/Claude source extracts. I label that evidence as saved-chat data, not a successful stream capture.
+
+I keep a [one-minute reviewer path](docs/QUICKSTART.md), an [honest audit against the original brief](docs/TASK-AUDIT.md), and a [submission draft with fields I must complete](docs/SUBMISSION.md). **I do not claim the full assignment is complete:** ChatGPT live-stream capture, its fan-out queries, and richer YouTube metadata remain unverified. The brief explicitly allows explained partial work.
+
 ## How I start
 
 I install Node.js 22 LTS or newer, open a terminal in the folder containing `package.json`, and run:
@@ -26,6 +34,7 @@ I can also run `python -m http.server 4173` from the repository root. I use HTTP
 ## What I can do
 
 - I import multiple JSON files, JSONL batches, pasted JSON, and v3 workspace backups.
+- I preserve available source snippets, publication dates, attribution, and explicitly supplied channel/engagement metadata in JSON and CSV. I leave absent fields absent.
 - I preview my batch before saving. I see file-specific errors and explicit replacement behavior.
 - I inspect ChatGPT and Claude saved conversations, OpenAI Responses, Anthropic Messages, Gemini grounding, Perplexity Sonar, and Grok chat-completion citation payloads.
 - I review source-level evidence paths and provider-specific limitations in each run.
@@ -58,7 +67,7 @@ I use [my provider reference](docs/PROVIDERS.md) for field paths and [my schema 
 
 ## How I use my workspace
 
-1. I choose **Explore sample workspace** for a clearly labeled synthetic walkthrough, or **Import data** for my own saved JSON.
+1. I choose **Try 60-second demo** for a clearly labeled synthetic walkthrough, or **Import data** for my own saved JSON.
 2. I preview the files and choose **Save previewed runs**. I replace an existing run only when both provider and run ID match.
 3. I open **Runs** and click a title to inspect observed queries, sources, evidence paths, and warnings.
 4. I use **Source library** to review cited, uncited-retrieved, and citation-only sources.

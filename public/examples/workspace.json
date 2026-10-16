@@ -17,6 +17,11 @@
           "url": "https://example.org/guide",
           "title": "Automation guide",
           "domain": "example.org",
+          "snapshot": {
+            "snippet": "Synthetic excerpt for parser and interface testing.",
+            "publishedAt": "2025-06-15T15:06:40.000Z",
+            "attribution": "example.org"
+          },
           "retrieved": true,
           "cited": true,
           "evidence": [
@@ -31,6 +36,7 @@
           "url": "https://example.org/checklist",
           "title": "Research checklist",
           "domain": "example.org",
+          "snapshot": {},
           "retrieved": true,
           "cited": false,
           "evidence": [
@@ -61,6 +67,7 @@
           "url": "https://example.org/checklist",
           "title": "Evidence checklist",
           "domain": "example.org",
+          "snapshot": {},
           "retrieved": true,
           "cited": true,
           "evidence": [
@@ -73,6 +80,7 @@
           "url": "https://example.net/method",
           "title": "Method notes",
           "domain": "example.net",
+          "snapshot": {},
           "retrieved": true,
           "cited": false,
           "evidence": [
@@ -101,6 +109,7 @@
           "url": "https://example.org/guide",
           "title": "Provenance guide",
           "domain": "example.org",
+          "snapshot": {},
           "retrieved": true,
           "cited": true,
           "evidence": [
@@ -113,6 +122,7 @@
           "url": "https://example.net/method",
           "title": "Method notes",
           "domain": "example.net",
+          "snapshot": {},
           "retrieved": true,
           "cited": false,
           "evidence": [
@@ -141,6 +151,9 @@
           "url": "https://example.net/method",
           "title": "Method notes",
           "domain": "example.net",
+          "snapshot": {
+            "snippet": "Evidence"
+          },
           "retrieved": true,
           "cited": true,
           "evidence": [
@@ -153,6 +166,7 @@
           "url": "https://example.org/guide",
           "title": "Provenance guide",
           "domain": "example.org",
+          "snapshot": {},
           "retrieved": true,
           "cited": false,
           "evidence": [
@@ -183,6 +197,7 @@
           "url": "https://example.org/guide",
           "title": "Provenance guide",
           "domain": "example.org",
+          "snapshot": {},
           "retrieved": true,
           "cited": true,
           "evidence": [
@@ -194,6 +209,7 @@
           "url": "https://example.net/method",
           "title": "Method notes",
           "domain": "example.net",
+          "snapshot": {},
           "retrieved": true,
           "cited": false,
           "evidence": [
@@ -223,6 +239,7 @@
           "url": "https://example.org/guide",
           "title": "example.org",
           "domain": "example.org",
+          "snapshot": {},
           "retrieved": true,
           "cited": true,
           "evidence": [
@@ -235,6 +252,7 @@
           "url": "https://example.net/method",
           "title": "Method notes",
           "domain": "example.net",
+          "snapshot": {},
           "retrieved": true,
           "cited": false,
           "evidence": [
@@ -263,6 +281,7 @@
           "url": "https://example.net/method",
           "title": "example.net",
           "domain": "example.net",
+          "snapshot": {},
           "retrieved": false,
           "cited": true,
           "evidence": [
@@ -274,6 +293,7 @@
           "url": "https://example.org/guide",
           "title": "example.org",
           "domain": "example.org",
+          "snapshot": {},
           "retrieved": false,
           "cited": true,
           "evidence": [

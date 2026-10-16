@@ -8,7 +8,7 @@ const rate = v => v == null ? '—' : `${Math.round(v * 100)}%`;
 const date = v => v ? new Date(v).toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' }) : 'Date is unavailable';
 const providerName = p => PROVIDERS[p] || p;
 const badge = p => `<span class="provider"><span class="provider-icon" aria-hidden="true">${esc(({chatgpt:'CG',claude:'CL',openai:'OA',anthropic:'AN',gemini:'GE',perplexity:'PX',grok:'GX'})[p] || p.slice(0,2).toUpperCase())}</span>${esc(providerName(p))}</span>`;
-const state = { runs:[], page:'overview', search:'', provider:'', period:'', status:'', sort:'title', pagination:1, staged:[], importMessages:[], storageLocked:false, theme:'auto' };
+const state = { runs:[], page:'overview', search:'', provider:'', period:'', status:'', sort:'title', pagination:1, staged:[], importMessages:[], storageLocked:false, theme:'auto', demo:false, savedRuns:[], guideStep:0 };
 const pages = {
   overview:['Overview','Evidence, in focus.','Track the gap between sources retrieved and sources cited.'],
   runs:['Runs','Research runs','Inspect saved responses, search queries, and source evidence.'],
@@ -19,6 +19,7 @@ const pages = {
 let toastTimer;
 function toast(message) { $('#toast').textContent = message; $('#toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => $('#toast').hidden = true, 5500); }
 function persist(next) {
+  if (state.demo) {toast('Demo changes are not saved. Exit demo to edit your workspace.');return false;}
   if (state.storageLocked) { toast('Saved data could not be read. Preserve the original storage value before resetting it in Data & privacy.'); return false; }
   try { saveWorkspace(localStorage, next); state.runs = next; return true; }
   catch { toast('Could not save locally. The existing workspace is unchanged. Export a backup before retrying.'); return false; }
@@ -79,7 +80,7 @@ function runsPage(runs) {
   return section('Run history','Normalized evidence is stored locally; complete raw conversations are not retained.',runTable(runs.slice().reverse().slice((state.pagination-1)*25,state.pagination*25))+pagination);
 }
 function sourceRows(rows, detailed = false) {
-  return `<div class="table-wrap" tabindex="0" role="region" aria-label="Horizontally scrollable evidence table"><table><caption class="sr-only">Source evidence, one URL per run</caption><thead><tr><th>Source</th>${detailed ? '<th>Evidence path</th>' : '<th>Provider</th>'}<th>Observed status</th></tr></thead><tbody>${rows.map(({s,r}) => `<tr><td><a class="source-title" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)} ↗</a><span class="source-url">${esc(s.url)}</span></td><td>${detailed ? `<span class="evidence">${esc(s.evidence.join(' · '))}</span>` : badge(r.platform)}</td><td>${s.cited && s.retrieved ? '<span class="tag good">Retrieved + cited</span>' : s.cited ? '<span class="tag info">Citation only</span>' : s.retrieved ? '<span class="tag warn">Retrieval only</span>' : '<span class="tag">Evidence unspecified</span>'}</td></tr>`).join('')}</tbody></table></div>`;
+  return `<div class="table-wrap" tabindex="0" role="region" aria-label="Horizontally scrollable evidence table"><table><caption class="sr-only">Source evidence, one URL per run</caption><thead><tr><th>Source</th>${detailed ? '<th>Evidence path</th>' : '<th>Provider</th>'}<th>Observed status</th></tr></thead><tbody>${rows.map(({s,r}) => `<tr><td><a class="source-title" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)} ↗</a><span class="source-url">${esc(s.url)}</span>${s.snapshot?.snippet?`<span class="snapshot-snippet">${esc(s.snapshot.snippet)}</span>`:""}${detailed?`<details class="snapshot-details"><summary>Source snapshot</summary><pre>${esc(Object.keys(s.snapshot||{}).length?JSON.stringify(s.snapshot,null,2):"No snapshot metadata is available in this response.")}</pre></details>`:""}</td><td>${detailed ? `<span class="evidence">${esc(s.evidence.join(' · '))}</span>` : badge(r.platform)}</td><td>${s.cited && s.retrieved ? '<span class="tag good">Retrieved + cited</span>' : s.cited ? '<span class="tag info">Citation only</span>' : s.retrieved ? '<span class="tag warn">Retrieval only</span>' : '<span class="tag">Evidence unspecified</span>'}</td></tr>`).join('')}</tbody></table></div>`;
 }
 function sourcesPage(runs) {
   let rows = runs.flatMap(r => r.sources.map(s => ({s,r})));
@@ -105,7 +106,31 @@ function settingsPage() {
   return section('Workspace controls','Export a backup before removing local evidence.',`<div class="settings-row"><div><h3>Portable backup</h3><p>Export all runs, including those outside the current filters, as round-trip JSON.</p></div><button class="secondary" data-action="backup">Export all data</button></div><div class="settings-row"><div><h3>Sample workspace</h3><p>Load seven small synthetic fixtures to explore the interface. These are not real provider benchmarks.</p></div><button class="secondary" data-action="demo">Load sample runs</button></div><div class="settings-row"><div><h3>Local reset</h3><p>Delete this app’s saved runs and legacy v1 run key. Recovery requires an exported backup.</p></div><button class="danger" data-action="clear">Delete saved runs</button></div>`) + section('Privacy boundary','Understand what stays local and what does not.',`<div class="docs"><p>Imports are parsed in the browser. No file uploads, stored API keys, analytics, or automatic provider requests.</p><p>Normalized prompts, source titles, URLs, model labels, queries, and evidence paths are stored in localStorage. Complete raw responses are not saved. Anyone with access to this browser profile can read that storage.</p><p>Loading the site and bundled examples makes normal hosting requests. Opening a source link contacts that source. GitHub Pages can record access logs.</p><p>Manually mapped evidence flags are assertions, not independent verification. Native adapter evidence paths are available in the run inspector.</p><p>Browser storage is scoped per origin, not per GitHub Pages repository path. Avoid sharing the same storage key with unrelated apps.</p><a href="docs/PRIVACY.md">Read full privacy notes ↗</a></div>`);
 }
 function onboarding() {
-  return `<section class="panel"><div class="empty"><div class="eyebrow">LOCAL-FIRST RESEARCH DESK</div><h2>Start with evidence, not assumptions.</h2><p>Import saved AI responses, inspect their sources, and see which observed retrievals became citations. Files are processed in this browser.</p><div class="actions"><button class="primary" data-action="import">+ Import first response</button><button class="secondary" data-action="demo">Explore sample workspace →</button></div></div><div class="intro-steps"><div><span class="stepnum">01 / INPUT</span><h3>Import saved JSON.</h3><p>Use seven native provider formats or the normalized v3 schema.</p></div><div><span class="stepnum">02 / EVIDENCE</span><h3>Inspect every source.</h3><p>Keep retrieval, citation, and citation-only evidence separate.</p></div><div><span class="stepnum">03 / WORKSPACE</span><h3>Keep control of your data.</h3><p>Filter locally and export JSON backups or source-level CSV.</p></div></div></section>`;
+  return `<section class="panel"><div class="empty"><div class="eyebrow">LOCAL-FIRST RESEARCH DESK</div><h2>Start with evidence, not assumptions.</h2><p>Import saved AI responses, inspect their sources, and see which observed retrievals became citations. Files are processed in this browser.</p><div class="actions"><button class="primary" data-action="import">+ Import first response</button><button class="secondary" data-action="demo">Try 60-second demo →</button></div></div><div class="intro-steps"><div><span class="stepnum">01 / INPUT</span><h3>Import saved JSON.</h3><p>Use seven native provider formats or the normalized v3 schema.</p></div><div><span class="stepnum">02 / EVIDENCE</span><h3>Inspect every source.</h3><p>Keep retrieval, citation, and citation-only evidence separate.</p></div><div><span class="stepnum">03 / WORKSPACE</span><h3>Keep control of your data.</h3><p>Filter locally and export JSON backups or source-level CSV.</p></div></div></section>`;
+}
+function exitDemo() {
+  if(!state.demo)return;
+  state.runs=state.savedRuns;state.savedRuns=[];state.demo=false;state.page='overview';resetFilters();
+  toast('Demo closed. Your saved workspace has been restored.');
+}
+function tourStep(step) {
+  state.guideStep=step;
+  state.search='';state.provider='';state.period='';state.status='';state.pagination=1;
+  $('#search').value='';$('#period').value='';
+  state.page=['overview','runs','sources','overview'][step];
+  if(step===2)state.status='citationOnly';
+  render();$('#walkthrough').scrollIntoView({block:'start'});
+}
+function renderWalkthrough() {
+  if(!state.demo){$('#walkthrough').innerHTML='';return;}
+  const steps=[
+    ['Read the overview','This synthetic dataset has 12 observed retrievals and 8 cited sources. Only 6 sources have both flags, so the matched rate is 50%. The other 2 citations have no retrieval record.'],
+    ['Inspect one run','Open a run title to see its search queries, evidence paths, and source snapshots. The sample ChatGPT response has 2 retrievals and 1 citation. Close the inspector to continue.'],
+    ['Find citation-only evidence','The source library is filtered to 2 Grok citations without retrieval records. A citation-only response must not be reported as a complete search log.'],
+    ['Export or test an import','Export demo JSON downloads this sample workspace. Try example import opens a preview without saving anything. Exiting the demo restores the saved workspace.']
+  ];
+  const [title,description]=steps[state.guideStep];
+  $('#walkthrough').innerHTML=`<section class="walkthrough"><div><span class="eyebrow">GUIDED DEMO · STEP ${state.guideStep+1} OF 4</span><h2>${title}</h2><p>${description}</p></div><div class="actions">${state.guideStep===3?'<button class="secondary" data-action="backup">Export demo JSON</button><button class="primary" data-action="example-import">Try example import</button>':''}${state.guideStep===1?'<button class="secondary" data-action="tour-inspect">Open sample run</button>':''}${state.guideStep?'<button class="secondary" data-action="tour-back">Back</button>':''}${state.guideStep<3?'<button class="primary" data-action="tour-next">Next step →</button>':''}<button class="quiet" data-action="exit-demo">Exit demo</button></div></section>`;
 }
 function render() {
   const [crumb,title,description] = pages[state.page];
@@ -119,11 +144,13 @@ function render() {
   $('#filterbar').hidden = ['providers','settings'].includes(state.page);
   $('#filterbar').style.display = $('#filterbar').hidden ? 'none' : '';
   const notices = [];
+  if(state.demo) notices.push('Demo mode · Synthetic data only · Your saved workspace is untouched.');
   if (state.storageLocked) notices.push('Saved data could not be read and has not been overwritten. Preserve the original storage value before resetting it in Data & privacy.');
   const synthetic = state.runs.filter(r => r.synthetic).length;
   if (synthetic) notices.push(`Demo data: ${synthetic} synthetic sample run(s). These test formats, not provider performance.`);
   $('#notice').hidden = !notices.length;
   $('#notice').textContent = notices.join(' ');
+  renderWalkthrough();
   const runs = visibleRuns();
   $('#view').innerHTML = state.page === 'providers' ? providersPage() : state.page === 'settings' ? settingsPage() : !state.runs.length ? onboarding() : state.page === 'overview' ? overview(runs) : state.page === 'runs' ? runsPage(runs) : sourcesPage(runs);
 }
@@ -135,14 +162,15 @@ async function loadDemo() {
   try {
     const response = await fetch('public/examples/workspace.json'); if (!response.ok) throw new Error();
     const incoming = parseText(await response.text()).map(r => ({...r,synthetic:true}));
-    const merged = mergeRuns(state.runs,incoming);
-    if (persist(merged.runs)) { resetFilters(); toast(`Sample runs loaded: ${merged.added} added, ${merged.replaced} replaced.`); }
+    if(!state.demo) state.savedRuns=state.runs;
+    state.demo=true;state.runs=incoming;state.guideStep=0;state.page='overview';
+    $('#help-dialog').close();resetFilters();toast('Demo ready. Follow the four steps above the workspace.');
   } catch { toast('Could not load samples. Use npm start or GitHub Pages, not file://.'); }
 }
 function inspectRun(key) {
   const r = state.runs.find(r => `${r.platform}:${r.id}` === key); if (!r) return;
   const m = metrics([r]);
-  $('#run-detail').innerHTML = `<div class="dialog-heading"><div><div class="eyebrow">RUN INSPECTOR</div><h2 id="run-title">${esc(r.title)}</h2></div><button class="icon-button" data-close="run-dialog" aria-label="Close run inspector">×</button></div><div class="detail-meta">${badge(r.platform)}<span>${esc(r.model || 'Model is unavailable')}</span><span>${esc(date(r.createdAt))}</span>${r.synthetic ? '<span class="tag info">Synthetic fixture</span>' : ''}</div><p class="detail-summary">${esc(r.prompt || 'No prompt is available in this saved response.')}</p><p class="detail-summary">${m.retrieved} observed retrievals · ${m.cited} cited sources · Matched citation rate: ${rate(m.rate)}</p>${r.warnings.length ? `<div class="warnings"><strong>Evidence limits</strong>${r.warnings.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : ''}<h3>Observed queries</h3>${r.queries.length ? r.queries.map(q => `<div class="detail-query">${esc(q)}</div>`).join('') : '<p class="detail-summary">Search queries are not available in this file.</p>'}<h3>Source evidence</h3>${sourceRows(r.sources.map(s => ({s,r})),true)}<div class="dialog-actions"><button class="secondary" data-export-run="${esc(key)}">Export run</button><button class="danger" data-delete-run="${esc(key)}">Delete run</button></div>`;
+  $('#run-detail').innerHTML = `<div class="dialog-heading"><div><div class="eyebrow">RUN INSPECTOR</div><h2 id="run-title">${esc(r.title)}</h2></div><button class="icon-button" data-close="run-dialog" aria-label="Close run inspector">×</button></div><div class="detail-meta">${badge(r.platform)}<span>${esc(r.model || 'Model is unavailable')}</span><span>${esc(date(r.createdAt))}</span>${r.synthetic ? '<span class="tag info">Synthetic fixture</span>' : ''}</div><p class="detail-summary">Evidence origin: ${esc(r.provenance)}</p><p class="detail-summary">${esc(r.prompt || 'No prompt is available in this saved response.')}</p><p class="detail-summary">${m.retrieved} observed retrievals · ${m.cited} cited sources · Matched citation rate: ${rate(m.rate)}</p>${r.warnings.length ? `<div class="warnings"><strong>Evidence limits</strong>${r.warnings.map(w => `<p>${esc(w)}</p>`).join('')}</div>` : ''}<h3>Observed queries</h3>${r.queries.length ? r.queries.map(q => `<div class="detail-query">${esc(q)}</div>`).join('') : '<p class="detail-summary">Search queries are not available in this file.</p>'}<h3>Source evidence</h3>${sourceRows(r.sources.map(s => ({s,r})),true)}<div class="dialog-actions"><button class="secondary" data-export-run="${esc(key)}">Export run</button><button class="danger" data-delete-run="${esc(key)}">Delete run</button></div>`;
   $('#run-dialog').showModal();
 }
 function renderImport() {
@@ -163,7 +191,7 @@ async function importFiles(files) {
   }
   importing = false; renderImport(); $('#files').value='';
 }
-function openImport() { state.staged=[]; state.importMessages=[]; $('#paste').value=''; renderImport(); $('#import-dialog').showModal(); }
+function openImport() { if(state.demo) exitDemo(); state.staged=[]; state.importMessages=[]; $('#paste').value=''; renderImport(); $('#import-dialog').showModal(); }
 function exportSources() {
   let rows = visibleRuns().map(r => ({...r,sources:r.sources.filter(s => (!state.search || [s.title,s.url,r.title,r.prompt].join(' ').toLowerCase().includes(state.search.toLowerCase())) && (!state.status || (state.status === 'cited' ? s.cited : state.status === 'uncited' ? s.retrieved&&!s.cited : s.cited&&!s.retrieved)))}));
   download('my-citation-sources.csv',sourcesCsv(rows),'text/csv;charset=utf-8');
@@ -180,6 +208,7 @@ $('#theme').onclick = () => {
 };
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',() => applyTheme(state.theme));
 $('#mobile-menu').onclick = () => {const open=$('#workspace-nav').classList.toggle('mobile-open');$('#mobile-menu').setAttribute('aria-expanded',String(open));};
+$('#quick-start').onclick=()=>$('#help-dialog').showModal();
 $('#import-top').onclick = openImport;
 $('#export').onclick = () => download('my-citation-workspace.json',workspaceJson(state.runs),'application/json');
 $('#reset-filters').onclick = resetFilters;
@@ -212,11 +241,27 @@ document.addEventListener('click',async e => {
   }
   switch(b.dataset.action) {
     case 'import':openImport();break;
+    case 'help-import':$('#help-dialog').close();openImport();break;
+    case 'exit-demo':exitDemo();break;
+    case 'tour-next':tourStep(Math.min(3,state.guideStep+1));break;
+    case 'tour-back':tourStep(Math.max(0,state.guideStep-1));break;
+    case 'tour-inspect':{const r=state.runs.find(r=>r.platform==='chatgpt');if(r)inspectRun(`${r.platform}:${r.id}`);break;}
+    case 'prior-evidence':{
+      $('#help-dialog').close();openImport();
+      try{const response=await fetch('public/examples/prior-evidence.json');if(!response.ok)throw new Error();state.staged.push(...parseText(await response.text()));state.importMessages.push({text:'Original saved-chat case: ChatGPT 29 retrieved / 7 cited; Claude 9 retrieved / 7 cited. Not a new live-stream capture. Nothing is saved yet.'});renderImport();}
+      catch{toast('Could not load the original evidence.');}break;
+    }
+    case 'example-import':{
+      $('#help-dialog').close();openImport();
+      try{const response=await fetch('public/examples/openai.json');if(!response.ok)throw new Error();const runs=parseText(await response.text()).map(r=>({...r,synthetic:true}));state.staged.push(...runs);state.importMessages.push({text:'Bundled synthetic OpenAI example: 1 run, 2 observed retrievals, 1 cited source. Nothing is saved yet.'});renderImport();}
+      catch{toast('Could not load the example. Choose a local file instead.');}break;
+    }
     case 'demo':await loadDemo();break;
     case 'reset':resetFilters();break;
     case 'csv':exportSources();break;
     case 'backup':download('my-citation-workspace.json',workspaceJson(state.runs),'application/json');break;
     case 'clear':
+      if(state.demo){toast('Exit demo before deleting saved data.');break;}
       if (!confirm('Delete all saved runs? Recovery requires an exported backup.')) break;
       try {localStorage.removeItem('citetracker.runs.v1');saveWorkspace(localStorage,[]);state.storageLocked=false;state.runs=[];resetFilters();toast('Saved runs deleted.');} catch {toast('Could not clear local storage.');}
   }

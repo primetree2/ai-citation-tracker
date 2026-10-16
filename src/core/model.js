@@ -26,6 +26,22 @@ export function stableId(value) {
   return (hash >>> 0).toString(36);
 }
 
+export function snapshotOf(raw = {}) {
+  const md = raw.metadata && typeof raw.metadata === 'object' ? raw.metadata : {};
+  const pick = (...values) => values.find(v => ['string','number','boolean'].includes(typeof v) && v !== '');
+  const timestamp = pick(raw.publishedAt, raw.pub_date, raw.published_date, md.published_date);
+  const fields = {
+    snippet: pick(raw.snippet, raw.text, raw.cited_text),
+    publishedAt: typeof timestamp === 'number' && Number.isFinite(timestamp) && Math.abs(timestamp)<8640000000000 ? new Date(timestamp*1000).toISOString() : timestamp,
+    attribution: pick(raw.attribution, raw.site, md.site_name, md.site_domain),
+    channelName: pick(raw.channelName, raw.channel_name, raw.channel, md.channel_name),
+    followers: pick(raw.followers, raw.subscribers, md.followers, md.subscribers),
+    verified: pick(raw.verified, md.verified), views: pick(raw.views, raw.view_count, md.views),
+    likes: pick(raw.likes, raw.like_count, md.likes), description: pick(raw.description, md.description)
+  };
+  return Object.fromEntries(Object.entries(fields).filter(([,v])=>v!==undefined));
+}
+
 export function normalizeRun(input) {
   if (!input || typeof input !== 'object' || !Array.isArray(input.sources)) throw new Error('A run must contain a sources array.');
   for (const key of ['queries', 'warnings']) {
@@ -45,13 +61,14 @@ export function normalizeRun(input) {
     if (!url) { warnings.add('An invalid or unsafe source URL was skipped.'); continue; }
     const prev = sources.get(url);
     const next = {
-      url, title: String(s.title || domainOf(url)), domain: domainOf(url),
+      url, title: String(s.title || domainOf(url)), domain: domainOf(url), snapshot: snapshotOf(s.snapshot || s),
       retrieved: s.retrieved === true, cited: s.cited === true,
       evidence: [...new Set((s.evidence || []).map(String))],
       refs: [...new Set((s.refs || []).map(String))]
     };
     if (prev) {
       next.cited ||= prev.cited; next.retrieved ||= prev.retrieved;
+      next.snapshot = {...prev.snapshot, ...next.snapshot};
       next.evidence = [...new Set([...prev.evidence, ...next.evidence])];
       next.refs = [...new Set([...prev.refs, ...next.refs])];
     }

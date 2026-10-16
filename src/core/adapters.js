@@ -1,4 +1,4 @@
-import { normalizeRun, canonicalUrl } from './model.js';
+import { normalizeRun, canonicalUrl, snapshotOf } from './model.js';
 const arr = value => Array.isArray(value) ? value : [];
 const text = value => typeof value === 'string' ? value : '';
 const seconds = value => Number.isFinite(Number(value)) && value != null ? new Date(Number(value) * 1000).toISOString() : null;
@@ -7,8 +7,8 @@ function collector(platform, raw) {
   const sources = [], queries = [], warnings = [];
   return {
     sources, queries, warnings,
-    add(url, title, retrieved, cited, evidence, refs = []) {
-      if (url) sources.push({ url, title, retrieved, cited, evidence: [evidence], refs });
+    add(url, title, retrieved, cited, evidence, refs = [], rawSource = {}) {
+      if (url) sources.push({ url, title, retrieved, cited, evidence: [evidence], refs, snapshot: snapshotOf(rawSource) });
     },
     finish(extra = {}) {
       if (!queries.length) warnings.push('Search queries are not available in this file. Missing queries do not mean zero searches.');
@@ -39,7 +39,7 @@ function chatgpt(raw) {
     for (const group of arr(md.search_result_groups)) for (const e of arr(group.entries)) {
       const r = e.ref_id;
       const ref = typeof r === 'string' ? r : r ? `turn${r.turn_index}${r.ref_type}${r.ref_index}` : '';
-      c.add(e.url, e.title, true, false, 'metadata.search_result_groups.entries', ref ? [ref] : []);
+      c.add(e.url, e.title, true, false, 'metadata.search_result_groups.entries', ref ? [ref] : [], e);
     }
     for (const q of arr(md.search_model_queries?.queries)) if (typeof q === 'string') c.queries.push(q);
     if (role === 'assistant' && /^web/.test(m.recipient || '')) {
@@ -79,10 +79,10 @@ function anthropic(raw, platform) {
       }
       if (b.type === 'web_search_tool_result' || (b.type === 'tool_result' && /search/i.test(b.name || ''))) {
         if (b.content?.error_code) c.warnings.push(`Search error: ${b.content.error_code}.`);
-        for (const s of arr(b.content)) c.add(s.url, s.title, true, false, `${b.type}.content`);
+        for (const s of arr(b.content)) c.add(s.url, s.title, true, false, `${b.type}.content`, [], s);
       }
       if (role === 'assistant' && b.type === 'text') for (const citation of arr(b.citations)) {
-        for (const s of (citation.sources?.length ? citation.sources : [citation])) c.add(s.url, s.title, false, true, 'text.citations');
+        for (const s of (citation.sources?.length ? citation.sources : [citation])) c.add(s.url, s.title, false, true, 'text.citations', [], s);
       }
     }
   }
@@ -94,7 +94,7 @@ function openai(raw) {
   for (const item of arr(raw.output)) {
     if (item.type === 'web_search_call') {
       for (const q of [...arr(item.action?.queries), ...(item.action?.query ? [item.action.query] : [])]) c.queries.push(q);
-      for (const s of arr(item.action?.sources)) c.add(s.url, s.title, true, false, 'web_search_call.action.sources');
+      for (const s of arr(item.action?.sources)) c.add(s.url, s.title, true, false, 'web_search_call.action.sources', [], s);
     }
     if (item.type === 'message' && item.role === 'assistant') for (const part of arr(item.content)) {
       for (const a of arr(part.annotations)) if (a.type === 'url_citation') c.add(a.url || a.url_citation?.url, a.title || a.url_citation?.title, false, true, 'output.message.annotations.url_citation');
@@ -119,7 +119,7 @@ function gemini(raw) {
 
 function completions(raw, platform) {
   const c = collector(platform, raw);
-  for (const s of arr(raw.search_results)) c.add(s.url, s.title, true, false, 'search_results');
+  for (const s of arr(raw.search_results)) c.add(s.url, s.title, true, false, 'search_results', [], s);
   for (const citation of arr(raw.citations)) c.add(typeof citation === 'string' ? citation : citation.url, citation.title, false, true, 'citations');
   for (const choice of arr(raw.choices).slice(0, 1)) {
     for (const a of arr(choice.message?.annotations)) if (a.type === 'url_citation') {

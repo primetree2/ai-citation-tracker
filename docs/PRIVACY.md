@@ -2,7 +2,7 @@
 
 ## What I keep
 
-I retain normalized run IDs, provider/model labels, response timestamps, titles, prompts, queries, canonical source URLs, evidence flags, evidence paths, reference IDs, warnings, and synthetic-fixture labels in this browser’s localStorage.
+I retain normalized run IDs, provider/model labels, response timestamps, titles, prompts, queries, canonical source URLs, available source snippets and snapshot metadata, evidence flags, evidence paths, reference IDs, warnings, and synthetic-fixture labels in this browser’s localStorage.
 
 I do not save the complete raw uploaded JSON. My import preview temporarily holds parsed runs and error messages in memory until I finish or reopen the dialog. My browser may still retain downloaded or selected files outside this application.
 
@@ -33,3 +33,7 @@ If my storage is corrupt, I do not overwrite it automatically. I can preserve th
 ## How I report a security issue
 
 I avoid including private response files or credentials in public issues. I describe a minimal reproduction using synthetic data and use a private reporting channel when the repository owner provides one.
+
+## How I isolate my demo
+
+I keep the guided demo in memory and restore the pre-demo workspace on exit. I do not save sample runs automatically. I can explicitly save a bundled example through the import preview. I can also explicitly save the source-only extracts from my previously supplied ChatGPT/Claude case; I do not include full conversations or account tokens in those extracts.

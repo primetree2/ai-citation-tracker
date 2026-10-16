@@ -74,3 +74,7 @@ I export a `runs` array of normalized objects plus `exportedAt`. I can reimport 
 ## My CSV export
 
 I export one row per source/run pair with run ID, provider, model, source title, canonical URL, domain, retrieval flag, citation flag, and evidence paths. I quote cells, double embedded quotes, and prefix formula-like cells with an apostrophe to reduce spreadsheet formula injection. I use UTF-8 with a BOM for Windows spreadsheet compatibility. I still review untrusted data before opening a spreadsheet.
+
+## How I retain available citation snapshots
+
+I preserve an optional source `snapshot` object with `snippet`, `publishedAt`, `attribution`, `channelName`, `followers`, `verified`, `views`, `likes`, and `description` when explicitly supplied. I preserve numeric zero and boolean false. I do not fabricate unavailable fields. Native adapters pass known result fields into this object. I export it in workspace JSON and `snapshot_json` in CSV, with separate snippet/date columns. I expand **Source snapshot** inside a run to inspect it.

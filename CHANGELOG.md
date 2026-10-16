@@ -1,5 +1,9 @@
 # My release notes
 
+## My v3.1.0 beginner and evidence review update
+
+I added a four-step, non-destructive demo, a plain-language glossary, one-click example import preview, and prior saved-case source extracts. I preserved available citation snapshot metadata and added an honest audit of the original Beyond Labs brief. I do not claim the missing live-stream research is complete.
+
 ## My v3.0.1 wording correction
 
 I kept first-person narration in my README and documentation, and restored neutral product wording throughout the interface, error messages, and command-line output. I refreshed the documentation screenshots and updated quoted button labels to match.
