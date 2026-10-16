@@ -1,0 +1,4 @@
+data: {"v":{"message":{"id":"m","author":{"role":"assistant"},"content":{"parts":[""]},"metadata":{"search_model_queries":{"queries":["n8n tutorials"]},"search_result_groups":[{"entries":[{"url":"https://example.org/tutorial","title":"Tutorial","ref_id":{"turn_index":1,"ref_type":"search","ref_index":0},"snippet":"Full excerpt","views":0,"verified":false,"description":"Full description","timecodes":"00:00 Intro; 02:30 Workflow"}]}]}},"_citationTrackerFixture":true}}
+
+data: {"p":"/message/content/parts/0","o":"append","v":"Source <Cite refs={[\"turn1search0\"]}/>"}
+

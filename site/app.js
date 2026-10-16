@@ -1,205 +1,428 @@
-// Dashboard logic. Runs live in localStorage only.
 (function () {
-  const KEY = 'citetracker.runs.v1';
-  const ALLOWED_ORIGINS = ['https://chatgpt.com', 'https://claude.ai'];
-  const $ = s => document.querySelector(s);
-  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const pct = (a, b) => b ? Math.round((a / b) * 100) : 0;
-  const fmtDate = iso => { try { return new Date(iso).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }); } catch (e) { return iso; } };
-  const PLAT = { chatgpt: 'ChatGPT', claude: 'Claude' };
-
-  let runs = load();
-  let selectedId = null, filter = 'all';
-
-  function load() {
-    try { const r = JSON.parse(localStorage.getItem(KEY)); if (Array.isArray(r) && r.length) return r; } catch (e) {}
-    return (window.DEMO_RUNS || []).slice();
-  }
-  function save() { localStorage.setItem(KEY, JSON.stringify(runs)); }
-  function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.remove('hidden'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.add('hidden'), 3500); }
-
-  function addRaw(raw, source) {
-    const run = CiteParser.parseConversation(raw);
-    run.source = source || 'upload';
-    runs = runs.filter(r => !r.demo);                         // drop demo runs once real data comes in
-    const i = runs.findIndex(r => r.id === run.id);
-    if (i >= 0) runs[i] = run; else runs.unshift(run);        // re-import of the same chat overwrites it
-    save(); render();
-    return run;
-  }
-
-  // tabs
-  function showTab(name) {
-    document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
-    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.id === 'tab-' + name));
-  }
-  document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => showTab(b.dataset.tab));
-  document.addEventListener('click', e => { const g = e.target.closest('[data-goto]'); if (g) { e.preventDefault(); showTab(g.dataset.goto); } });
-
-  // render
-  function render() {
-    $('#demo-banner').classList.toggle('hidden', !runs.some(r => r.demo));
-    renderKpis(); renderPlatformBars(); renderInsights(); renderDomainBars(); renderRunsTables(); renderDetail();
-  }
-
-  function renderKpis() {
-    const ret = runs.reduce((a, r) => a + r.retrieved, 0), cit = runs.reduce((a, r) => a + r.cited, 0);
-    const q = runs.reduce((a, r) => a + r.queries.length, 0);
-    const yt = runs.flatMap(r => r.sources).filter(s => s.type === 'youtube');
-    $('#kpis').innerHTML = [
-      ['Runs', runs.length, `${new Set(runs.map(r => r.platform)).size} platform(s)`],
-      ['Pages retrieved', ret, `${q} fan-out queries captured`],
-      ['Pages cited', cit, `${pct(cit, ret)}% of retrieved`],
-      ['YouTube cited', `${yt.filter(s => s.cited).length}/${yt.length}`, 'YouTube results cited / retrieved'],
-    ].map(([k, v, h]) => `<div class="card"><div class="k">${k}</div><div class="v">${v}</div><div class="h">${h}</div></div>`).join('');
-  }
-
-  function bars(rows, max) {
-    if (!rows.length) return '<div class="empty">No data yet</div>';
-    return rows.map(r => `<div class="bar-row"><div class="lbl" title="${esc(r.label)}">${r.labelHtml || esc(r.label)}</div>
-      <div class="bar"><div class="r" style="width:${pct(r.ret, max)}%"></div><div class="c" style="width:${pct(r.cit, max)}%"></div></div>
-      <div class="num">${r.cit}/${r.ret}</div></div>`).join('');
-  }
-  function renderPlatformBars() {
-    const by = {};
-    for (const r of runs) { const p = by[r.platform] || (by[r.platform] = { ret: 0, cit: 0, n: 0 }); p.ret += r.retrieved; p.cit += r.cited; p.n++; }
-    const rows = Object.entries(by).map(([p, v]) => ({ label: PLAT[p] || p, labelHtml: `<span class="tag ${p}">${PLAT[p] || p}</span> <span class="muted small">${pct(v.cit, v.ret)}%</span>`, ret: v.ret, cit: v.cit }));
-    $('#platform-bars').innerHTML = bars(rows, Math.max(1, ...rows.map(r => r.ret)));
-  }
-  function renderInsights() {
-    const out = [];
-    const by = {};
-    for (const r of runs) { const p = by[r.platform] || (by[r.platform] = { ret: 0, cit: 0, n: 0, q: 0 }); p.ret += r.retrieved; p.cit += r.cited; p.n++; p.q += r.queries.length; }
-    const g = by.chatgpt, c = by.claude;
-    if (g && c && c.ret && g.ret) {
-      const gAvg = g.ret / g.n, cAvg = c.ret / c.n;
-      const [hi, lo, hiN, loN] = gAvg >= cAvg ? ['ChatGPT', 'Claude', gAvg, cAvg] : ['Claude', 'ChatGPT', cAvg, gAvg];
-      out.push(`<b>${hi}</b> pulls in about <b>${(hiN / loN).toFixed(1)}×</b> more pages per answer than ${lo} (${Math.round(hiN)} vs ${Math.round(loN)}).`);
-      out.push(`ChatGPT cites <b>${pct(g.cit, g.ret)}%</b> of what it retrieves, Claude cites <b>${pct(c.cit, c.ret)}%</b>.`);
-    }
-    const srcs = runs.flatMap(r => r.sources.map(s => ({ ...s, platform: r.platform })));
-    const unc = srcs.filter(s => !s.cited).length;
-    if (srcs.length) out.push(`<b>${unc}</b> of ${srcs.length} retrieved pages were read but never cited. Those are the near-misses a brand would want to turn into citations.`);
-    const dom = {};
-    for (const s of srcs.filter(s => s.cited)) (dom[s.domain] = dom[s.domain] || new Set()).add(s.platform);
-    const both = Object.entries(dom).filter(([, v]) => v.size > 1).map(([d]) => d);
-    if (both.length) out.push(`Cited by both platforms: ${both.slice(0, 4).map(d => `<b>${esc(d)}</b>`).join(', ')}.`);
-    const top = Object.entries(dom).map(([d]) => [d, srcs.filter(s => s.cited && s.domain === d).length]).sort((a, b) => b[1] - a[1])[0];
-    if (top && !both.length) out.push(`Most cited domain: <b>${esc(top[0])}</b> (${top[1]}×).`);
-    if (g && !g.q) out.push('ChatGPT didn\'t save its fan-out queries in the conversation, so they only show up in the live network stream.');
-    $('#insights').innerHTML = out.length ? out.map(x => `<li>${x}</li>`).join('') : '<li class="muted">Add a run to see insights.</li>';
-  }
-
-  function renderDomainBars() {
-    const by = {};
-    for (const s of runs.flatMap(r => r.sources)) { const d = by[s.domain] || (by[s.domain] = { ret: 0, cit: 0 }); d.ret++; if (s.cited) d.cit++; }
-    const rows = Object.entries(by).map(([d, v]) => ({ label: d, ...v })).sort((a, b) => b.cit - a.cit || b.ret - a.ret).slice(0, 10);
-    $('#domain-bars').innerHTML = bars(rows, Math.max(1, ...rows.map(r => r.ret)));
-  }
-
-  function runsTable(list) {
-    if (!list.length) return '<div class="empty">No runs yet. Add one on the Add data tab.</div>';
-    return `<table class="tbl"><tr><th>Platform</th><th>Prompt</th><th>When</th><th>Queries</th><th>Retrieved</th><th>Cited</th><th>Cite rate</th></tr>` +
-      list.map(r => `<tr class="click" data-run="${esc(r.id)}"><td><span class="tag ${r.platform}">${PLAT[r.platform]}</span>${r.demo ? ' <span class="tag demo">demo</span>' : ''}</td>
-        <td>${esc(r.prompt.slice(0, 90))}${r.prompt.length > 90 ? '…' : ''}</td><td class="muted">${fmtDate(r.createdAt)}</td>
-        <td>${r.queries.length}</td><td>${r.retrieved}</td><td>${r.cited}</td><td>${pct(r.cited, r.retrieved)}%</td></tr>`).join('') + '</table>';
-  }
-  function renderRunsTables() {
-    $('#latest-runs').innerHTML = runsTable(runs.slice(0, 5));
-    $('#runs-table').innerHTML = runsTable(runs);
-    document.querySelectorAll('tr[data-run]').forEach(tr => tr.onclick = () => { selectedId = tr.dataset.run; filter = 'all'; showTab('runs'); renderDetail(); $('#run-detail').scrollIntoView({ behavior: 'smooth' }); });
-  }
-
-  function renderDetail() {
-    const r = runs.find(x => x.id === selectedId);
-    if (!r) { $('#run-detail').innerHTML = runs.length ? '<div class="panel empty">Click a run above to see its sources.</div>' : ''; return; }
-    const list = r.sources.filter(s => filter === 'all' || (filter === 'cited' ? s.cited : !s.cited))
-      .sort((a, b) => (b.cited - a.cited) || (a.domain || '').localeCompare(b.domain || ''));
-    $('#run-detail').innerHTML = `<div class="panel">
-      <div class="detail-head"><div><span class="tag ${r.platform}">${PLAT[r.platform]}</span> <span class="muted small">${esc(r.model)} · ${fmtDate(r.createdAt)}</span>
-        <div class="prompt">${esc(r.prompt)}</div></div>
-        <div class="actions"><button class="btn" id="dl-run">Download this run</button><button class="btn danger" id="del-run">Delete</button></div></div>
-      <div class="cards" style="margin-top:12px">
-        <div class="card"><div class="k">Retrieved</div><div class="v">${r.retrieved}</div></div>
-        <div class="card"><div class="k">Cited</div><div class="v">${r.cited}</div><div class="h">${r.citeMarkers} citation markers in the answer</div></div>
-        <div class="card"><div class="k">Cite rate</div><div class="v">${pct(r.cited, r.retrieved)}%</div></div>
-        <div class="card"><div class="k">Fan-out queries</div><div class="v">${r.queries.length}</div></div></div>
-      <h4>Fan-out queries</h4>
-      ${r.queries.length ? `<div class="chips">${r.queries.map(q => `<span class="chip">🔎 ${esc(q)}</span>`).join('')}</div>`
-        : `<p class="muted small">None in the saved conversation${r.platform === 'chatgpt' ? ' (ChatGPT only sends these in the live stream).' : '.'}</p>`}
-      ${r.status.length ? `<p class="muted small">Status / reasoning text: ${r.status.map(esc).join(' · ')}</p>` : ''}
-      <h4>Sources</h4>
-      <div class="filters">${['all', 'cited', 'retrieved'].map(f => `<button data-f="${f}" class="${filter === f ? 'on' : ''}">${{ all: 'All', cited: 'Cited', retrieved: 'Retrieved only' }[f]}</button>`).join('')}</div>
-      <table class="tbl"><tr><th>Status</th><th>Title</th><th>Domain</th><th>Type</th><th>Published</th></tr>
-      ${list.map(s => `<tr class="${s.cited ? 'cited' : ''}"><td>${s.cited ? '<span class="tag cited">CITED</span>' : '<span class="tag ret">retrieved</span>'}</td>
-        <td><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title || s.url)}</a>${s.snippet ? `<div class="muted small">${esc(s.snippet.slice(0, 160))}…</div>` : ''}</td>
-        <td>${esc(s.domain)}</td><td>${s.type === 'youtube' ? '<span class="tag yt">YouTube</span>' : esc(s.type)}</td><td class="muted">${esc(s.date || '-')}</td></tr>`).join('')}
-      </table></div>`;
-    document.querySelectorAll('.filters button').forEach(b => b.onclick = () => { filter = b.dataset.f; renderDetail(); });
-    $('#del-run').onclick = () => { runs = runs.filter(x => x.id !== r.id); selectedId = null; save(); render(); toast('Run deleted'); };
-    $('#dl-run').onclick = () => download(`${r.platform}_${r.id.slice(0, 8)}.json`, JSON.stringify(r, null, 2), 'application/json');
-  }
-
-  // export
-  function download(name, text, type) { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name; a.click(); }
-  $('#export-json').onclick = () => download('citation_runs.json', JSON.stringify(runs, null, 2), 'application/json');
-  $('#export-csv').onclick = () => {
-    const cols = ['platform', 'run_id', 'prompt', 'run_date', 'cited', 'type', 'domain', 'title', 'url', 'published'];
-    const q = v => `"${String(v == null ? '' : v).replace(/"/g, '""')}"`;
-    const lines = [cols.join(',')];
-    for (const r of runs) for (const s of r.sources) lines.push([r.platform, r.id, r.prompt, r.createdAt, s.cited, s.type, s.domain, s.title, s.url, s.date].map(q).join(','));
-    download('citation_sources.csv', lines.join('\n'), 'text/csv');
+  "use strict";
+  const KEY = "citetracker.runs.v1",
+    P = CiteParser,
+    PLAT = P.PROVIDERS;
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) =>
+    String(s ?? "").replace(
+      /[&<>"']/g,
+      (c) =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;",
+        })[c],
+    );
+  const key = (r) => r.platform + ":" + r.id,
+    label = (p) => (Object.hasOwn(PLAT, p) ? PLAT[p] : p);
+  const rate = (r) => {
+    const m = P.metrics(Array.isArray(r) ? r : [r]);
+    return m.rate == null ? "—" : Math.round(m.rate * 100) + "%";
   };
-  $('#clear-all').onclick = () => { if (confirm('Delete all runs? (Demo data will come back.)')) { localStorage.removeItem(KEY); runs = load(); selectedId = null; render(); } };
-
-  // upload / paste
+  const fmtDate = (d) =>
+    d
+      ? new Date(d).toLocaleDateString(undefined, { dateStyle: "medium" })
+      : "Not available";
+  const tag = (p) =>
+    `<span class="tag ${Object.hasOwn(PLAT, p) ? p : "custom"}">${esc(label(p))}</span>`;
+  let storageWarning = "",
+    selectedId = null,
+    filter = "all";
+  function normalizeLegacy(r) {
+    const n = P.parseOne(r);
+    return {
+      ...n,
+      demo: r.demo === true,
+      synthetic: r.synthetic === true,
+      provenance:
+        r.provenance ||
+        "Supplied saved-chat artifact; timestamps and model labels are reported by the file.",
+    };
+  }
+  function load() {
+    try {
+      const text = localStorage.getItem(KEY);
+      if (text !== null) {
+        const data = JSON.parse(text);
+        if (!Array.isArray(data)) throw Error("Invalid storage");
+        return data.map(normalizeLegacy);
+      }
+    } catch {
+      storageWarning =
+        "Saved storage could not be read. Export any available data before changing browser storage.";
+    }
+    return (window.DEMO_RUNS || []).map((r) => ({
+      ...normalizeLegacy(r),
+      demo: true,
+    }));
+  }
+  let runs = load();
+  function toast(msg) {
+    const t = $("#toast");
+    t.textContent = msg;
+    t.classList.remove("hidden");
+    clearTimeout(t._t);
+    t._t = setTimeout(() => t.classList.add("hidden"), 6500);
+  }
+  function commit(next) {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(next));
+    } catch {
+      throw Error(
+        "Browser storage is full or unavailable. Export a backup or free storage; no runs were saved.",
+      );
+    }
+    runs = next;
+    render();
+  }
+  function addRuns(items, source) {
+    let next = runs.filter((r) => !r.demo);
+    for (const item of items) {
+      const r = { ...item, source };
+      const i = next.findIndex((x) => key(x) === key(r));
+      if (i < 0) next.unshift(r);
+      else next[i] = r;
+    }
+    commit(next);
+    return items.at(-1);
+  }
+  function addRaw(raw, source) {
+    return addRuns(P.parseInput(raw.raw || raw), source || "upload");
+  }
+  function showTab(name) {
+    document.querySelectorAll("#tabs button").forEach((b) => {
+      b.classList.toggle("active", b.dataset.tab === name);
+      b.setAttribute("aria-current", b.dataset.tab === name ? "page" : "false");
+    });
+    document
+      .querySelectorAll(".tab")
+      .forEach((t) => t.classList.toggle("active", t.id === "tab-" + name));
+  }
+  document
+    .querySelectorAll("#tabs button")
+    .forEach((b) => (b.onclick = () => showTab(b.dataset.tab)));
+  document.addEventListener("click", (e) => {
+    const g = e.target.closest("[data-goto]");
+    if (g) {
+      e.preventDefault();
+      showTab(g.dataset.goto);
+    }
+  });
+  function render() {
+    $("#demo-banner").classList.toggle("hidden", !runs.some((r) => r.demo));
+    const m = P.metrics(runs),
+      q = runs.reduce((a, r) => a + r.queries.length, 0);
+    $("#kpis").innerHTML = [
+      [
+        "Runs",
+        m.runs,
+        `${new Set(runs.map((r) => r.platform)).size} provider format(s)`,
+      ],
+      [
+        "Observed retrievals",
+        m.retrieved,
+        `${q} distinct queries within runs; missing ≠ zero`,
+      ],
+      [
+        "Cited sources",
+        m.cited,
+        `${m.citationOnly} citation-only URL/run pairs`,
+      ],
+      [
+        "Matched citation rate",
+        rate(runs),
+        `${m.matched} retrieved + cited / ${m.retrieved} retrieved`,
+      ],
+    ]
+      .map(
+        ([k, v, h]) =>
+          `<div class="card"><div class="k">${k}</div><div class="v">${v}</div><div class="h">${h}</div></div>`,
+      )
+      .join("");
+    renderBars();
+    renderTables();
+    renderDetail();
+  }
+  function bars(rows) {
+    const max = Math.max(1, ...rows.map((r) => r.ret));
+    if (!rows.length)
+      return '<div class="empty">No data yet. Load the samples or add a response.</div>';
+    return rows
+      .map(
+        (r) =>
+          `<div class="bar-row"><div class="lbl" title="${esc(r.label)}">${esc(r.label)}</div><div class="bar" aria-hidden="true"><div class="r" style="width:${(r.ret / max) * 100}%"></div><div class="c" style="width:${(r.matched / max) * 100}%"></div></div><div class="num" aria-label="${r.matched} matched of ${r.ret} retrieved">${r.matched}/${r.ret}</div></div>`,
+      )
+      .join("");
+  }
+  function renderBars() {
+    const providers = [...new Set(runs.map((r) => r.platform))];
+    $("#platform-bars").innerHTML = bars(
+      providers
+        .map((p) => ({
+          label: label(p),
+          ...P.metrics(runs.filter((r) => r.platform === p)),
+        }))
+        .map((r) => ({ ...r, ret: r.retrieved })),
+    );
+    const domains = new Map();
+    for (const s of runs.flatMap((r) => r.sources)) {
+      const d = domains.get(s.domain) || {
+        label: s.domain,
+        ret: 0,
+        matched: 0,
+      };
+      if (s.retrieved) d.ret++;
+      if (s.retrieved && s.cited) d.matched++;
+      domains.set(s.domain, d);
+    }
+    $("#domain-bars").innerHTML = bars(
+      [...domains.values()]
+        .sort((a, b) => b.matched - a.matched || b.ret - a.ret)
+        .slice(0, 10),
+    );
+    const m = P.metrics(runs),
+      queries = runs.filter((r) => r.queries.length).length;
+    $("#insights").innerHTML = [
+      `${m.uncited} observed retrievals have no citation evidence in these files.`,
+      `${m.citationOnly} citations have no matching retrieval record; they are excluded from the rate numerator.`,
+      `${queries} of ${runs.length} runs include observable search queries. Missing query data does not mean no searches occurred.`,
+      "Each URL counts once per run. These figures describe exported evidence, not provider quality.",
+    ]
+      .map((t) => `<li>${esc(t)}</li>`)
+      .join("");
+  }
+  function table(list) {
+    if (!list.length)
+      return '<div class="empty">No runs yet. Load a sample on Add data.</div>';
+    return `<div class="table-scroll"><table class="tbl"><thead><tr><th>Provider</th><th>Prompt / response</th><th>Date</th><th>Queries</th><th>Retrieved</th><th>Cited</th><th>Matched rate</th></tr></thead><tbody>${list.map((r) => `<tr><td>${tag(r.platform)}${r.synthetic ? ' <span class="tag demo">synthetic</span>' : ""}</td><td><button class="run-link" data-run="${esc(key(r))}">${esc((r.prompt || r.title).slice(0, 110))}</button></td><td>${esc(fmtDate(r.createdAt))}</td><td>${r.queries.length || "—"}</td><td>${r.retrieved || "—"}</td><td>${r.cited}</td><td>${rate(r)}</td></tr>`).join("")}</tbody></table></div>`;
+  }
+  function renderTables() {
+    $("#latest-runs").innerHTML = table(runs.slice(0, 5));
+    $("#runs-table").innerHTML = table(runs);
+    document.querySelectorAll("[data-run]").forEach(
+      (b) =>
+        (b.onclick = () => {
+          selectedId = b.dataset.run;
+          filter = "all";
+          showTab("runs");
+          renderDetail();
+          $("#run-detail").scrollIntoView({
+            behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+              ? "instant"
+              : "smooth",
+          });
+        }),
+    );
+  }
+  function renderDetail() {
+    const r = runs.find((x) => key(x) === selectedId);
+    if (!r) {
+      $("#run-detail").innerHTML = runs.length
+        ? '<div class="panel empty">Select a run above to inspect its queries and sources.</div>'
+        : "";
+      return;
+    }
+    const sources = r.sources.filter(
+      (s) =>
+        filter === "all" ||
+        (filter === "cited"
+          ? s.cited
+          : filter === "citation-only"
+            ? s.cited && !s.retrieved
+            : s.retrieved && !s.cited),
+    );
+    $("#run-detail").innerHTML =
+      `<div class="panel"><div class="detail-head"><div>${tag(r.platform)} <span class="muted small">${esc(r.model || "Model unavailable")} · ${esc(fmtDate(r.createdAt))}</span><h3>${esc(r.title)}</h3><p>${esc(r.prompt || "Prompt not present in this response.")}</p></div><div class="actions"><button class="btn" id="dl-run">Download run</button><button class="btn danger" id="del-run">Delete run</button></div></div>
+    <p class="muted small">${esc(r.provenance)}${r.capture ? ` · ${esc(r.capture.transport)} · ${r.capture.eventCount} events · ${r.capture.complete ? "transport finished" : "completion not confirmed"}` : ""}</p>
+    <div class="cards">${[
+      ["Retrieved", r.retrieved],
+      ["Cited", r.cited],
+      ["Matched rate", rate(r)],
+      ["Observed queries", r.queries.length || "—"],
+    ]
+      .map(
+        ([k, v]) =>
+          `<div class="card"><div class="k">${k}</div><div class="v">${v}</div></div>`,
+      )
+      .join("")}</div>
+    ${r.warnings.length ? `<details class="notice" open><summary>Evidence limits (${r.warnings.length})</summary><ul>${r.warnings.map((w) => `<li>${esc(w)}</li>`).join("")}</ul></details>` : ""}
+    <h4>Fan-out / search queries</h4>${r.queries.length ? `<div class="chips">${r.queries.map((q) => `<span class="chip">${esc(q)}</span>`).join("")}</div>` : '<p class="muted">No query evidence in the supported fields. This is not a count of zero searches.</p>'}
+    ${r.status.length ? `<details><summary>Provider-visible status / summaries</summary><ul>${r.status.map((s) => `<li>${esc(s)}</li>`).join("")}</ul><p class="muted">Public status labels, not hidden chain of thought.</p></details>` : ""}
+    <h4>Sources</h4><div class="filters">${[
+      ["all", "All"],
+      ["cited", "Cited"],
+      ["retrieved", "Retrieved only"],
+      ["citation-only", "Citation only"],
+    ]
+      .map(
+        ([f, l]) =>
+          `<button data-f="${f}" class="${filter === f ? "on" : ""}">${l}</button>`,
+      )
+      .join("")}</div>
+    <div class="table-scroll"><table class="tbl sources"><thead><tr><th>Status</th><th>Source and snapshot</th><th>Evidence field</th></tr></thead><tbody>${sources.map((s) => `<tr><td><span class="tag ${s.cited ? "cited" : "ret"}">${s.cited ? (s.retrieved ? "Retrieved + cited" : "Citation only") : "Retrieved only"}</span></td><td><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)} ↗</a><div class="muted small">${esc(s.domain)}${s.type === "youtube" ? " · YouTube" : ""}${s.date ? " · " + esc(s.date) : ""}</div>${s.snippet ? `<p class="small">${esc(s.snippet)}</p>` : ""}<details><summary>Full source snapshot</summary><pre>${esc(JSON.stringify(s.snapshot, null, 2))}</pre><p class="muted small">Only fields present in the response are shown. No transcript is fetched.</p></details></td><td class="small">${s.evidence.length ? s.evidence.map(esc).join("<br>") : "Imported flags; no native field path"}</td></tr>`).join("")}</tbody></table></div>${!sources.length ? '<p class="empty">No sources in this filter.</p>' : ""}</div>`;
+    document.querySelectorAll("[data-f]").forEach(
+      (b) =>
+        (b.onclick = () => {
+          filter = b.dataset.f;
+          renderDetail();
+        }),
+    );
+    $("#dl-run").onclick = () =>
+      download(
+        `${r.platform}-run.json`,
+        P.workspaceJson([r]),
+        "application/json",
+      );
+    $("#del-run").onclick = () => {
+      if (
+        confirm(
+          "Delete this locally saved run? Download a backup first if needed.",
+        )
+      )
+        try {
+          commit(runs.filter((x) => key(x) !== key(r)));
+          selectedId = null;
+          renderDetail();
+        } catch (e) {
+          toast(e.message);
+        }
+    };
+  }
+  function download(name, text, type) {
+    const a = document.createElement("a"),
+      url = URL.createObjectURL(new Blob([text], { type }));
+    a.href = url;
+    a.download = name;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  $("#export-json").onclick = () =>
+    download(
+      "citation-workspace.json",
+      P.workspaceJson(runs),
+      "application/json",
+    );
+  $("#export-csv").onclick = () =>
+    download(
+      "citation-sources.csv",
+      P.sourcesCsv(runs),
+      "text/csv;charset=utf-8",
+    );
+  $("#clear-all").onclick = () => {
+    if (
+      confirm(
+        "Clear all locally saved runs? This cannot be undone without an exported backup.",
+      )
+    )
+      try {
+        commit([]);
+        selectedId = null;
+        renderDetail();
+        toast("Runs cleared. Samples can be loaded again from Add data.");
+      } catch (e) {
+        toast(e.message);
+      }
+  };
+  function importText(value, filename) {
+    const parsed = P.parseText(value, filename, $("#provider-hint").value);
+    const r = addRuns(parsed, "import");
+    selectedId = key(r);
+    showTab("runs");
+    renderDetail();
+    return parsed.length;
+  }
   async function importFiles(files) {
-    let ok = 0, bad = [];
+    let ok = 0;
+    const errors = [];
     for (const f of files) {
       try {
-        const data = JSON.parse(await f.text());
-        const items = Array.isArray(data) ? data : [data];         // a file can hold one chat or a list
-        for (const it of items) { addRaw(it.raw || it, 'upload'); ok++; }
-      } catch (e) { bad.push(f.name); }
-    }
-    toast(`Imported ${ok} run(s)` + (bad.length ? ` · couldn't read: ${bad.join(', ')}` : ''));
-    if (ok) { selectedId = runs[0].id; showTab('runs'); renderDetail(); }
-  }
-  const drop = $('#drop');
-  $('#file-input').onchange = e => importFiles([...e.target.files]);
-  ['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('over'); }));
-  ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('over'); }));
-  drop.addEventListener('drop', e => importFiles([...e.dataTransfer.files]));
-  $('#paste-btn').onclick = () => {
-    try { const run = addRaw(JSON.parse($('#paste').value), 'paste'); $('#paste').value = ''; toast(`Imported ${PLAT[run.platform]} run`); selectedId = run.id; showTab('runs'); renderDetail(); }
-    catch (e) { toast('Could not import: ' + e.message); }
-  };
-
-  // sample files from the repo
-  async function loadSample(which) {
-    const list = which === 'all' ? ['chatgpt', 'claude'] : [which];
-    try {
-      let last;
-      for (const p of list) {
-        const res = await fetch(`../sample-data/${p}_raw.json`);
-        if (!res.ok) throw new Error(res.status);
-        last = addRaw(await res.json(), 'sample');
+        if (f.size > 15 * 1024 * 1024) throw Error("File exceeds 15 MB");
+        ok += importText(await f.text(), f.name);
+      } catch (e) {
+        errors.push(f.name + ": " + e.message);
       }
-      selectedId = last.id; showTab('runs'); renderDetail();
-      toast(list.length > 1 ? 'Parsed both sample chats live' : `Parsed ${PLAT[last.platform]} sample: ${last.cited}/${last.retrieved} cited`);
+    }
+    $("#import-feedback").textContent =
+      `Imported ${ok} run(s). ${errors.join(" ")}`;
+    toast($("#import-feedback").textContent);
+  }
+  const drop = $("#drop");
+  drop.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      $("#file-input").click();
+    }
+  });
+  $("#file-input").onchange = (e) => {
+    importFiles([...e.target.files]);
+    e.target.value = "";
+  };
+  ["dragenter", "dragover"].forEach((ev) =>
+    drop.addEventListener(ev, (e) => {
+      e.preventDefault();
+      drop.classList.add("over");
+    }),
+  );
+  ["dragleave", "drop"].forEach((ev) =>
+    drop.addEventListener(ev, (e) => {
+      e.preventDefault();
+      drop.classList.remove("over");
+    }),
+  );
+  drop.addEventListener("drop", (e) => importFiles([...e.dataTransfer.files]));
+  $("#paste-btn").onclick = () => {
+    try {
+      const n = importText($("#paste").value, "");
+      $("#paste").value = "";
+      $("#import-feedback").textContent = `Imported ${n} run(s).`;
+      toast($("#import-feedback").textContent);
     } catch (e) {
-      toast('Couldn\'t fetch the sample. Open the hosted site, or drop the file from sample-data/ instead.');
+      $("#import-feedback").textContent = e.message;
+      toast(e.message);
+    }
+  };
+  async function loadSample(which) {
+    try {
+      let result;
+      for (const p of which === "all" ? ["chatgpt", "claude"] : [which]) {
+        const file = ["chatgpt", "claude"].includes(p)
+          ? `${p}_raw.json`
+          : `api/${p}.json`;
+        const res = await fetch("../sample-data/" + file);
+        if (!res.ok) throw Error("Sample could not be loaded");
+        let parsed = P.parseInput(await res.json());
+        if (!["chatgpt", "claude"].includes(p))
+          parsed = parsed.map((r) => ({
+            ...r,
+            synthetic: true,
+            provenance:
+              "Synthetic API-format fixture, not a live provider capture.",
+          }));
+        result = addRuns(parsed, "sample");
+      }
+      selectedId = key(result);
+      showTab("runs");
+      renderDetail();
+      toast("Sample parsed in this browser. No new provider request was made.");
+    } catch (e) {
+      toast(e.message + "; serve the site over HTTP or drop a bundled file.");
     }
   }
-  document.addEventListener('click', e => { const b = e.target.closest('[data-sample]'); if (b) loadSample(b.dataset.sample); });
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-sample]");
+    if (b) loadSample(b.dataset.sample);
+  });
+  $("#other-sample").onclick = () => loadSample($("#sample-provider").value);
 
-  // bookmarklet
   function bookmarkletCode(dash) {
     return `(async()=>{const D=${JSON.stringify(dash)};const h=location.hostname;const w=window.open(D+'#receive','citetracker');let raw,p;
-try{if(h.endsWith('chatgpt.com')){const id=(location.pathname.match(/\\/c\\/([\\w-]+)/)||[])[1];if(!id)throw'Open a chat first';
+try{if(h==='chatgpt.com'){const id=(location.pathname.match(/\\/c\\/([\\w-]+)/)||[])[1];if(!id)throw'Open a chat first';
 const s=await(await fetch('/api/auth/session')).json();const r=await fetch('/backend-api/conversation/'+id,{headers:{Authorization:'Bearer '+s.accessToken}});
 if(!r.ok)throw'ChatGPT returned '+r.status;raw=await r.json();p='chatgpt'}
-else if(h.endsWith('claude.ai')){const id=(location.pathname.match(/\\/chat\\/([\\w-]+)/)||[])[1];if(!id)throw'Open a chat first';
+else if(h==='claude.ai'){const id=(location.pathname.match(/\\/chat\\/([\\w-]+)/)||[])[1];if(!id)throw'Open a chat first';
 const orgs=[];const c=(document.cookie.match(/lastActiveOrg=([^;]+)/)||[])[1];if(c)orgs.push(c);
 try{(await(await fetch('/api/organizations')).json()).forEach(o=>orgs.push(o.uuid))}catch(e){}
 for(const o of orgs){const r=await fetch('/api/organizations/'+o+'/chat_conversations/'+id+'?tree=True&rendering_mode=messages&render_all_tools=true');if(r.ok){raw=await r.json();break}}
@@ -213,20 +436,41 @@ setTimeout(()=>{clearInterval(t);if(!done){const a=document.createElement('a');a
 alert('Citation Tracker: could not hand the chat to the dashboard (popup blocked?). The chat was downloaded as '+p+'_raw.json, drop it on the Add data tab.')}},12000)})();`;
   }
   const dashUrl = location.origin + location.pathname;
-  $('#bookmarklet').href = 'javascript:' + encodeURIComponent(bookmarkletCode(dashUrl).replace(/\n/g, ''));
-  $('#bookmarklet').onclick = e => { e.preventDefault(); toast('Drag this button to your bookmarks bar, don\'t click it here.'); };
+  $("#bookmarklet").href =
+    "javascript:" +
+    encodeURIComponent(bookmarkletCode(dashUrl).replace(/\n/g, ""));
+  $("#bookmarklet").onclick = (e) => {
+    e.preventDefault();
+    toast("Drag this button to your bookmarks bar, don't click it here.");
+  };
 
-  // bookmarklet hand-off
-  window.addEventListener('message', e => {
-    if (!ALLOWED_ORIGINS.includes(e.origin) || !e.data || e.data.type !== 'citetracker-conversation') return;
-    try { e.source.postMessage({ type: 'citetracker-received' }, e.origin); } catch (err) {}
-    if (window.__lastRaw === JSON.stringify(e.data.raw).length) return;   // bookmarklet resends until acked
-    window.__lastRaw = JSON.stringify(e.data.raw).length;
-    try { const run = addRaw(e.data.raw, 'bookmarklet'); selectedId = run.id; showTab('runs'); renderDetail(); toast(`Captured ${PLAT[run.platform]} chat: ${run.cited}/${run.retrieved} cited`); }
-    catch (err) { toast('Could not read that chat: ' + err.message); }
+  let lastReceipt = "";
+  window.addEventListener("message", (e) => {
+    if (
+      !["https://chatgpt.com", "https://claude.ai"].includes(e.origin) ||
+      !e.source ||
+      e.source !== window.opener ||
+      e.data?.type !== "citetracker-conversation"
+    )
+      return;
+    try {
+      const receipt = JSON.stringify(e.data.raw);
+      if (receipt !== lastReceipt) {
+        const r = addRaw(e.data.raw, "bookmarklet");
+        selectedId = key(r);
+        showTab("runs");
+        renderDetail();
+        lastReceipt = receipt;
+        toast("Saved chat imported. This is not a live stream capture.");
+      }
+      e.source.postMessage({ type: "citetracker-received" }, e.origin);
+    } catch (err) {
+      toast(err.message);
+    }
   });
-  if (location.hash === '#receive') history.replaceState(null, '', location.pathname);
-
-  window.CiteApp = { addRaw };   
+  if (location.hash === "#receive")
+    history.replaceState(null, "", location.pathname);
+  window.CiteApp = { addRaw, showTab };
   render();
+  if (storageWarning) toast(storageWarning);
 })();

@@ -17,7 +17,7 @@ import argparse, json, re, sys, time
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
-import parser as cite_parser  # ./parser.py
+import parser as cite_parser
 
 HERE = Path(__file__).parent
 PROFILE = HERE / "browser-profile"
@@ -71,7 +71,7 @@ def has_answer(platform, raw):
 def summarize(platform, raw):
     fn = cite_parser.chatgpt if platform == "chatgpt" else cite_parser.claude
     queries, sources, _cites, _notes = fn(raw)
-    return queries, len(sources), sum(1 for s in sources if s.get("cited"))
+    return queries, sum(1 for s in sources if s.get("retrieved")), sum(1 for s in sources if s.get("cited"))
 
 
 def run_prompt(page, platform, prompt, idx, timeout_s):

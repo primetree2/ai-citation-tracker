@@ -1,4 +1,3 @@
-/* Demo runs: parsed from my own ChatGPT + Claude test chats (9 Oct 2026). Loaded when the dashboard is empty. */
 window.DEMO_RUNS = [
  {
   "id": "6ac8b635-3fb0-83e8-836c-8c9838133c65",

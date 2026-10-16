@@ -1,147 +1,167 @@
-# AI Citation Tracker - by Harsh Raj 
+# AI Citation Tracker
 
-**Live demo:** https://primetree2.github.io/ai-citation-tracker/
+I built a small, local-first dashboard to inspect **which sources an AI response retrieved and which it cited**. I kept my original four tabs—Overview, Runs, Add data, and How it works—instead of turning the project into a larger workspace app.
 
-I built this for the Beyond Labs interview task. When ChatGPT or Claude searches the web to answer a prompt, I wanted to see three things:
+**[Live site](https://primetree2.github.io/ai-citation-tracker/)** · [My requirement audit](docs/REQUIREMENTS.md) · [My capture workflow](docs/CAPTURE.md)
 
-1. which search queries it ran (fan-out queries),
-2. which pages it **retrieved**,
-3. which of those pages it actually **cited** in the answer.
+## My 30-second demo
 
-The repo has a small dashboard that runs fully in the browser, a bookmarklet that grabs the chat you have open, and a Python script that runs a list of prompts automatically.
+1. I open the live site and click **Try the original samples**.
+2. I select a run on **Runs**. I can inspect search queries, evidence limits, source links, and **Full source snapshot**.
+3. I use **Export sources CSV** or **Export JSON** on Runs.
+4. I open **Add data → Try another provider format** to test an API fixture without a login or API key.
 
-![dashboard](docs/screenshot.png)
+I expect **29 retrieved / 7 cited for ChatGPT**, and **9 retrieved / 7 cited for Claude** in the supplied saved-chat files. I have no observable ChatGPT fan-out queries in that original file; I have one in the Claude file. I do not present missing data as zero searches.
 
-## What I found in my own test
+I make no provider request when loading these samples. My five extra API samples are explicitly synthetic, not new real-world research. I label the preloaded original evidence and remove it when importing a response; I do not silently mix it with a fresh import. I can re-load either original sample at any time.
 
-Prompt: *"Search the web: best YouTube tutorials to learn n8n automation in 2026"*
+![My original four-tab dashboard](docs/screenshot.png)
 
-| | Queries | Retrieved | Cited | Cite rate |
-|---|---|---|---|---|
-| ChatGPT | not saved in the conversation | 29 | 7 | 24% |
-| Claude | 1 (`best YouTube tutorials learn n8n automation 2026`) | 9 | 7 | 78% |
+## What I changed
 
-ChatGPT looks at a lot more pages and cites only a few of them. Claude searches less and cites most of what it reads. These are the two runs the dashboard shows as demo data.
+- I preserved the original navigation, inline run details, sample buttons, and simple overview.
+- I added saved-response adapters for OpenAI Responses, Anthropic Messages, Gemini grounding, Perplexity Sonar, and Grok/xAI, alongside ChatGPT and Claude saved chats.
+- I added JSONL, round-trip workspace JSON, HAR response-content imports, supported SSE event reconstruction, and an optional local Chrome capture utility.
+- I keep retrieved, cited, and citation-only evidence distinct. My matched rate is **retrieved AND cited / retrieved**, not all citations / retrieved.
+- I preserve available source snippets and mapped metadata without truncating the exported values. I can expand the snapshot in the UI.
+- I added parser tests, visible import failures, safer URL handling, formula-safe CSV, keyboard-accessible run buttons, and contained mobile tables.
 
-## Repo layout
+## My scope, without overclaiming
 
+I have verified the original two saved-chat files and the included synthetic fixtures. I have tested the capture utility end to end against a **local synthetic SSE server**, not authenticated provider websites. I still need a successful live ChatGPT stream capture and real rich YouTube metadata to substantiate the original task's full investigation. I treat the extra provider API adapters as compatibility work, not proof that I investigated those consumer sites' live traffic.
+
+I can submit a partial investigation because the brief permits partial work. I cannot honestly mark every task complete yet. I keep the exact gaps in [my requirement audit](docs/REQUIREMENTS.md).
+
+## My GitHub Pages setup
+
+I host this as a static site; I do not need Netlify, a backend, a database service, an API key, or a build step.
+
+1. I copy the repository contents into my existing `ai-citation-tracker` Git working folder, preserving `.git`.
+2. I push to `main`.
+3. In GitHub **Settings → Pages**, I choose **Deploy from a branch**, **main**, and **/(root)**.
+4. I open `https://primetree2.github.io/ai-citation-tracker/`. The root redirects to `site/`.
+
+I keep `sample-data/` next to `site/` so sample buttons work. If I previously configured a different Pages workflow, I select branch deployment or deliberately adapt that workflow. I do not publish a browser profile, raw HAR, private capture, or credentials.
+
+### My safe PowerShell copy workflow
+
+I download this release as `ai-citation-tracker-simple-upgrade.zip`. I use a fresh extraction folder rather than mixing two old ZIP extractions.
+
+```powershell
+$zip = Join-Path $HOME "Downloads\ai-citation-tracker-simple-upgrade.zip"
+$extract = Join-Path $HOME ("Downloads\citation-upgrade-" + (Get-Date -Format "yyyyMMdd-HHmmss"))
+$repo = Join-Path $HOME "OneDrive\Desktop\ai-citation-tracker"
+Expand-Archive -LiteralPath $zip -DestinationPath $extract
+$source = Join-Path $extract "ai-citation-tracker-main"
+if (!(Test-Path (Join-Path $source "site\index.html"))) { throw "Extracted project not found" }
+if (!(Test-Path (Join-Path $repo ".git"))) { throw "Existing Git repository not found" }
+robocopy $source $repo /E /XD .git node_modules browser-profile .capture-profile __pycache__ test-results /XF *.pyc
+if ($LASTEXITCODE -ge 8) { throw "Copy failed; inspect robocopy output before pushing" }
+Set-Location $repo
+git status
+git diff --stat
+# I inspect the changes before staging them.
+git add .
+git diff --cached --stat
+git commit -m "Keep original UI and extend provider evidence support"
+git push origin main
 ```
-site/                 the dashboard (static, no backend)
-  index.html
-  app.js              UI, localStorage, import/export, bookmarklet
-  parser.js           raw conversation JSON -> queries / retrieved / cited
-  demo-data.js        my two test runs
-  styles.css
-runner/
-  batch_runner.py     runs prompts.txt on ChatGPT and Claude with Playwright
-  parser.py           same parsing logic in Python, also works on its own
-  prompts.txt
-  requirements.txt
-  chatgpt_console_extractor.js   paste into DevTools on a ChatGPT chat
-  claude_console_extractor.js    paste into DevTools on a Claude chat
-  capture_snippet.js             records the live network stream
-sample-data/          raw conversations from my test chats
-docs/screenshot.png
+
+I do **not** use `/MIR`, which could delete files. I use `git status` to check for old untracked files from another version before staging. This copy overlays matching files but intentionally does not delete unrelated files. I never replace or remove my existing `.git` directory. A clean status after extraction into Downloads alone is expected; Git only sees changes after I copy them into the working folder.
+
+## My local preview
+
+I run this from the repository root with Python installed:
+
+```powershell
+python -m http.server 8000
 ```
 
-## How I decide retrieved vs cited
+I open `http://localhost:8000/`. I do not double-click `site/index.html`, because local `file://` restrictions can break sample fetches. My local and GitHub Pages browser storage are separate because they have different origins.
 
-| | ChatGPT | Claude |
-|---|---|---|
-| Endpoint | `/backend-api/conversation/<id>` | `/api/organizations/<org>/chat_conversations/<id>` |
-| Retrieved | `metadata.search_result_groups[].entries[]` | `tool_result` blocks from `web_search` |
-| Cited | inline `<Cite refs=[...]>` markers, matched to each result's `ref_id` | `citations[]` on the answer text |
-| Fan-out queries | only in the live stream | `tool_use.input.query` |
+## My own data
 
-ChatGPT lists the same page twice: once from the search step and once in the footer with `?utm_source=chatgpt.com`. I strip that parameter and dedupe, which is why I count 29 retrieved and not 42.
+I use **Add data** to upload a supported saved response, HAR containing response bodies, `.jsonl`, or `.sse` file. I choose the raw-stream provider for raw SSE; regular JSON is detected automatically. I can also paste a complete JSON response or supported SSE text. I cannot import screenshots or copied answer prose as retrieval evidence.
 
----
+I cap imports at 15 MB per file. I parse all records in a JSON/JSONL file before saving that file's runs; one malformed record rejects that file. In a multi-file batch, other valid files can still import. Re-imports replace the same provider + run ID. My JSON exports round-trip through the same import path, including legacy exports from this project.
 
-## Setup
+I can use an [explicit normalized record](sample-data/api/custom.json) for another provider. I regard its flags as the mapper's assertions, not independent verification.
 
-### 1. Run it locally
+## My optional live capture
 
-1. Download or clone this repo.
-2. Open `site/index.html` in Chrome. That's it, no install.
-3. Go to **Add data** and drop in `sample-data/claude_raw.json` to check that import works.
+I install Node.js 22+ and Chrome, then run:
 
-The bookmarklet needs the site to be on a real `https://` address, so host it first (step 2).
+```powershell
+node runner/capture.mjs --provider chatgpt
+```
 
-### 2. Host it for free
+I log in manually in its dedicated browser, enable web search, send one prompt, wait for the response, and press Enter in the terminal. I import the resulting `runner/out/…json` into Add data. I follow [my capture guide](docs/CAPTURE.md) for Chrome paths, other targets, protocol limits, HAR alternatives, and failures.
 
-**Netlify (easiest)**
-1. Sign up at https://app.netlify.com.
-2. Go to https://app.netlify.com/drop and drag the `site` folder onto the page.
-3. In **Site configuration → Change site name**, pick a name. The site is now at `https://<name>.netlify.app`.
+I do not need Node or Chrome automation to use the hosted dashboard. I never put provider API secrets in GitHub Pages JavaScript.
 
-**GitHub Pages**
-1. Push this repo to GitHub.
-2. Go to **Settings → Pages**, set Source to **Deploy from a branch**, pick `main` and `/ (root)`, then click Save.
-3. After about a minute the dashboard is at `https://<username>.github.io/<repo>/site/`.
+## My existing batch automation
 
-### 3. Capture a chat with the bookmarklet
+I retain the original saved-chat Playwright workflow for **ChatGPT and Claude only**. I label it experimental because private endpoints, selectors, account access, and bot defenses can change. I do not count a completed saved-chat download as a successful stream investigation.
 
-1. Open the hosted site and go to **Add data**.
-2. Show the bookmarks bar (`Ctrl+Shift+B`) and drag **📌 Send to Citation Tracker** onto it.
-3. Open a ChatGPT (`chatgpt.com/c/...`) or Claude (`claude.ai/chat/...`) chat that used web search.
-4. Click the bookmark. The dashboard opens in a new tab and the run shows up.
-
-If the browser blocks the pop-up, the bookmark downloads `chatgpt_raw.json` or `claude_raw.json` instead. Drop that file into **Add data**.
-
-### 4. Run many prompts with the batch runner
-
-You need Python 3.9 or newer.
-
-```bash
-cd runner
-pip install -r requirements.txt
+```powershell
+python -m pip install -r runner/requirements.txt
 python -m playwright install chromium
-
-python batch_runner.py --login     # log in to ChatGPT and Claude once, press Enter after each
-python batch_runner.py             # runs every line in prompts.txt on both
+node --version
+python runner/batch_runner.py --login
+python runner/batch_runner.py --platform chatgpt
 ```
 
-Other options:
+I edit `runner/prompts.txt` before running a small batch. I can pass `--channel chrome` to use installed Chrome. The Python parser bridge requires Node and calls the same engine as the dashboard; I no longer maintain a divergent Python extraction algorithm. I use accounts I am authorized to access, keep volumes small, and respect provider terms and rate limits.
 
-```bash
-python batch_runner.py --platform claude     # only one platform
-python batch_runner.py --channel chrome      # use installed Google Chrome instead of Chromium
-python batch_runner.py --timeout 300         # wait longer per answer
+## My repository structure
+
+```text
+index.html                 GitHub Pages entry redirect
+site/                      ready-to-host dashboard, original four tabs
+  parser.js                generated standalone browser/CommonJS parser
+  app.js                   rendering, imports, local storage, exports
+  styles.css               original visual design + responsive fixes
+  demo-data.js              preloaded original saved-chat evidence
+src/                       authoritative, dependency-free parser modules
+  model.js                 URLs, source snapshots, deduplication, metrics
+  adapters.js              seven saved-response format adapters
+  streams.js               supported SSE, HAR, capture-envelope imports
+  export.js                round-trip JSON and safe CSV
+runner/
+  capture.mjs              optional browser-level CDP network recorder
+  parse.cjs                file/stdin CLI using the browser parser
+  build.mjs                builds site/parser.js from src/
+  batch_runner.py          original optional two-provider saved-chat runner
+  parser.py                shared-parser compatibility bridge
+sample-data/
+  chatgpt_raw.json          supplied original saved-chat artifact
+  claude_raw.json           supplied original saved-chat artifact
+  api/                     clearly synthetic API fixtures + custom schema
+  streams/                 clearly synthetic ChatGPT patch replay
+sample-output/             reproducible CSV/JSON from the original files
+tests/                     parser and browser regression tests
+docs/                      usage, formats, capture, audit, submission template
 ```
 
-Each chat is saved to `runner/out/<platform>_<n>.json`, with a `summary.json` next to them. To see them in the dashboard, drag the chat files into **Add data**.
+## My development checks
 
-To parse one file without the dashboard:
+I use Node's built-in tools; I have no production npm dependencies or install step.
 
-```bash
-python parser.py ../sample-data/chatgpt_raw.json
+```powershell
+npm run build
+npm test
+node runner/parse.cjs sample-data/chatgpt_raw.json
+node runner/parse.cjs sample-data/api/grok.json --csv
 ```
 
-### 5. Use the console extractors (no install)
+I rebuild after changing `src/`, and commit the generated `site/parser.js` so GitHub Pages needs no build. My CI verifies that the generated file matches source and runs the parser tests. My optional browser smoke test needs Chrome/Chromium and Python, with setup in `docs/TESTING.md`.
 
-Open a chat, press `F12` → **Console**, paste the matching `*_console_extractor.js` file and press Enter. It prints the results and downloads the raw JSON.
+## My privacy boundary
 
----
+I parse imports locally and store normalized prompts, queries, source URLs, snippets, metadata, and evidence fields in localStorage. I do not retain complete raw chats in browser storage. Anyone with access to that browser profile or another script on the same hosting origin may read that storage. I export a backup before clearing it.
 
-## Troubleshooting
+My local capture files contain private response bodies and may contain personal information even though my recorder does not save request headers, cookies, or access tokens from headers. I inspect and redact them before sharing. I keep capture outputs and profiles ignored by Git. I included only the original supplied sample artifacts and clearly synthetic additional fixtures; I do not treat their embedded dates or model names as independently verified facts.
 
-| Problem | What I do |
-|---|---|
-| Bookmark does nothing | Allow pop-ups for chatgpt.com / claude.ai, or use the downloaded file |
-| "Could not load the conversation" / 401 | Refresh the chat page and try again |
-| Import says the file isn't recognised | Use the raw file, not `*_final.json` |
-| Google login fails in the batch runner | Log in with email instead, or use `--channel chrome` |
-| Captcha during a batch run | Solve it in the open browser window; the script keeps waiting |
+## My submission
 
-## Limitations
-
-- Both endpoints are internal and undocumented, so they can change without notice.
-- ChatGPT doesn't store its fan-out queries in the saved conversation. To get them I'd need the live stream, which `capture_snippet.js` records by hand.
-- The batch runner uses my own account in a real browser. I keep it to a few prompts because of captchas and the platforms' terms.
-- Data sits in the browser's localStorage, so every visitor only sees their own runs.
-
-## What I'd add next
-
-- Parsers for Perplexity, Gemini and Google AI Mode
-- Capturing ChatGPT's fan-out queries from the network stream in the batch runner
-- Scheduled runs and a small shared database, so results can be tracked over time per brand or domain
+I use [my Google Doc handoff template](docs/SUBMISSION.md) to assemble the single link requested by the recruiter. I add my **actual** elapsed time, tools, observed failures, real output, and next steps. I do not invent a successful live capture or claim that a source contained rich metadata when it did not.

@@ -1,0 +1,27 @@
+{
+  "id": "fixture-perplexity",
+  "model": "sonar-fixture",
+  "created": 1750000000,
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "Sourced answer [1]"
+      }
+    }
+  ],
+  "search_results": [
+    {
+      "url": "https://example.org/guide",
+      "title": "Provenance guide"
+    },
+    {
+      "url": "https://example.net/method",
+      "title": "Method notes"
+    }
+  ],
+  "citations": [
+    "https://example.org/guide"
+  ],
+  "_citationTrackerFixture": true
+}

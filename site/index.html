@@ -1,165 +1,489 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📌</text></svg>">
-<title>AI Citation Tracker · Harsh Raj</title>
-<meta name="description" content="See which pages ChatGPT and Claude retrieve during web search, and which ones they actually cite.">
-<meta property="og:title" content="AI Citation Tracker">
-<meta property="og:description" content="Retrieved vs cited sources across ChatGPT and Claude. Built by Harsh Raj.">
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<header class="top">
-  <div class="brand">
-    <div class="logo">◎</div>
-    <div>
-      <div class="name">AI Citation Tracker</div>
-      <div class="sub">Retrieved vs cited, across ChatGPT and Claude · prototype by Harsh Raj</div>
-    </div>
-  </div>
-  <nav id="tabs">
-    <button data-tab="overview" class="active">Overview</button>
-    <button data-tab="runs">Runs</button>
-    <button data-tab="add">Add data</button>
-    <button data-tab="how">How it works</button>
-    <a class="gh" href="https://github.com/primetree2/ai-citation-tracker" target="_blank" rel="noopener">GitHub ↗</a>
-  </nav>
-</header>
-
-<main>
-    <section id="tab-overview" class="tab active">
-    <div class="hero">
-      <div>
-        <h1>Which pages does AI read, and which does it actually cite?</h1>
-        <p>When ChatGPT or Claude searches the web, it pulls in a bunch of pages but only credits a few in the answer. I built this to log both lists for any chat: the search queries it ran, every page it retrieved, and which of those made it into the answer.</p>
-        <div class="hero-cta">
-          <button class="btn primary" data-sample="all">▶ Run the parser on my sample chats</button>
-          <button class="btn" data-goto="add">Capture your own chat</button>
-          <button class="btn" data-goto="how">How I built it</button>
-        </div>
-      </div>
-    </div>
-    <div id="demo-banner" class="banner hidden">
-      Showing <b>demo data</b> from my own test chats. Add your own on the <a href="#" data-goto="add">Add data</a> tab.
-    </div>
-    <div class="cards" id="kpis"></div>
-    <div class="grid2">
-      <div class="panel">
-        <h3>Cite rate by platform</h3>
-        <p class="muted">Share of retrieved pages that end up cited in the answer.</p>
-        <div id="platform-bars"></div>
-        <h4>What stands out</h4>
-        <ul id="insights" class="insights"></ul>
-      </div>
-      <div class="panel">
-        <h3>Domains: retrieved vs cited</h3>
-        <p class="muted">Across all runs. Grey = retrieved, green = cited.</p>
-        <div id="domain-bars"></div>
-      </div>
-    </div>
-    <div class="panel">
-      <h3>Latest runs</h3>
-      <div id="latest-runs"></div>
-    </div>
-  </section>
-
-    <section id="tab-runs" class="tab">
-    <div class="panel">
-      <div class="row-between">
-        <h3>All runs</h3>
-        <div class="actions">
-          <button class="btn" id="export-csv">Export sources CSV</button>
-          <button class="btn" id="export-json">Export JSON</button>
-          <button class="btn danger" id="clear-all">Clear all</button>
-        </div>
-      </div>
-      <div id="runs-table"></div>
-    </div>
-    <div id="run-detail"></div>
-  </section>
-
-    <section id="tab-add" class="tab">
-    <div class="panel try">
-      <div class="row-between">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📌</text></svg>"
+    />
+    <title>AI Citation Tracker · Harsh Raj</title>
+    <meta
+      name="description"
+      content="Inspect retrieved and cited sources from saved AI responses and supported network captures."
+    />
+    <meta property="og:title" content="AI Citation Tracker" />
+    <meta
+      property="og:description"
+      content="Retrieved vs cited evidence across AI providers. Built by Harsh Raj."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <div class="logo">◎</div>
         <div>
-          <h3>Try it in 10 seconds</h3>
-          <p class="muted">These are the untouched conversation files I downloaded from ChatGPT and Claude. The button fetches them and runs them through the parser right here in your browser.</p>
-        </div>
-        <div class="actions">
-          <button class="btn primary" data-sample="chatgpt">Load ChatGPT sample</button>
-          <button class="btn primary" data-sample="claude">Load Claude sample</button>
+          <div class="name">AI Citation Tracker</div>
+          <div class="sub">
+            Retrieved vs cited · local-first prototype by Harsh Raj
+          </div>
         </div>
       </div>
-    </div>
-    <div class="grid2">
-      <div class="panel">
-        <h3>1 · One-click capture (bookmarklet)</h3>
-        <ol class="steps">
-          <li>Show your bookmarks bar (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>).</li>
-          <li>Drag this button onto the bookmarks bar:
-            <div class="center"><a id="bookmarklet" class="bookmarklet" href="#">📌 Send to Citation Tracker</a></div>
-          </li>
-          <li>Open any ChatGPT or Claude chat that searched the web, then click the bookmark.</li>
-          <li>This dashboard opens and the run appears automatically.</li>
-        </ol>
-        <p class="muted small">If your browser blocks the hand-off, the bookmark downloads the chat as a JSON file instead. Drop that file in box 2.</p>
-      </div>
-      <div class="panel">
-        <h3>2 · Upload saved conversation files</h3>
-        <label id="drop" class="drop">
-          <input type="file" id="file-input" accept=".json,application/json" multiple hidden>
-          <div class="drop-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></div>
-          <div><b>Drop JSON files here</b> or click to choose</div>
-          <div class="muted small">chatgpt_raw.json, claude_raw.json, or files from the batch runner</div>
-        </label>
-        <h4>…or paste JSON</h4>
-        <textarea id="paste" placeholder='{"mapping": ...}  or  {"chat_messages": ...}'></textarea>
-        <button class="btn primary" id="paste-btn">Import pasted JSON</button>
-      </div>
-    </div>
-    <div class="panel">
-      <h3>3 · Batch automation (many prompts)</h3>
-      <p>The <code>runner/batch_runner.py</code> script opens a logged-in browser, sends every prompt in <code>prompts.txt</code> to ChatGPT and Claude, waits for each answer, and saves the conversations to <code>runner/out/</code>. Drop that whole folder's files in box 2.</p>
-      <pre>python batch_runner.py --login          # first time only: log in to both sites
-python batch_runner.py                  # runs prompts.txt on chatgpt + claude</pre>
-    </div>
-  </section>
+      <nav id="tabs">
+        <button data-tab="overview" class="active">Overview</button>
+        <button data-tab="runs">Runs</button>
+        <button data-tab="add">Add data</button>
+        <button data-tab="how">How it works</button>
+        <a
+          class="gh"
+          href="https://github.com/primetree2/ai-citation-tracker"
+          target="_blank"
+          rel="noopener"
+          >GitHub ↗</a
+        >
+      </nav>
+    </header>
 
-    <section id="tab-how" class="tab">
-    <div class="panel">
-      <h3>How I built it</h3>
-      <div class="flow">
-        <div class="node">ChatGPT / Claude chat<br><span>in your browser</span></div><div class="arrow">→</div>
-        <div class="node">Bookmarklet or batch runner<br><span>fetches the saved conversation with your own session</span></div><div class="arrow">→</div>
-        <div class="node">parser.js<br><span>queries · retrieved · cited</span></div><div class="arrow">→</div>
-        <div class="node">Dashboard<br><span>stored in your browser, export CSV/JSON</span></div>
-      </div>
-      <h4>Where I get the data from</h4>
-      <table class="tbl">
-        <tr><th></th><th>ChatGPT</th><th>Claude</th></tr>
-        <tr><td>Endpoint</td><td><code>/backend-api/conversation/&lt;id&gt;</code></td><td><code>/api/organizations/&lt;org&gt;/chat_conversations/&lt;id&gt;</code></td></tr>
-        <tr><td>Retrieved</td><td><code>metadata.search_result_groups[].entries[]</code></td><td><code>tool_result</code> block (web_search)</td></tr>
-        <tr><td>Cited</td><td>inline <code>&lt;Cite refs=[…]&gt;</code> markers → matched to <code>ref_id</code></td><td><code>citations[]</code> on text blocks</td></tr>
-        <tr><td>Fan-out queries</td><td>live stream only (not in saved chat)</td><td><code>tool_use.input.query</code></td></tr>
-      </table>
-      <h4>Privacy</h4>
-      <p>I don't run a server, so nothing gets uploaded anywhere. Runs are saved in your browser's localStorage. The bookmarklet only reads the chat you have open, with your own login.</p>
-      <h4>What doesn't work yet</h4>
-      <ul>
-        <li>ChatGPT doesn't save its fan-out queries in the conversation. To get them I need to capture the live stream, which is my next step.</li>
-        <li>These sites change their formats often. I kept the parser small so I can fix it quickly when that happens.</li>
-        <li>The batch runner drives a real browser on my own account, so I only use it for a handful of prompts. It won't scale as-is (captchas, terms of service).</li>
-      </ul>
-    </div>
-  </section>
-</main>
+    <main>
+      <section id="tab-overview" class="tab active">
+        <div class="hero">
+          <div>
+            <h1>Which sources does AI retrieve—and which does it cite?</h1>
+            <p>
+              Inspect sources and search queries from saved AI responses. Start
+              with the two original sample chats—no login, API key, or setup
+              needed. Select a run to see its evidence, then export the results.
+            </p>
+            <div class="hero-cta">
+              <button class="btn primary" data-sample="all">
+                ▶ Try the original samples
+              </button>
+              <button class="btn" data-goto="add">Add a response</button>
+              <button class="btn" data-goto="how">How it works</button>
+            </div>
+          </div>
+        </div>
+        <div id="demo-banner" class="banner hidden">
+          Showing <b>preloaded sample evidence</b>. Click “Try the original
+          samples” to parse the supplied files again, or add a response on the
+          <a href="#" data-goto="add">Add data</a> tab.
+        </div>
+        <div class="cards" id="kpis"></div>
+        <div class="grid2">
+          <div class="panel">
+            <h3>Matched citations by provider</h3>
+            <p class="muted">
+              Counts: matched citations / observed retrievals. Citation-only
+              sources are counted separately above.
+            </p>
+            <div id="platform-bars"></div>
+            <h4>What stands out</h4>
+            <ul id="insights" class="insights"></ul>
+          </div>
+          <div class="panel">
+            <h3>Domains: retrieved vs cited</h3>
+            <p class="muted">
+              Top 10 domains across runs. Grey = retrieved, green = retrieved +
+              cited. Bars share a zero baseline and count scale.
+            </p>
+            <div id="domain-bars"></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Latest runs</h3>
+          <div id="latest-runs"></div>
+        </div>
+      </section>
 
-<footer class="foot">Built by Harsh Raj for the Beyond Labs task · Runs entirely in your browser, nothing is uploaded · <a href="https://github.com/primetree2/ai-citation-tracker" target="_blank" rel="noopener">Source on GitHub</a></footer>
-<div id="toast" class="toast hidden"></div>
-<script src="parser.js"></script>
-<script src="demo-data.js"></script>
-<script src="app.js"></script>
-</body>
+      <section id="tab-runs" class="tab">
+        <div class="panel">
+          <div class="row-between">
+            <h3>All runs</h3>
+            <div class="actions">
+              <button class="btn" id="export-csv">Export sources CSV</button>
+              <button class="btn" id="export-json">Export JSON</button>
+              <button class="btn danger" id="clear-all">Clear all</button>
+            </div>
+          </div>
+          <div id="runs-table"></div>
+        </div>
+        <div id="run-detail"></div>
+      </section>
+
+      <section id="tab-add" class="tab">
+        <div class="panel try">
+          <div class="row-between">
+            <div>
+              <h3>Try it in 10 seconds</h3>
+              <p class="muted">
+                These two supplied saved-chat files are parsed in this browser.
+                Expected: ChatGPT 29 retrieved / 7 cited; Claude 9 retrieved / 7
+                cited. Neither sample is proof of a live stream capture.
+              </p>
+            </div>
+            <div class="actions">
+              <button class="btn primary" data-sample="chatgpt">
+                Load ChatGPT sample
+              </button>
+              <button class="btn primary" data-sample="claude">
+                Load Claude sample
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="panel">
+            <h3>1 · Add a saved response or capture</h3>
+            <p class="muted small">
+              JSON formats are detected automatically. For a raw SSE file or
+              pasted stream, choose its provider below. A copied answer or
+              screenshot is not a supported response file.
+            </p>
+            <label for="provider-hint">Raw stream provider</label>
+            <select id="provider-hint">
+              <option value="">Auto-detect JSON / HAR / capture</option>
+              <option value="chatgpt">
+                ChatGPT browser stream (experimental)
+              </option>
+              <option value="claude">Claude content-block stream</option>
+              <option value="openai">OpenAI Responses API stream</option>
+              <option value="anthropic">Anthropic Messages API stream</option>
+              <option value="gemini">Gemini API stream</option>
+              <option value="perplexity">Perplexity Sonar stream</option>
+              <option value="grok">Grok API stream</option>
+            </select>
+            <label
+              id="drop"
+              class="drop"
+              tabindex="0"
+              role="button"
+              aria-label="Choose response files"
+            >
+              <input
+                type="file"
+                id="file-input"
+                accept=".json,.jsonl,.har,.sse,.txt,application/json"
+                multiple
+                hidden
+              />
+              <div class="drop-icon">
+                <svg
+                  width="34"
+                  height="34"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 16V4" />
+                  <path d="M7 9l5-5 5 5" />
+                  <path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" />
+                </svg>
+              </div>
+              <div><b>Drop response files here</b> or click to choose</div>
+              <div class="muted small">
+                JSON, JSONL, HAR with response bodies, or SSE · 15 MB per file
+              </div>
+            </label>
+            <h4>…or paste a response</h4>
+            <label class="sr-only" for="paste">Response JSON or SSE</label
+            ><textarea
+              id="paste"
+              placeholder='{"mapping": ...}  or  {"chat_messages": ...}'
+            ></textarea>
+            <button class="btn primary" id="paste-btn">
+              Import pasted response
+            </button>
+            <p id="import-feedback" role="status" aria-live="polite"></p>
+          </div>
+          <div class="panel">
+            <h3>Optional · Import an open saved chat</h3>
+            <ol class="steps">
+              <li>
+                Show your bookmarks bar
+                (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>).
+              </li>
+              <li>
+                Drag this button onto the bookmarks bar:
+                <div class="center">
+                  <a id="bookmarklet" class="bookmarklet" href="#"
+                    >📌 Send to Citation Tracker</a
+                  >
+                </div>
+              </li>
+              <li>
+                Open a ChatGPT or Claude chat that searched the web, then click
+                the bookmark. Private provider endpoints may change or block
+                this.
+              </li>
+              <li>
+                If the endpoint and browser hand-off succeed, this dashboard
+                opens with the run.
+              </li>
+            </ol>
+            <p class="muted small">
+              If your browser blocks the hand-off, the bookmark downloads the
+              chat as a JSON file instead. Drop that file in the upload box.
+            </p>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>2 · Try another provider format</h3>
+          <p>
+            These small synthetic fixtures test compatibility, not provider
+            performance. They do not contact an AI provider.
+          </p>
+          <div class="actions">
+            <label for="sample-provider">Sample format</label
+            ><select id="sample-provider">
+              <option value="openai">OpenAI Responses</option>
+              <option value="anthropic">Anthropic Messages</option>
+              <option value="gemini">Gemini grounding</option>
+              <option value="perplexity">Perplexity Sonar</option>
+              <option value="grok">Grok / xAI</option></select
+            ><button class="btn" id="other-sample">Load format sample</button>
+          </div>
+        </div>
+        <div class="panel">
+          <details>
+            <summary>
+              Advanced · Capture a live network response locally
+            </summary>
+            <p>
+              The hosted dashboard cannot intercept another website. The
+              optional local utility records response bodies before a prompt is
+              sent. It needs Node.js 22+ and Chrome, not an API key. Login is
+              manual in a dedicated browser profile.
+            </p>
+            <ol class="steps">
+              <li>
+                Download or clone the repository and open a terminal in its root
+                folder.
+              </li>
+              <li>Run the command below. Log in in the browser it opens.</li>
+              <li>
+                Enable web search, send one prompt, and wait for the answer to
+                finish.
+              </li>
+              <li>
+                Press Enter in the terminal. Drop the saved capture JSON above.
+                If evidence is missing or unsupported, the import reports that
+                rather than inventing results.
+              </li>
+            </ol>
+            <pre>node runner/capture.mjs --provider chatgpt</pre>
+            <p class="muted">
+              Other capture targets: <code>claude</code>, <code>gemini</code>,
+              <code>perplexity</code>, <code>grok</code>. Capture targeting is
+              not a claim that their private browser-stream formats are
+              supported. Gemini's private batchexecute and Grok's private nested
+              format are currently unsupported; use their documented API JSON
+              instead. No authenticated provider capture was live-tested for
+              this release.
+            </p>
+            <p>
+              <a
+                href="https://github.com/primetree2/ai-citation-tracker/blob/main/docs/CAPTURE.md"
+                target="_blank"
+                rel="noopener"
+                >Capture setup and troubleshooting ↗</a
+              >
+              ·
+              <a
+                href="https://github.com/primetree2/ai-citation-tracker/blob/main/docs/REQUIREMENTS.md"
+                target="_blank"
+                rel="noopener"
+                >Recruiter requirement audit ↗</a
+              >
+            </p>
+          </details>
+          <details>
+            <summary>Advanced · Existing two-provider batch runner</summary>
+            <p>
+              The original <code>runner/batch_runner.py</code> remains an
+              optional, experimental saved-chat workflow for ChatGPT and Claude.
+              It is not live-stream evidence. Setup and limitations are in the
+              README.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section id="tab-how" class="tab">
+        <div class="panel">
+          <h3>Three steps, no account required for the demo</h3>
+          <div class="flow">
+            <div class="node">
+              1. Load a sample<br /><span>or add a saved response</span>
+            </div>
+            <div class="arrow">→</div>
+            <div class="node">
+              2. Select a run<br /><span
+                >inspect queries and full snapshots</span
+              >
+            </div>
+            <div class="arrow">→</div>
+            <div class="node">
+              3. Export evidence<br /><span
+                >CSV sources or round-trip JSON</span
+              >
+            </div>
+          </div>
+          <h4>What the numbers mean</h4>
+          <ul>
+            <li>
+              <b>Retrieved:</b> present in the response's search or grounding
+              results. This is not proof the full page was read.
+            </li>
+            <li>
+              <b>Cited:</b> a URL linked by structured answer citations or a
+              resolved citation reference—not just any link in answer text.
+            </li>
+            <li>
+              <b>Matched rate:</b> retrieved-and-cited sources divided by
+              observed retrievals. A dash means no observed denominator.
+            </li>
+            <li>
+              <b>Query:</b> a search query visible in supported tool fields.
+              Missing query data is not zero searches.
+            </li>
+          </ul>
+          <h4>Supported saved response formats</h4>
+          <div class="table-scroll">
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th>Provider format</th>
+                  <th>Retrieval evidence</th>
+                  <th>Citation evidence / limit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ChatGPT saved chat</td>
+                  <td>metadata.search_result_groups</td>
+                  <td>
+                    Resolved inline references and content_references; active
+                    branch when available
+                  </td>
+                </tr>
+                <tr>
+                  <td>Claude saved chat</td>
+                  <td>Named web_search tool results</td>
+                  <td>Text-block citations; tool blocks must be included</td>
+                </tr>
+                <tr>
+                  <td>OpenAI Responses API</td>
+                  <td>web_search_call.action.sources</td>
+                  <td>
+                    URL annotations; request source inclusion when calling the
+                    API
+                  </td>
+                </tr>
+                <tr>
+                  <td>Anthropic Messages API</td>
+                  <td>web_search_tool_result</td>
+                  <td>Text-block web citations</td>
+                </tr>
+                <tr>
+                  <td>Gemini generateContent API</td>
+                  <td>Grounding chunks</td>
+                  <td>
+                    Grounding support indices; first candidate only, not a full
+                    search log
+                  </td>
+                </tr>
+                <tr>
+                  <td>Perplexity Sonar API</td>
+                  <td>search_results if supplied</td>
+                  <td>
+                    citations; citation-only when retrieval records are missing
+                  </td>
+                </tr>
+                <tr>
+                  <td>Grok / xAI completion API</td>
+                  <td>search_results if supplied</td>
+                  <td>
+                    citations / URL annotations; model must identify Grok or
+                    provider be explicit
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="muted">
+            API formats are fixture-tested. That does not establish
+            compatibility with each provider's consumer website, all API
+            versions, or live accounts. SSE support is scoped in the capture
+            guide. Unknown providers can use the explicit normalized schema.
+          </p>
+          <h4>Full snapshots, only when present</h4>
+          <p>
+            Run details retain full available snippets, publication dates,
+            attribution, channel name, followers, verification, views, likes,
+            description, and text timecodes. Missing metadata stays missing. No
+            transcript or extra source page is fetched. Provider-visible status
+            labels are not hidden reasoning.
+          </p>
+          <h4>Privacy and storage</h4>
+          <p>
+            Imports are parsed here and normalized evidence is stored in this
+            browser's localStorage. No analytics, API keys, or import uploads
+            are used. Hosting still makes normal asset requests; source links
+            contact those sites. Browser storage is origin-wide, not encrypted,
+            and not synced across devices. Export a backup before clearing it.
+          </p>
+          <h4>Assignment status</h4>
+          <p>
+            This is a simple evidence-review prototype plus extraction tooling,
+            not a claim that the original investigation is complete. The
+            supplied ChatGPT and Claude files verify saved-chat parsing. Live
+            ChatGPT stream capture and real rich YouTube metadata still need an
+            authenticated run; extra provider fixtures are not live platform
+            research.
+          </p>
+          <p>
+            <a
+              href="https://github.com/primetree2/ai-citation-tracker/blob/main/docs/REQUIREMENTS.md"
+              target="_blank"
+              rel="noopener"
+              >Requirement-by-requirement audit ↗</a
+            >
+            ·
+            <a
+              href="https://github.com/primetree2/ai-citation-tracker/blob/main/docs/FORMATS.md"
+              target="_blank"
+              rel="noopener"
+              >Input format reference ↗</a
+            >
+            ·
+            <a
+              href="https://github.com/primetree2/ai-citation-tracker#readme"
+              target="_blank"
+              rel="noopener"
+              >Repository README ↗</a
+            >
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      Built by Harsh Raj for the Beyond Labs task · Static dashboard · imports
+      stay in this browser ·
+      <a
+        href="https://github.com/primetree2/ai-citation-tracker"
+        target="_blank"
+        rel="noopener"
+        >Source on GitHub</a
+      >
+    </footer>
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+    <script src="parser.js"></script>
+    <script src="demo-data.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>

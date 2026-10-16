@@ -3,3 +3,9 @@ runner/out/
 __pycache__/
 *_final.json
 *_sources.csv
+runner/.capture-profile/
+node_modules/
+test-results/
+*.har
+*.sse
+!sample-data/streams/*.sse
