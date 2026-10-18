@@ -1,10 +1,24 @@
-# AI Citation Tracker
+# Source Trail · AI Citation Tracker
 
 See which sources an AI chat retrieves—and which it cites. A static, local-first dashboard with bookmark-based synchronization for new or existing ChatGPT and Claude chats.
 
 **[Hosted dashboard](https://primetree2.github.io/ai-citation-tracker/)** · [Chat guide](docs/WATCH_CHAT.md) · [Deployment guide](docs/DEPLOYMENT.md) · [Requirement audit](docs/REQUIREMENTS.md)
 
 > **Scope:** automatic **saved-chat sync**, not token-by-token network-stream capture. Real authenticated ChatGPT/Claude verification remains pending; the connection flow is tested using local synthetic provider pages. Private endpoints and browser policies can change or block it.
+
+## The interface
+
+Source Trail is the product's visual identity; **AI Citation Tracker** remains its descriptor. The repository name, GitHub Pages address, browser storage keys, and export formats are unchanged.
+
+- A custom citation-path SVG mark replaces the placeholder icon.
+- Warm paper, dark ink, and a restrained rust accent replace the generic blue-card styling. Green is reserved for matched citation evidence.
+- An editorial headline and clearly labelled source-flow schematic explain the purpose without invented statistics.
+- The bookmark-first three-step guide remains the main onboarding path. Samples are optional and separate from personal data.
+- Responsive source cards, visible keyboard focus, reduced-motion support, and an OS-aware dark palette are included. No external fonts or UI dependencies are loaded.
+
+![Source Trail overview](docs/screenshot.png)
+
+![Bookmark-first setup](docs/how-it-works.png)
 
 ## Use it on GitHub Pages
 
@@ -44,7 +58,7 @@ Desktop/ai-citation-tracker/
   start-local.bat
 ```
 
-1. Download and extract `ai-citation-tracker-github-pages.zip` into a **fresh** Downloads folder.
+1. Download and extract `ai-citation-tracker-redesigned.zip` into a **fresh** Downloads folder.
 2. Open the extracted **`ai-citation-tracker-main`** folder.
 3. Copy **everything inside it**, including `.github`, `.gitignore`, and `.nojekyll`, into your existing `Desktop/ai-citation-tracker`. Replace matching project files.
 4. Keep the existing `.git` directory, any reviewed `CNAME`, and any repository-specific configuration you intentionally maintain. The ZIP contains no `.git` directory. Review the diff before pushing; do not blindly delete unrelated files.

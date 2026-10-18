@@ -26,3 +26,10 @@ I cannot certify every real provider API or private web endpoint from fixtures. 
 `npm run check` validates script syntax, required static assets, relative asset paths, and generated-parser freshness without rewriting the parser. `npm run build:pages` prepares `_site/`. `npm run test:pages` serves only that staged output under `/ai-citation-tracker/` and runs the existing dashboard browser tests against it. Chrome/Chromium is required only for browser checks, not for deployment or normal hosted use.
 
 The workflow YAML is structurally validated locally, but actual deployment also depends on GitHub Pages being enabled, the chosen publishing source, the branch, token policy, and environment approvals. Do not describe a local test or a skipped deployment job as a successful live deployment.
+
+
+## Source Trail UI refresh · 2.3
+
+The release keeps the 46 parser/watcher tests and synthetic capture and launcher checks. Desktop (1440 px) and mobile (390 px) browser checks cover all four routes, personal/sample isolation, source filters, exports, expanded snapshots, invalid imports, empty states, and dark mode. GitHub Pages staging is exercised under the repository path; the custom SVG logo must load there, not just at the domain root.
+
+The main light/dark body, secondary text, link, button, and citation-badge color pairs were checked against the WCAG AA 4.5:1 normal-text threshold. All ten checked pairs pass (lowest: 4.76:1 for the dark primary button). Browser renders are visually reviewed as separate screenshots; automated layout tests also guard against narrow-page overflow. This is targeted verification, not a claim of a complete accessibility audit or authenticated provider compatibility.

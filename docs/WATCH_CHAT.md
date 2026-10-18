@@ -21,7 +21,7 @@ The original `python -m http.server 8000` method still works. Open `http://local
 1. Open **How it works** on the dashboard.
 2. Show the desktop browser's bookmarks bar: **Ctrl+Shift+B**, or **⌘+Shift+B** on Mac. Drag **Watch this chat** onto it. Clicking the button on the dashboard only shows instructions.
 3. Open a new ChatGPT or Claude chat. Use your own normal login. Click **Watch this chat** in the bookmarks bar while inside the AI tab.
-4. Allow the bookmark to open its tracker tab. Look for the small **Citation Tracker · chat sync** panel in the AI tab and **Waiting for your prompt** in the tracker.
+4. Allow the bookmark to open its tracker tab. Look for the small **Source Trail · chat sync** panel in the AI tab and **Waiting for your prompt** in the tracker.
 5. Enable the assistant's web-search feature and send a question. For example: `Search the web: best YouTube tutorials to learn n8n automation in 2026`.
 6. Keep both tabs open. As the AI site saves the conversation, the tracker fetches its available saved evidence about every 15 seconds and updates **My data**. You do not need to download and re-upload JSON for each answer.
 7. Send a follow-up to see the same conversation analysis update. The analysis is conversation-level, not guaranteed one-answer-only. Normal SPA chat navigation is followed in the same AI tab; full page reloads require clicking the bookmark again.

@@ -52,6 +52,7 @@ function snapshot() {
   return r;
 }
 const mime = {
+  svg: "image/svg+xml",
   html: "text/html",
   js: "text/javascript",
   css: "text/css",
@@ -331,7 +332,12 @@ try {
       ),
     "access-denial status",
   );
-  assert(await dash.eval("document.querySelector('#chat-sync-now').disabled && document.querySelector('#chat-pause').disabled"), "Dashboard access-denial controls require reconnecting");
+  assert(
+    await dash.eval(
+      "document.querySelector('#chat-sync-now').disabled && document.querySelector('#chat-pause').disabled",
+    ),
+    "Dashboard access-denial controls require reconnecting",
+  );
   assert(
     await ai.eval(
       "document.querySelector('#citation-tracker-watcher').shadowRoot.querySelector('#sync').disabled",

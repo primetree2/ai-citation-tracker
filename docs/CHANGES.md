@@ -1,3 +1,16 @@
+# Source Trail visual refresh · 2.3
+
+- Introduced Source Trail as the product identity, with AI Citation Tracker retained as the descriptor. Repository and deployment URLs are unchanged.
+- Added an original source-to-citation SVG mark and favicon, included in both root-branch and staged Actions deployments.
+- Rebuilt the stylesheet around warm paper, dark ink, rust actions, and forest-green citation evidence. System UI typography is paired with an intentional editorial serif for the introductory headlines.
+- Rewrote the landing page, onboarding titles, and empty states. The hero schematic is explicitly conceptual, not a measurement.
+- Updated the bookmark control panel to the same identity, with light/dark styling. The 15-second saved-chat sync, security checks, controls, and limits are unchanged.
+- Kept all existing storage keys, parser logic, export formats, public paths, and collection separation.
+- Updated README screenshots, deployment asset staging, and browser-test SVG MIME handling.
+- Authenticated provider testing is still pending; this visual release does not establish new live-provider compatibility.
+
+---
+
 # Chat-first update · 2.2
 
 - Restored a practical three-step guide: add the bookmark → connect a new/current AI chat → ask a web-search question and inspect automatically synced evidence.

@@ -229,17 +229,17 @@
         `${new Set(active.map((r) => r.platform)).size} provider format(s)`,
       ],
       [
-        "Observed retrievals",
+        "Sources retrieved",
         m.retrieved,
-        `${q} distinct queries within analyses; missing ≠ zero`,
+        `${q} observed queries · unavailable ≠ zero`,
       ],
       [
         "Cited sources",
         m.cited,
-        `${m.citationOnly} citation-only URL/run pairs`,
+        `${m.citationOnly} cited without visible retrieval`,
       ],
       [
-        "Retrieved sources cited (%)",
+        "Retrievals cited (%)",
         rate(active),
         `${m.matched} retrieved + cited / ${m.retrieved} retrieved`,
       ],
@@ -256,7 +256,7 @@
   function bars(rows) {
     const max = Math.max(1, ...rows.map((r) => r.ret));
     if (!rows.length)
-      return '<div class="empty">No data yet. Connect your AI chat in How it works; synced sources will appear here.</div>';
+      return '<div class="empty">Your next question starts the trail. Connect your AI chat in How it works; saved sources will appear here.</div>';
     return rows
       .map(
         (r) =>
@@ -295,7 +295,7 @@
       queries = active.filter((r) => r.queries.length).length;
     if (!active.length) {
       $("#insights").innerHTML =
-        "<li>Connect a new or current AI chat in How it works. Source insights appear after the first saved snapshot syncs.</li>";
+        "<li>Nothing to interpret yet. Connect your chat, ask a web-search question, and return when the first snapshot syncs.</li>";
       return;
     }
     $("#insights").innerHTML = [

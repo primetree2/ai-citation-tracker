@@ -80,3 +80,8 @@ Validate one chat manually with an authorized account. Synthetic tests and succe
 | Other workflow still fails | Copying overlays files; it does not remove old workflows. Inspect extra files under `.github/workflows` before removing obsolete ones. |
 | Old bookmark opens localhost | Replace it with the bookmark generated on the hosted site. |
 | Chat sync cannot connect | Allow pop-ups, keep the AI tab open, and follow WATCH_CHAT.md. Authentication, provider schemas, and browser isolation are separate from deployment. |
+
+
+## Source Trail visual refresh
+
+The visible product name is now **Source Trail · AI Citation Tracker**. The repository name, project path, four-tab workflow, and browser storage keys are unchanged. Copy the complete `site/` folder, including the new `mark.svg` logo/favicon. The Actions staging allowlist also includes that asset. Re-add **Watch this chat** from the deployed dashboard after replacing the files so its control panel uses the updated code and identity.

@@ -1,6 +1,6 @@
 {
   "name": "ai-citation-tracker",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "private": true,
   "description": "A static, local-first citation evidence dashboard",
   "scripts": {

@@ -77,10 +77,10 @@
     node(
       "style",
       shadow,
-      ":host{font:14px/1.5 system-ui,sans-serif;color:#1d2433}*{box-sizing:border-box}.box{padding:16px;border:1px solid #aeb8d0;border-radius:12px;background:#fff;box-shadow:0 4px 24px #0002}strong{font-size:16px}p{margin:8px 0}small{display:block;color:#586174;font-size:14px}button{font:inherit;min-height:44px;border:1px solid #b8c0cf;border-radius:6px;background:#fff;color:#1d2433;padding:8px 10px;cursor:pointer}button:focus-visible{outline:3px solid #3b5bdb;outline-offset:2px}.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}button:disabled{opacity:.5;cursor:not-allowed}",
+      ":host{font:14px/1.6 system-ui,sans-serif;color:#252923}*{box-sizing:border-box}.box{padding:20px;border:1px solid #a6aa9a;border-top:3px solid #a44020;border-radius:6px;background:#fffdf8;box-shadow:0 4px 24px #0002}strong{font-size:18px;letter-spacing:-.4px}p{margin:12px 0}small{display:block;color:#66695f;font-size:14px}button{font:inherit;min-height:44px;border:1px solid #a6aa9a;border-radius:4px;background:#fffdf8;color:#252923;padding:8px 12px;cursor:pointer}button:hover{background:#eeebe3}button:focus-visible{outline:3px solid #a44020;outline-offset:3px}#sync{background:#a44020;color:#fffaf4;border-color:#a44020}.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}button:disabled{opacity:.5;cursor:not-allowed}@media(prefers-color-scheme:dark){:host{color:#f4f2e8}.box{background:#242a25;border-color:#7c8976;border-top-color:#eca381}small{color:#b5bdaf}button{background:#242a25;color:#f4f2e8;border-color:#7c8976}button:hover{background:#2b332d}button:focus-visible{outline-color:#eca381}#sync{background:#b9502c;border-color:#d57550}}",
     );
     const box = node("div", shadow, "", { class: "box" });
-    node("strong", box, "Citation Tracker · chat sync");
+    node("strong", box, "Source Trail · chat sync");
     node("p", box, "Connecting to your tracker…", {
       id: "status",
       role: "status",
@@ -404,7 +404,7 @@
           paused ? "paused" : "watching",
           paused
             ? "Paused. Snapshot was saved; no more chat requests will be made."
-            : "Synced to Citation Tracker. Updates appear as the conversation is saved.",
+            : "Synced to Source Trail. Updates appear as the conversation is saved.",
           true,
           { observedAt: m.observedAt },
         );

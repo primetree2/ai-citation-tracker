@@ -3,34 +3,37 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📌</text></svg>"
-    />
-    <title>AI Citation Tracker · Harsh Raj</title>
+    <link rel="icon" type="image/svg+xml" href="mark.svg" />
+    <meta name="theme-color" content="#f5f2eb" />
+    <title>Source Trail — AI Citation Tracker</title>
     <meta
       name="description"
-      content="Inspect retrieved and cited sources from saved AI responses and supported network captures."
+      content="Follow the sources behind an AI answer. Connect your ChatGPT or Claude chat, inspect saved source evidence, and take your findings with you."
     />
-    <meta property="og:title" content="AI Citation Tracker" />
+    <meta property="og:title" content="Source Trail — AI Citation Tracker" />
     <meta
       property="og:description"
-      content="Retrieved vs cited evidence across AI providers. Built by Harsh Raj."
+      content="The answer is only half the story. A local-first workspace for AI source evidence, by Harsh Raj."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="top">
-      <div class="brand">
-        <div class="logo">◎</div>
-        <div>
-          <div class="name">AI Citation Tracker</div>
-          <div class="sub">
-            Retrieved vs cited · local-first prototype by Harsh Raj
-          </div>
-        </div>
-      </div>
-      <nav id="tabs">
+      <a
+        class="brand"
+        href="#"
+        data-goto="overview"
+        aria-label="Source Trail overview"
+      >
+        <img class="logo" src="mark.svg" width="44" height="44" alt="" />
+        <span
+          ><span class="name"
+            >Source Trail<span class="brand-period">.</span></span
+          >
+          <span class="sub">AI Citation Tracker</span></span
+        >
+      </a>
+      <nav id="tabs" aria-label="Main navigation">
         <button data-tab="overview" class="active">Overview</button>
         <button data-tab="runs">Analyses</button>
         <button data-tab="add">Add data</button>
@@ -67,10 +70,11 @@
       </section>
       <div class="workspace-switch panel" aria-label="Choose data collection">
         <div>
-          <b>Your evidence workspace</b>
+          <b class="workspace-label"
+            >FIELDNOTES <span aria-hidden="true">/</span> YOUR WORKSPACE</b
+          >
           <p class="muted small">
-            Your connected chats and imports appear in My data. Sample data is
-            optional and stays separate.
+            Your chats stay in My data. Examples have their own space.
           </p>
         </div>
         <div class="collection-tabs" role="group" aria-label="Data collection">
@@ -84,28 +88,83 @@
       </div>
       <section id="tab-overview" class="tab active">
         <div class="hero">
-          <div>
-            <p class="eyebrow">YOUR CHAT. YOUR SOURCES.</p>
-            <h1>See which sources your AI chat finds—and which it cites.</h1>
-            <p>
-              Connect a new or existing ChatGPT or Claude chat with a bookmark.
-              Ask a web-search question in the AI tab; this tracker refreshes
-              automatically as the conversation is saved. No manual JSON
-              download needed.
+          <div class="hero-copy">
+            <p class="eyebrow">
+              <span class="status-dot" aria-hidden="true"></span> A FIELD GUIDE
+              TO AI SOURCES
+            </p>
+            <h1>
+              The answer is only<br />half the story<span class="brand-period"
+                >.</span
+              >
+            </h1>
+            <p class="hero-description">
+              Follow the sources your AI finds. See which ones make it into the
+              answer—and which stay behind.
+            </p>
+            <p class="hero-support">
+              Connect a ChatGPT or Claude chat with a bookmark. Ask your
+              question there; inspect the saved source evidence here.
             </p>
             <div class="hero-cta">
               <button class="btn primary" data-goto="how">
-                Connect my AI chat →</button
-              ><button class="btn" data-goto="add">Import a file instead</button
-              ><button class="text-button" data-sample="all">
-                Explore sample data
+                Connect my AI chat <span aria-hidden="true">↗</span>
+              </button>
+              <button class="btn" data-goto="add">Import a file</button>
+            </div>
+            <div class="hero-meta">
+              <button class="text-button" data-sample="all">
+                Just looking? Explore the examples →
               </button>
             </div>
-            <p class="small hero-note">
-              Chat sync refreshes saved evidence about every 15 seconds. It is
-              not token-by-token network-stream capture.
+          </div>
+          <figure class="trail-figure" aria-labelledby="trail-caption">
+            <div class="figure-top">
+              <span>THE EVIDENCE TRAIL</span
+              ><span aria-hidden="true">FIG. 01</span>
+            </div>
+            <div class="trail-origin">
+              <span class="figure-index">Q</span>
+              <div>
+                <strong>A question starts a search.</strong
+                ><span>Your prompt, in your AI chat</span>
+              </div>
+            </div>
+            <div class="trail-path" aria-hidden="true"></div>
+            <div class="trail-sources">
+              <div class="trail-source">
+                <span class="source-symbol">↗</span><span>A source found</span
+                ><span class="source-state">Retrieved</span>
+              </div>
+              <div class="trail-source chosen">
+                <span class="source-symbol">↗</span
+                ><span>A source referenced</span
+                ><span class="source-state">Cited</span>
+              </div>
+            </div>
+            <div class="trail-answer">
+              <span class="answer-bracket" aria-hidden="true">[</span>
+              <div>
+                <strong>Follow the reference.</strong
+                ><span>Open the evidence behind the answer.</span>
+              </div>
+              <span class="answer-bracket" aria-hidden="true">]</span>
+            </div>
+            <figcaption id="trail-caption">
+              How the trail works · schematic, not measured data
+            </figcaption>
+          </figure>
+          <div class="hero-footnote">
+            <span class="footnote-label">THE FINE PRINT</span>
+            <p>
+              Saved-chat sync checks about every 15 seconds—not a live network
+              stream. Only evidence the chat saves can appear here.
             </p>
           </div>
+        </div>
+        <div class="section-heading">
+          <h2>Your source ledger</h2>
+          <span>Selected collection · stored in this browser</span>
         </div>
         <div id="demo-banner" class="banner hidden">
           Showing <b>sample evidence, not your personal research</b>. Synthetic
@@ -115,17 +174,19 @@
         <div class="cards" id="kpis"></div>
         <div class="grid2">
           <div class="panel">
-            <h3>Matched citations by provider</h3>
+            <p class="eyebrow">01 / PROVIDERS</p>
+            <h3>From found to referenced</h3>
             <p class="muted">
               Counts: matched citations / observed retrievals. Citation-only
               sources are counted separately above.
             </p>
             <div id="platform-bars"></div>
-            <h4>What stands out</h4>
+            <h4>Notes from the evidence</h4>
             <ul id="insights" class="insights"></ul>
           </div>
           <div class="panel">
-            <h3>Domains: retrieved vs cited</h3>
+            <p class="eyebrow">02 / DOMAINS</p>
+            <h3>Where the sources lead</h3>
             <p class="muted">
               Top 10 domains in this collection. Grey = retrieved, green =
               retrieved + cited. Bars share a zero baseline and count scale.
@@ -134,7 +195,8 @@
           </div>
         </div>
         <div class="panel">
-          <h3>Latest analyses</h3>
+          <p class="eyebrow">03 / RECENT WORK</p>
+          <h3>Your latest trails</h3>
           <div id="latest-runs"></div>
         </div>
       </section>
@@ -142,7 +204,10 @@
       <section id="tab-runs" class="tab">
         <div class="panel">
           <div class="row-between">
-            <h3>Analyses in this collection</h3>
+            <div>
+              <p class="eyebrow">THE SOURCE LEDGER</p>
+              <h3>Analyses in this collection</h3>
+            </div>
             <div class="actions">
               <button class="btn" id="export-csv">Export collection CSV</button>
               <button class="btn" id="export-json">
@@ -161,7 +226,8 @@
       <section id="tab-add" class="tab">
         <div class="grid2">
           <div class="panel">
-            <h3>1 · Add a saved response or capture</h3>
+            <p class="eyebrow">FROM A FILE</p>
+            <h3>Bring your own evidence.</h3>
             <p class="muted small">
               JSON formats are detected automatically. For a raw SSE file or
               pasted stream, choose its provider below. A copied answer or
@@ -185,8 +251,8 @@
                   web search.
                 </li>
                 <li>
-                  Use “Connect your current chat” on this page. Drag its button
-                  to your bookmarks bar, then click it inside that chat.
+                  Use the “Watch this chat” bookmark on this page. Drag its
+                  button to your bookmarks bar, then click it inside that chat.
                 </li>
                 <li>
                   If automatic transfer fails, click Save snapshot in the AI-tab
@@ -277,7 +343,8 @@ node runner/capture.mjs --provider chatgpt</pre>
             <p id="import-feedback" role="status" aria-live="polite"></p>
           </div>
           <div class="panel">
-            <h3>Connect your current chat</h3>
+            <p class="eyebrow">FROM YOUR AI TAB</p>
+            <h3>Keep the conversation going.</h3>
             <ol class="steps">
               <li>
                 Show your bookmarks bar
@@ -335,7 +402,8 @@ node runner/capture.mjs --provider chatgpt</pre>
           </div>
         </div>
         <div class="panel">
-          <h3>2 · Try another provider format</h3>
+          <p class="eyebrow">THE TEST BENCH</p>
+          <h3>Explore another response format.</h3>
           <p>
             These small synthetic fixtures test compatibility, not provider
             performance. They do not contact an AI provider.
@@ -419,8 +487,8 @@ node runner/capture.mjs --provider chatgpt</pre>
 
       <section id="tab-how" class="tab">
         <div class="panel">
-          <p class="eyebrow">START WITH YOUR OWN CHAT</p>
-          <h2>Bookmark it. Ask a question. Watch your sources.</h2>
+          <p class="eyebrow">GET STARTED / THREE SMALL STEPS</p>
+          <h2 class="guide-title">Your chat. A clearer paper trail.</h2>
           <p class="muted">
             Connect before sending your first prompt, or attach to a chat you
             already have open. Your normal AI login stays on the AI site. Use a
@@ -428,7 +496,7 @@ node runner/capture.mjs --provider chatgpt</pre>
           </p>
           <div class="flow chat-flow">
             <div class="node">
-              <b>1 · Add the bookmark</b
+              <b><span class="step-number">01</span> Save the bookmark</b
               ><span
                 >Show your bookmarks bar with Ctrl+Shift+B (Mac: ⌘+Shift+B),
                 then drag this button onto it.</span
@@ -440,7 +508,7 @@ node runner/capture.mjs --provider chatgpt</pre>
             </div>
             <div class="arrow" aria-hidden="true">→</div>
             <div class="node">
-              <b>2 · Connect your AI tab</b
+              <b><span class="step-number">02</span> Open your AI chat</b
               ><span
                 >Open a new chat below. In that AI tab, click the bookmark you
                 just added. Allow its tracker tab to open.</span
@@ -461,12 +529,13 @@ node runner/capture.mjs --provider chatgpt</pre>
                 >
               </div>
               <small class="muted"
-                >Look for “Citation Tracker · chat sync” in the AI tab.</small
+                >Look for the “Source Trail · chat sync” panel in the AI
+                tab.</small
               >
             </div>
             <div class="arrow" aria-hidden="true">→</div>
             <div class="node">
-              <b>3 · Ask, then inspect</b
+              <b><span class="step-number">03</span> Ask. Then follow.</b
               ><span
                 >Enable web search and send a question. Keep both tabs open. New
                 sources and citations sync to My data when the chat saves
@@ -486,7 +555,7 @@ node runner/capture.mjs --provider chatgpt</pre>
           <textarea id="starter-prompt" readonly>
 Search the web: best YouTube tutorials to learn n8n automation in 2026</textarea>
           <div class="metric-example">
-            <b>What “watching” means</b>
+            <b>A note on what “watching” means</b>
             <p>
               The bookmark reads the
               <b>current tab's saved conversation</b> repeatedly with your own
@@ -706,13 +775,15 @@ Search the web: best YouTube tutorials to learn n8n automation in 2026</textarea
     </main>
 
     <footer class="foot">
-      Built by Harsh Raj for the Beyond Labs task · Static dashboard · imports
-      stay in this browser ·
+      <span class="footer-wordmark">Source Trail.</span
+      ><span
+        >Built by Harsh Raj for Beyond Labs · Local-first, evidence-led.</span
+      >
       <a
         href="https://github.com/primetree2/ai-citation-tracker"
         target="_blank"
         rel="noopener"
-        >Source on GitHub</a
+        >View the source ↗</a
       >
     </footer>
     <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>

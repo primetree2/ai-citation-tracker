@@ -15,6 +15,7 @@ const root = resolve(import.meta.dirname, ".."),
   prefix = process.env.PAGES_PREFIX || "";
 mkdirSync(output, { recursive: true });
 const mime = {
+  ".svg": "image/svg+xml",
   ".html": "text/html",
   ".js": "text/javascript",
   ".css": "text/css",
@@ -157,12 +158,21 @@ try {
   });
   await call("Page.navigate", { url: url + "/" });
   for (let i = 0; i < 60; i++) {
-    if (await evaluate("typeof window.CiteApp === 'object' && document.querySelectorAll('#kpis .card').length===4")) break;
+    if (
+      await evaluate(
+        "typeof window.CiteApp === 'object' && document.querySelectorAll('#kpis .card').length===4",
+      )
+    )
+      break;
     await pause(100);
   }
   await check(
     `document.querySelectorAll('#tabs button').length===4 && document.querySelector('[data-collection="personal"]').getAttribute('aria-pressed')==='true' && document.querySelectorAll('#runs-table [data-run]').length===0`,
     "Four tabs open on My data, not preloaded sample totals",
+  );
+  await check(
+    `document.querySelector('.logo').complete && document.querySelector('.logo').naturalWidth>0 && document.title.includes('Source Trail')`,
+    "Custom SVG identity loads at the current deployment prefix",
   );
   await state("desktop-overview");
   await click('[data-sample="all"]');
@@ -171,6 +181,12 @@ try {
     `document.querySelectorAll('#runs-table [data-run]').length===2`,
     "Original samples parse into two runs",
   );
+  await click('[data-tab="overview"]');
+  await evaluate(
+    "document.querySelector('#kpis').scrollIntoView({block:'start'})",
+  );
+  await pause();
+  await state("desktop-ledger");
   await click("#runs-table [data-run]");
   await check(
     `document.querySelector('#run-detail').innerText.includes('Source details')`,
@@ -241,6 +257,12 @@ try {
   await click('[data-tab="overview"]');
   await evaluate("scrollTo(0,0)");
   await state("mobile-overview");
+  await evaluate(
+    "document.querySelector('.trail-figure').scrollIntoView({block:'start'})",
+  );
+  await pause();
+  await state("mobile-source-diagram");
+
   await check(
     `document.documentElement.scrollWidth<=innerWidth`,
     "Mobile overview contains page width",
