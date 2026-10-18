@@ -1,6 +1,6 @@
 # My verification notes
 
-I run `npm run build` and `npm test` with Node 22+. I test the original supplied artifacts, all five additional native API fixtures, source snapshots, citation-only denominators, URL safety, CSV safety, legacy migration, export round trips, SSE reconstruction, unsupported-event rejection, HAR content imports, and incomplete-capture warnings.
+I run `npm run build` and `npm test` (32 parser cases plus 14 watcher cases) with Node 22+. I test the original supplied artifacts, all five additional native API fixtures, source snapshots, citation-only denominators, URL safety, CSV safety, legacy migration, export round trips, SSE reconstruction, unsupported-event rejection, HAR content imports, and incomplete-capture warnings.
 
 I run my optional browser checks from the repository root with Chrome/Chromium, Python and Node available:
 
@@ -11,8 +11,18 @@ $env:BROWSER = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 node tests/browser-smoke.mjs
 ```
 
-I use an isolated profile and a loopback server, never my real provider login. I check all four tabs, original sample loading, inline snapshots, malformed imports, synthetic provider imports, export actions, reload persistence, citation-only filtering, empty state persistence, keyboard-semantic controls, and narrow-screen page overflow. I save browser-state screenshots under ignored `test-results/` for review.
+I use an isolated profile and a loopback server, never my real provider login. I check all four tabs, original sample loading, inline snapshots, malformed imports, synthetic provider imports, export actions, reload persistence, citation-only filtering, empty state persistence, keyboard-semantic controls, and narrow-screen page overflow. I also test interactive onboarding, source search and combined filters, filtered CSV contents, sample/personal collection isolation and persistence, scope labels, and the provider-specific file guide. I save browser-state screenshots under ignored `test-results/` for review.
 
 I separately test the capture utility against my local synthetic SSE server through `node tests/capture.test.mjs`. I expect one captured response, one retrieved/cited URL and one observed query. I deliberately do not treat this test as evidence of live provider compatibility.
 
 I cannot certify every real provider API or private web endpoint from fixtures. I keep that distinction in my requirement audit. I never run the legacy batch runner against an authenticated account as part of automated tests.
+
+## Chat-first workflow checks
+
+`npm run test:chat` intercepts a synthetic ChatGPT-origin page locally and checks its connection to the real dashboard code. It never contacts an authenticated provider. `npm run test:server` checks the explicit loopback launcher. Watcher unit tests use a virtual clock to check denial handling, pause/stop, and long rate-limit waits without real requests.
+
+## GitHub Pages packaging checks
+
+`npm run check` validates script syntax, required static assets, relative asset paths, and generated-parser freshness without rewriting the parser. `npm run build:pages` prepares `_site/`. `npm run test:pages` serves only that staged output under `/ai-citation-tracker/` and runs the existing dashboard browser tests against it. Chrome/Chromium is required only for browser checks, not for deployment or normal hosted use.
+
+The workflow YAML is structurally validated locally, but actual deployment also depends on GitHub Pages being enabled, the chosen publishing source, the branch, token policy, and environment approvals. Do not describe a local test or a skipped deployment job as a successful live deployment.

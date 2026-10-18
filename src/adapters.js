@@ -167,7 +167,13 @@ function chatgpt(raw) {
       s.cited = true;
       s.evidence.push("assistant citation reference");
     }
-  return c.finish({ prompt, model: raw.default_model_slug || raw.model });
+  return c.finish({
+    prompt,
+    model: raw.default_model_slug || raw.model,
+    analysisScope: raw.current_node
+      ? "Saved conversation · active branch; sources and citations may span multiple answers. Prompt shown is the first user message."
+      : "Saved conversation · all included branches; sources and citations may span multiple answers. Prompt shown is the first user message.",
+  });
 }
 
 function anthropic(raw, platform) {
@@ -219,7 +225,13 @@ function anthropic(raw, platform) {
         }
     }
   }
-  return c.finish({ prompt });
+  return c.finish({
+    prompt,
+    analysisScope:
+      platform === "claude"
+        ? "Saved conversation · included messages; sources and citations may span multiple answers. Prompt shown is the first user message."
+        : "Single API response",
+  });
 }
 
 function openai(raw) {

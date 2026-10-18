@@ -9,3 +9,12 @@ test-results/
 *.har
 *.sse
 !sample-data/streams/*.sse
+
+# Deployment output and private local artifacts
+_site/
+.env
+.env.*
+!.env.example
+.captures/
+captures/
+*.log

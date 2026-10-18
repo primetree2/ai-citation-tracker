@@ -323,3 +323,69 @@ test("Uploaded native API fixtures retain their synthetic label", () => {
   assert.equal(r.synthetic, true);
   assert.match(r.provenance, /Synthetic/);
 });
+
+test("Original URL variants reconcile 42 raw URLs with 29 normalized sources", () => {
+  const r = p.parseOne(read("sample-data/chatgpt_raw.json"));
+  assert.equal(r.sources.length, 29);
+  assert.equal(new Set(r.sources.flatMap((s) => s.observedUrls)).size, 42);
+  const restored = p.parseInput(JSON.parse(p.workspaceJson([r])))[0];
+  assert.deepEqual(restored.sources, r.sources);
+  assert.ok(p.sourcesCsv([r]).includes("observed_urls_json"));
+});
+test("Sample collection membership and scope survive JSON round trip", () => {
+  const r = p.normalizeRun({
+    id: "sample",
+    platform: "custom",
+    sample: true,
+    analysisScope: "Saved conversation · included messages",
+    sources: [],
+  });
+  assert.deepEqual(p.parseInput(JSON.parse(p.workspaceJson([r])))[0], r);
+  assert.equal(p.normalizeRun({ sources: [], synthetic: true }).sample, true);
+  assert.equal(p.normalizeRun({ sources: [], source: "sample" }).sample, true);
+  assert.equal(p.normalizeRun({ sources: [] }).sample, false);
+});
+test("Saved chat adapters disclose conversation-level scope", () => {
+  for (const platform of ["chatgpt", "claude"]) {
+    const r = p.parseOne(read(`sample-data/${platform}_raw.json`));
+    assert.match(r.analysisScope, /Saved conversation/);
+    assert.match(r.analysisScope, /multiple answers/);
+  }
+});
+test("Original URL variants reject unsafe or mismatched values", () => {
+  const r = p.normalizeRun({
+    sources: [
+      {
+        url: "https://example.org/",
+        observedUrls: [
+          "javascript:alert(1)",
+          "https://other.org",
+          "https://example.org/?utm_source=test",
+        ],
+      },
+    ],
+  });
+  assert.deepEqual(r.sources[0].observedUrls, [
+    "https://example.org/?utm_source=test",
+  ]);
+  assert.throws(() =>
+    p.normalizeRun({
+      sources: [{ url: "https://example.org", observedUrls: "wrong" }],
+    }),
+  );
+});
+
+test("Chat sync metadata survives export without a connection secret", () => {
+  const r = p.normalizeRun({
+    platform: "chatgpt",
+    sources: [],
+    chatSync: {
+      mode: "saved-chat-poll",
+      observedAt: "2026-10-18T00:00:00Z",
+      channel: "do-not-retain",
+    },
+  });
+  assert.equal(r.chatSync.mode, "saved-chat-poll");
+  assert.ok(!JSON.stringify(r).includes("do-not-retain"));
+  assert.deepEqual(p.parseInput(JSON.parse(p.workspaceJson([r])))[0], r);
+});

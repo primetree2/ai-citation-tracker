@@ -22,15 +22,20 @@
     const m = P.metrics(Array.isArray(r) ? r : [r]);
     return m.rate == null ? "—" : Math.round(m.rate * 100) + "%";
   };
-  const fmtDate = (d) =>
-    d
-      ? new Date(d).toLocaleDateString(undefined, { dateStyle: "medium" })
-      : "Not available";
+  const fmtDate = (d) => {
+    if (!d) return "Not available";
+    const date = new Date(d);
+    return Number.isFinite(date.getTime())
+      ? date.toLocaleDateString(undefined, { dateStyle: "medium" })
+      : String(d);
+  };
   const tag = (p) =>
     `<span class="tag ${Object.hasOwn(PLAT, p) ? p : "custom"}">${esc(label(p))}</span>`;
   let storageWarning = "",
     selectedId = null,
-    filter = "all";
+    filter = "all",
+    search = "",
+    collection = "personal";
   function normalizeLegacy(r) {
     const n = P.parseOne(r);
     return {
@@ -57,9 +62,73 @@
     return (window.DEMO_RUNS || []).map((r) => ({
       ...normalizeLegacy(r),
       demo: true,
+      sample: true,
+      analysisScope:
+        "Saved conversation · included messages; sources and citations may span multiple answers. Prompt shown is the first user message.",
     }));
   }
   let runs = load();
+  try {
+    collection = localStorage.getItem(KEY + ".collection") || "personal";
+  } catch {}
+  if (!["samples", "personal"].includes(collection)) collection = "personal";
+  const visibleRuns = () =>
+    runs.filter((r) => (collection === "samples" ? r.sample : !r.sample));
+  function setCollection(value) {
+    collection = value;
+    selectedId = null;
+    filter = "all";
+    search = "";
+    try {
+      localStorage.setItem(KEY + ".collection", value);
+    } catch {}
+    render();
+  }
+  document
+    .querySelectorAll("[data-collection]")
+    .forEach((b) => (b.onclick = () => setCollection(b.dataset.collection)));
+  function evidenceBadge(r) {
+    if (r.synthetic) return '<span class="tag demo">Synthetic fixture</span>';
+    if (r.chatSync)
+      return '<span class="tag sync">Chat sync · saved snapshot</span>';
+    if (r.capture)
+      return `<span class="tag ret">Network capture</span>${!r.capture.complete ? ' <span class="tag demo">Incomplete capture</span>' : ""}`;
+    return `<span class="tag ret">${["chatgpt", "claude"].includes(r.platform) ? "Saved chat" : "Saved response"}</span>`;
+  }
+  function filteredSources(r) {
+    const q = search.trim().toLowerCase();
+    return r.sources.filter(
+      (s) =>
+        (filter === "all" ||
+          (filter === "cited"
+            ? s.cited
+            : filter === "citation-only"
+              ? s.cited && !s.retrieved
+              : s.retrieved && !s.cited)) &&
+        (!q ||
+          [s.title, s.url, s.domain, s.snippet].some((v) =>
+            String(v || "")
+              .toLowerCase()
+              .includes(q),
+          )),
+    );
+  }
+  function sourceRows(sources) {
+    return sources
+      .map(
+        (s) =>
+          `<tr><td><span class="tag ${s.cited ? "cited" : "ret"}">${s.cited ? (s.retrieved ? "Retrieved + cited" : "Cited; retrieval not visible") : "Retrieved only"}</span></td><td><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)} ↗</a><div class="muted small">${esc(s.domain)}${s.type === "youtube" ? " · YouTube" : ""}${s.date ? " · " + esc(fmtDate(s.date)) : ""}</div>${s.snippet ? `<p class="small">${esc(s.snippet)}</p>` : ""}<details><summary>Source details <span class="muted">· full snapshot</span></summary><pre>${esc(JSON.stringify({ ...s.snapshot, observedUrls: s.observedUrls }, null, 2))}</pre><p class="muted small">Only fields present in the response are shown. No transcript is fetched.</p></details></td><td class="small">${s.evidence.length ? s.evidence.map(esc).join("<br>") : "Imported flags; no native field path"}</td></tr>`,
+      )
+      .join("");
+  }
+  function refreshSourceResults(r) {
+    const sources = filteredSources(r);
+    $("#source-rows").innerHTML = sourceRows(sources);
+    $("#source-result-count").textContent =
+      `${sources.length} of ${r.sources.length} sources shown`;
+    $("#source-empty").classList.toggle("hidden", sources.length > 0);
+    $("#export-visible").disabled = sources.length === 0;
+  }
   function toast(msg) {
     const t = $("#toast");
     t.textContent = msg;
@@ -79,15 +148,36 @@
     render();
   }
   function addRuns(items, source) {
-    let next = runs.filter((r) => !r.demo);
+    let next = [...runs];
+    let last;
     for (const item of items) {
-      const r = { ...item, source };
-      const i = next.findIndex((x) => key(x) === key(r));
+      const r = {
+        ...item,
+        source,
+        sample:
+          source === "sample" ||
+          item.sample === true ||
+          item.synthetic === true,
+      };
+      const i = next.findIndex(
+        (x) => key(x) === key(r) && x.sample === r.sample,
+      );
       if (i < 0) next.unshift(r);
       else next[i] = r;
+      last = r;
     }
-    commit(next);
-    return items.at(-1);
+    const previous = collection;
+    collection = last.sample ? "samples" : "personal";
+    try {
+      commit(next);
+    } catch (e) {
+      collection = previous;
+      throw e;
+    }
+    try {
+      localStorage.setItem(KEY + ".collection", collection);
+    } catch {}
+    return last;
   }
   function addRaw(raw, source) {
     return addRuns(P.parseInput(raw.raw || raw), source || "upload");
@@ -112,19 +202,36 @@
     }
   });
   function render() {
-    $("#demo-banner").classList.toggle("hidden", !runs.some((r) => r.demo));
-    const m = P.metrics(runs),
-      q = runs.reduce((a, r) => a + r.queries.length, 0);
+    const active = visibleRuns();
+    document.querySelectorAll("[data-collection]").forEach((b) => {
+      b.setAttribute(
+        "aria-pressed",
+        String(b.dataset.collection === collection),
+      );
+    });
+    $("#sample-count").textContent = `(${runs.filter((r) => r.sample).length})`;
+    $("#personal-count").textContent =
+      `(${runs.filter((r) => !r.sample).length})`;
+    $("#demo-banner").classList.toggle(
+      "hidden",
+      collection !== "samples" || !active.length,
+    );
+    $("#export-csv").disabled =
+      $("#export-json").disabled =
+      $("#clear-all").disabled =
+        !active.length;
+    const m = P.metrics(active),
+      q = active.reduce((a, r) => a + r.queries.length, 0);
     $("#kpis").innerHTML = [
       [
-        "Runs",
+        "Analyses",
         m.runs,
-        `${new Set(runs.map((r) => r.platform)).size} provider format(s)`,
+        `${new Set(active.map((r) => r.platform)).size} provider format(s)`,
       ],
       [
         "Observed retrievals",
         m.retrieved,
-        `${q} distinct queries within runs; missing ≠ zero`,
+        `${q} distinct queries within analyses; missing ≠ zero`,
       ],
       [
         "Cited sources",
@@ -132,8 +239,8 @@
         `${m.citationOnly} citation-only URL/run pairs`,
       ],
       [
-        "Matched citation rate",
-        rate(runs),
+        "Retrieved sources cited (%)",
+        rate(active),
         `${m.matched} retrieved + cited / ${m.retrieved} retrieved`,
       ],
     ]
@@ -149,7 +256,7 @@
   function bars(rows) {
     const max = Math.max(1, ...rows.map((r) => r.ret));
     if (!rows.length)
-      return '<div class="empty">No data yet. Load the samples or add a response.</div>';
+      return '<div class="empty">No data yet. Connect your AI chat in How it works; synced sources will appear here.</div>';
     return rows
       .map(
         (r) =>
@@ -158,17 +265,18 @@
       .join("");
   }
   function renderBars() {
-    const providers = [...new Set(runs.map((r) => r.platform))];
+    const active = visibleRuns();
+    const providers = [...new Set(active.map((r) => r.platform))];
     $("#platform-bars").innerHTML = bars(
       providers
         .map((p) => ({
           label: label(p),
-          ...P.metrics(runs.filter((r) => r.platform === p)),
+          ...P.metrics(active.filter((r) => r.platform === p)),
         }))
         .map((r) => ({ ...r, ret: r.retrieved })),
     );
     const domains = new Map();
-    for (const s of runs.flatMap((r) => r.sources)) {
+    for (const s of active.flatMap((r) => r.sources)) {
       const d = domains.get(s.domain) || {
         label: s.domain,
         ret: 0,
@@ -183,30 +291,36 @@
         .sort((a, b) => b.matched - a.matched || b.ret - a.ret)
         .slice(0, 10),
     );
-    const m = P.metrics(runs),
-      queries = runs.filter((r) => r.queries.length).length;
+    const m = P.metrics(active),
+      queries = active.filter((r) => r.queries.length).length;
+    if (!active.length) {
+      $("#insights").innerHTML =
+        "<li>Connect a new or current AI chat in How it works. Source insights appear after the first saved snapshot syncs.</li>";
+      return;
+    }
     $("#insights").innerHTML = [
       `${m.uncited} observed retrievals have no citation evidence in these files.`,
       `${m.citationOnly} citations have no matching retrieval record; they are excluded from the rate numerator.`,
-      `${queries} of ${runs.length} runs include observable search queries. Missing query data does not mean no searches occurred.`,
-      "Each URL counts once per run. These figures describe exported evidence, not provider quality.",
+      `${queries} of ${active.length} analyses include observable search queries. Missing query data does not mean no searches occurred.`,
+      "Each normalized URL counts once per analysis. These figures describe exported evidence, not provider quality.",
     ]
       .map((t) => `<li>${esc(t)}</li>`)
       .join("");
   }
   function table(list) {
     if (!list.length)
-      return '<div class="empty">No runs yet. Load a sample on Add data.</div>';
-    return `<div class="table-scroll"><table class="tbl"><thead><tr><th>Provider</th><th>Prompt / response</th><th>Date</th><th>Queries</th><th>Retrieved</th><th>Cited</th><th>Matched rate</th></tr></thead><tbody>${list.map((r) => `<tr><td>${tag(r.platform)}${r.synthetic ? ' <span class="tag demo">synthetic</span>' : ""}</td><td><button class="run-link" data-run="${esc(key(r))}">${esc((r.prompt || r.title).slice(0, 110))}</button></td><td>${esc(fmtDate(r.createdAt))}</td><td>${r.queries.length || "—"}</td><td>${r.retrieved || "—"}</td><td>${r.cited}</td><td>${rate(r)}</td></tr>`).join("")}</tbody></table></div>`;
+      return '<div class="empty">No analyses yet. Connect your chat in How it works, then send a web-search prompt. Synced chats appear here automatically. You can also import a file.</div>';
+    return `<div class="table-scroll"><table class="tbl"><thead><tr><th>Provider / evidence</th><th>Prompt / conversation</th><th>Date</th><th>Queries</th><th>Retrieved</th><th>Cited</th><th>Retrieved cited (%)</th></tr></thead><tbody>${list.map((r) => `<tr><td>${tag(r.platform)} ${evidenceBadge(r)}</td><td><button class="run-link" data-run="${esc(key(r))}">${esc((r.prompt || r.title).slice(0, 110))}</button></td><td>${esc(fmtDate(r.createdAt))}</td><td>${r.queries.length || "—"}</td><td>${r.retrieved || "—"}</td><td>${r.cited}</td><td>${rate(r)}</td></tr>`).join("")}</tbody></table></div>`;
   }
   function renderTables() {
-    $("#latest-runs").innerHTML = table(runs.slice(0, 5));
-    $("#runs-table").innerHTML = table(runs);
+    $("#latest-runs").innerHTML = table(visibleRuns().slice(0, 5));
+    $("#runs-table").innerHTML = table(visibleRuns());
     document.querySelectorAll("[data-run]").forEach(
       (b) =>
         (b.onclick = () => {
           selectedId = b.dataset.run;
           filter = "all";
+          search = "";
           showTab("runs");
           renderDetail();
           $("#run-detail").scrollIntoView({
@@ -218,29 +332,22 @@
     );
   }
   function renderDetail() {
-    const r = runs.find((x) => key(x) === selectedId);
+    const r = visibleRuns().find((x) => key(x) === selectedId);
     if (!r) {
-      $("#run-detail").innerHTML = runs.length
-        ? '<div class="panel empty">Select a run above to inspect its queries and sources.</div>'
+      $("#run-detail").innerHTML = visibleRuns().length
+        ? '<div class="panel empty">Select an analysis above to inspect its queries and sources.</div>'
         : "";
       return;
     }
-    const sources = r.sources.filter(
-      (s) =>
-        filter === "all" ||
-        (filter === "cited"
-          ? s.cited
-          : filter === "citation-only"
-            ? s.cited && !s.retrieved
-            : s.retrieved && !s.cited),
-    );
+    const sources = filteredSources(r);
     $("#run-detail").innerHTML =
-      `<div class="panel"><div class="detail-head"><div>${tag(r.platform)} <span class="muted small">${esc(r.model || "Model unavailable")} · ${esc(fmtDate(r.createdAt))}</span><h3>${esc(r.title)}</h3><p>${esc(r.prompt || "Prompt not present in this response.")}</p></div><div class="actions"><button class="btn" id="dl-run">Download run</button><button class="btn danger" id="del-run">Delete run</button></div></div>
+      `<div class="panel"><div class="detail-head"><div>${tag(r.platform)} ${evidenceBadge(r)} <span class="muted small">${esc(r.model || "Model unavailable")} · ${esc(fmtDate(r.createdAt))}</span><h3>${esc(r.title)}</h3><p>${esc(r.prompt || "Prompt not present in this response.")}</p></div><div class="actions"><button class="btn" id="dl-run">Download analysis</button><button class="btn danger" id="del-run">Delete analysis</button></div></div>
     <p class="muted small">${esc(r.provenance)}${r.capture ? ` · ${esc(r.capture.transport)} · ${r.capture.eventCount} events · ${r.capture.complete ? "transport finished" : "completion not confirmed"}` : ""}</p>
+    <p class="scope-note"><b>Analysis scope:</b> ${esc(r.analysisScope)}<br><b>URL counting:</b> ${r.sources.length} normalized source URLs from ${new Set(r.sources.flatMap((s) => s.observedUrls || [s.url])).size} observed URL variants. Tracking parameters, fragments, and equivalent trailing slashes are removed for matching; original variants remain in source details and exports.</p>
     <div class="cards">${[
       ["Retrieved", r.retrieved],
       ["Cited", r.cited],
-      ["Matched rate", rate(r)],
+      ["Retrieved cited (%)", rate(r)],
       ["Observed queries", r.queries.length || "—"],
     ]
       .map(
@@ -249,20 +356,33 @@
       )
       .join("")}</div>
     ${r.warnings.length ? `<details class="notice" open><summary>Evidence limits (${r.warnings.length})</summary><ul>${r.warnings.map((w) => `<li>${esc(w)}</li>`).join("")}</ul></details>` : ""}
-    <h4>Fan-out / search queries</h4>${r.queries.length ? `<div class="chips">${r.queries.map((q) => `<span class="chip">${esc(q)}</span>`).join("")}</div>` : '<p class="muted">No query evidence in the supported fields. This is not a count of zero searches.</p>'}
+    <h4>AI search queries <span class="muted small">(fan-out)</span></h4>${r.queries.length ? `<div class="chips">${r.queries.map((q) => `<span class="chip">${esc(q)}</span>`).join("")}</div>` : '<p class="muted">No query evidence in the supported fields. This is not a count of zero searches.</p>'}
     ${r.status.length ? `<details><summary>Provider-visible status / summaries</summary><ul>${r.status.map((s) => `<li>${esc(s)}</li>`).join("")}</ul><p class="muted">Public status labels, not hidden chain of thought.</p></details>` : ""}
     <h4>Sources</h4><div class="filters">${[
       ["all", "All"],
       ["cited", "Cited"],
       ["retrieved", "Retrieved only"],
-      ["citation-only", "Citation only"],
+      ["citation-only", "Cited; retrieval not visible"],
     ]
       .map(
         ([f, l]) =>
           `<button data-f="${f}" class="${filter === f ? "on" : ""}">${l}</button>`,
       )
       .join("")}</div>
-    <div class="table-scroll"><table class="tbl sources"><thead><tr><th>Status</th><th>Source and snapshot</th><th>Evidence field</th></tr></thead><tbody>${sources.map((s) => `<tr><td><span class="tag ${s.cited ? "cited" : "ret"}">${s.cited ? (s.retrieved ? "Retrieved + cited" : "Citation only") : "Retrieved only"}</span></td><td><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)} ↗</a><div class="muted small">${esc(s.domain)}${s.type === "youtube" ? " · YouTube" : ""}${s.date ? " · " + esc(s.date) : ""}</div>${s.snippet ? `<p class="small">${esc(s.snippet)}</p>` : ""}<details><summary>Full source snapshot</summary><pre>${esc(JSON.stringify(s.snapshot, null, 2))}</pre><p class="muted small">Only fields present in the response are shown. No transcript is fetched.</p></details></td><td class="small">${s.evidence.length ? s.evidence.map(esc).join("<br>") : "Imported flags; no native field path"}</td></tr>`).join("")}</tbody></table></div>${!sources.length ? '<p class="empty">No sources in this filter.</p>' : ""}</div>`;
+    <div class="source-tools"><div class="source-search"><label for="source-search">Search sources</label><input type="search" id="source-search" placeholder="Title, domain, URL, or snippet" value="${esc(search)}" autocomplete="off"></div><button class="btn" id="export-visible">Export visible sources CSV</button></div>
+    <p class="muted small" id="source-result-count" role="status" aria-live="polite">${sources.length} of ${r.sources.length} sources shown</p>
+    <div class="table-scroll"><table class="tbl sources"><thead><tr><th>Status</th><th>Source and details</th><th>Evidence field</th></tr></thead><tbody id="source-rows">${sourceRows(sources)}</tbody></table></div><p id="source-empty" class="empty ${sources.length ? "hidden" : ""}">No sources match. Try another search or choose All.</p></div>`;
+    $("#source-search").oninput = (e) => {
+      search = e.target.value;
+      refreshSourceResults(r);
+    };
+    $("#export-visible").disabled = !sources.length;
+    $("#export-visible").onclick = () =>
+      download(
+        `${r.platform}-visible-sources.csv`,
+        P.sourcesCsv([{ ...r, sources: filteredSources(r) }]),
+        "text/csv;charset=utf-8",
+      );
     document.querySelectorAll("[data-f]").forEach(
       (b) =>
         (b.onclick = () => {
@@ -279,11 +399,13 @@
     $("#del-run").onclick = () => {
       if (
         confirm(
-          "Delete this locally saved run? Download a backup first if needed.",
+          "Delete this locally saved analysis? Download a backup first if needed.",
         )
       )
         try {
-          commit(runs.filter((x) => key(x) !== key(r)));
+          commit(
+            runs.filter((x) => !(key(x) === key(r) && x.sample === r.sample)),
+          );
           selectedId = null;
           renderDetail();
         } catch (e) {
@@ -302,26 +424,30 @@
   $("#export-json").onclick = () =>
     download(
       "citation-workspace.json",
-      P.workspaceJson(runs),
+      P.workspaceJson(visibleRuns()),
       "application/json",
     );
   $("#export-csv").onclick = () =>
     download(
       "citation-sources.csv",
-      P.sourcesCsv(runs),
+      P.sourcesCsv(visibleRuns()),
       "text/csv;charset=utf-8",
     );
   $("#clear-all").onclick = () => {
     if (
       confirm(
-        "Clear all locally saved runs? This cannot be undone without an exported backup.",
+        "Clear the selected collection? The other collection will be kept. Export a backup first; this cannot be undone.",
       )
     )
       try {
-        commit([]);
+        commit(
+          runs.filter((r) => (collection === "samples" ? !r.sample : r.sample)),
+        );
         selectedId = null;
         renderDetail();
-        toast("Runs cleared. Samples can be loaded again from Add data.");
+        toast(
+          "Collection cleared. The other collection was kept. Samples can be loaded again from Add data.",
+        );
       } catch (e) {
         toast(e.message);
       }
@@ -346,7 +472,7 @@
       }
     }
     $("#import-feedback").textContent =
-      `Imported ${ok} run(s). ${errors.join(" ")}`;
+      `Imported ${ok} analysis(es). ${errors.join(" ")}`;
     toast($("#import-feedback").textContent);
   }
   const drop = $("#drop");
@@ -377,7 +503,7 @@
     try {
       const n = importText($("#paste").value, "");
       $("#paste").value = "";
-      $("#import-feedback").textContent = `Imported ${n} run(s).`;
+      $("#import-feedback").textContent = `Imported ${n} analysis(es).`;
       toast($("#import-feedback").textContent);
     } catch (e) {
       $("#import-feedback").textContent = e.message;
@@ -417,32 +543,139 @@
   });
   $("#other-sample").onclick = () => loadSample($("#sample-provider").value);
 
-  function bookmarkletCode(dash) {
-    return `(async()=>{const D=${JSON.stringify(dash)};const h=location.hostname;const w=window.open(D+'#receive','citetracker');let raw,p;
-try{if(h==='chatgpt.com'){const id=(location.pathname.match(/\\/c\\/([\\w-]+)/)||[])[1];if(!id)throw'Open a chat first';
-const s=await(await fetch('/api/auth/session')).json();const r=await fetch('/backend-api/conversation/'+id,{headers:{Authorization:'Bearer '+s.accessToken}});
-if(!r.ok)throw'ChatGPT returned '+r.status;raw=await r.json();p='chatgpt'}
-else if(h==='claude.ai'){const id=(location.pathname.match(/\\/chat\\/([\\w-]+)/)||[])[1];if(!id)throw'Open a chat first';
-const orgs=[];const c=(document.cookie.match(/lastActiveOrg=([^;]+)/)||[])[1];if(c)orgs.push(c);
-try{(await(await fetch('/api/organizations')).json()).forEach(o=>orgs.push(o.uuid))}catch(e){}
-for(const o of orgs){const r=await fetch('/api/organizations/'+o+'/chat_conversations/'+id+'?tree=True&rendering_mode=messages&render_all_tools=true');if(r.ok){raw=await r.json();break}}
-if(!raw)throw'Could not load this Claude chat';p='claude'}else throw'Open a ChatGPT or Claude chat first'}
-catch(e){alert('Citation Tracker: '+e);if(w)w.close();return}
-const msg={type:'citetracker-conversation',platform:p,raw};let done=false;const O=new URL(D).origin;
-const send=()=>{try{w.postMessage(msg,O)}catch(e){}};
-window.addEventListener('message',e=>{if(e.origin===O&&e.data&&e.data.type==='citetracker-received'){done=true;clearInterval(t)}});
-const t=setInterval(send,800);
-setTimeout(()=>{clearInterval(t);if(!done){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(raw)],{type:'application/json'}));a.download=p+'_raw.json';a.click();
-alert('Citation Tracker: could not hand the chat to the dashboard (popup blocked?). The chat was downloaded as '+p+'_raw.json, drop it on the Add data tab.')}},12000)})();`;
-  }
-  const dashUrl = location.origin + location.pathname;
-  $("#bookmarklet").href =
-    "javascript:" +
-    encodeURIComponent(bookmarkletCode(dashUrl).replace(/\n/g, ""));
-  $("#bookmarklet").onclick = (e) => {
-    e.preventDefault();
-    toast("Drag this button to your bookmarks bar, don't click it here.");
+  $("#copy-starter-prompt").onclick = async () => {
+    const field = $("#starter-prompt");
+    try {
+      await navigator.clipboard.writeText(field.value);
+      toast(
+        "Prompt copied. Paste it into ChatGPT or Claude with web search enabled.",
+      );
+    } catch {
+      field.focus();
+      field.select();
+      toast("Select and copy the prompt, then paste it into your AI chat.");
+    }
   };
+  function openFileGuide() {
+    showTab("add");
+    $("#file-guide").open = true;
+    $("#file-guide").scrollIntoView({ block: "start" });
+    $("#file-guide summary").focus({ preventScroll: true });
+  }
+  $("#show-file-guide").onclick = openFileGuide;
+  $("#guide-provider").onchange = (e) => {
+    const provider = e.target.value;
+    $("#guide-name").textContent =
+      provider === "chatgpt" ? "ChatGPT" : "Claude";
+    $("#guide-filename").textContent = provider + "_raw.json";
+    $("#guide-command").textContent = $("#capture-command").textContent =
+      "node runner/capture.mjs --provider " + provider;
+  };
+  $("#open-capture-guide").onclick = () => {
+    $("#capture-guide").open = true;
+    $("#capture-guide").scrollIntoView({ block: "start" });
+    $("#capture-guide summary").focus({ preventScroll: true });
+  };
+  document.querySelectorAll("[data-walkthrough]").forEach(
+    (b) =>
+      (b.onclick = async () => {
+        b.disabled = true;
+        try {
+          const res = await fetch("../sample-data/chatgpt_raw.json");
+          if (!res.ok)
+            throw Error(
+              "Example could not load. Serve this project over HTTP or use Add data.",
+            );
+          const parsed = P.parseInput(await res.json());
+          if (b.dataset.walkthrough === "export") {
+            download(
+              "chatgpt-example-sources.csv",
+              P.sourcesCsv(parsed),
+              "text/csv;charset=utf-8",
+            );
+            toast("Example CSV downloaded. Your data was not changed.");
+          } else {
+            const r = addRuns(parsed, "sample");
+            selectedId = key(r);
+            search = "";
+            filter = "all";
+            showTab("runs");
+            renderDetail();
+            const target =
+              b.dataset.walkthrough === "inspect"
+                ? $("#source-search")
+                : $("#run-detail");
+            target.scrollIntoView({ block: "start" });
+            if (target.focus) target.focus({ preventScroll: true });
+            toast("ChatGPT saved-chat example loaded in Sample data.");
+          }
+        } catch (e) {
+          toast(e.message);
+        } finally {
+          b.disabled = false;
+        }
+      }),
+  );
+
+  const dashUrl = location.origin + location.pathname;
+  const watcherHref =
+    "javascript:" + encodeURIComponent(CiteWatcher.bookmarkletCode(dashUrl));
+  document.querySelectorAll("[data-watch-bookmark]").forEach((a) => {
+    a.href = watcherHref;
+    a.onclick = (e) => {
+      e.preventDefault();
+      toast(
+        "Drag this button to your bookmarks bar. Then open ChatGPT or Claude and click the bookmark there—not here.",
+      );
+    };
+  });
+  const onSyncedSnapshot = (raw, provider, observedAt) => {
+    const parsed = P.parseInput(raw);
+    if (parsed.some((r) => r.platform !== provider))
+      throw Error("The snapshot does not match the connected AI provider.");
+    const prior = selectedId,
+      oldCollection = collection,
+      scroll = window.scrollY;
+    const focused = document.activeElement?.id;
+    const selection =
+      focused === "source-search"
+        ? [
+            document.activeElement.selectionStart,
+            document.activeElement.selectionEnd,
+          ]
+        : null;
+    const expanded = [...document.querySelectorAll("#run-detail .sources tr")]
+      .filter((row) => row.querySelector("details")?.open)
+      .map((row) => row.querySelector("a")?.href);
+    const synced = parsed.map((r) => ({
+      ...r,
+      chatSync: {
+        mode: "saved-chat-poll",
+        observedAt: observedAt || new Date().toISOString(),
+      },
+      provenance:
+        "Automatic saved-chat sync from your connected AI tab. Not a live network-stream capture.",
+    }));
+    const r = addRuns(synced, "chat-sync");
+    if (!prior) {
+      selectedId = key(r);
+      filter = "all";
+      search = "";
+      showTab("runs");
+    } else if (oldCollection !== collection) selectedId = key(r);
+    renderDetail();
+    document.querySelectorAll("#run-detail .sources tr").forEach((row) => {
+      if (expanded.includes(row.querySelector("a")?.href))
+        row.querySelector("details").open = true;
+    });
+    if (focused && document.getElementById(focused)) {
+      document.getElementById(focused).focus({ preventScroll: true });
+      if (selection)
+        document.getElementById(focused).setSelectionRange(...selection);
+    }
+    if (prior) window.scrollTo(0, scroll);
+  };
+  CiteLiveSync.init(onSyncedSnapshot);
 
   let lastReceipt = "";
   window.addEventListener("message", (e) => {
@@ -461,7 +694,9 @@ alert('Citation Tracker: could not hand the chat to the dashboard (popup blocked
         showTab("runs");
         renderDetail();
         lastReceipt = receipt;
-        toast("Saved chat imported. This is not a live stream capture.");
+        toast(
+          "Imported once with the old bookmark. Replace it with Watch this chat in How it works for automatic updates.",
+        );
       }
       e.source.postMessage({ type: "citetracker-received" }, e.origin);
     } catch (err) {

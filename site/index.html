@@ -32,7 +32,7 @@
       </div>
       <nav id="tabs">
         <button data-tab="overview" class="active">Overview</button>
-        <button data-tab="runs">Runs</button>
+        <button data-tab="runs">Analyses</button>
         <button data-tab="add">Add data</button>
         <button data-tab="how">How it works</button>
         <a
@@ -46,27 +46,70 @@
     </header>
 
     <main>
+      <section
+        id="chat-connection"
+        class="panel chat-connection hidden"
+        aria-labelledby="connection-title"
+        data-state="offline"
+      >
+        <div class="row-between">
+          <h2 id="connection-title">Use this with your own AI chat</h2>
+          <span id="connection-state" class="tag sync">Not connected</span>
+        </div>
+        <p id="connection-detail" role="status" aria-live="polite"></p>
+        <p id="connection-updated" class="muted small"></p>
+        <div class="actions">
+          <button class="btn hidden" id="chat-return">Return to AI chat</button
+          ><button class="btn hidden" id="chat-sync-now">Sync now</button
+          ><button class="btn hidden" id="chat-pause">Pause</button
+          ><button class="btn danger hidden" id="chat-stop">Stop sync</button>
+        </div>
+      </section>
+      <div class="workspace-switch panel" aria-label="Choose data collection">
+        <div>
+          <b>Your evidence workspace</b>
+          <p class="muted small">
+            Your connected chats and imports appear in My data. Sample data is
+            optional and stays separate.
+          </p>
+        </div>
+        <div class="collection-tabs" role="group" aria-label="Data collection">
+          <button class="btn" data-collection="samples" aria-pressed="true">
+            Sample data <span id="sample-count"></span>
+          </button>
+          <button class="btn" data-collection="personal" aria-pressed="false">
+            My data <span id="personal-count"></span>
+          </button>
+        </div>
+      </div>
       <section id="tab-overview" class="tab active">
         <div class="hero">
           <div>
-            <h1>Which sources does AI retrieve—and which does it cite?</h1>
+            <p class="eyebrow">YOUR CHAT. YOUR SOURCES.</p>
+            <h1>See which sources your AI chat finds—and which it cites.</h1>
             <p>
-              Inspect sources and search queries from saved AI responses. Start
-              with the two original sample chats—no login, API key, or setup
-              needed. Select a run to see its evidence, then export the results.
+              Connect a new or existing ChatGPT or Claude chat with a bookmark.
+              Ask a web-search question in the AI tab; this tracker refreshes
+              automatically as the conversation is saved. No manual JSON
+              download needed.
             </p>
             <div class="hero-cta">
-              <button class="btn primary" data-sample="all">
-                ▶ Try the original samples
+              <button class="btn primary" data-goto="how">
+                Connect my AI chat →</button
+              ><button class="btn" data-goto="add">Import a file instead</button
+              ><button class="text-button" data-sample="all">
+                Explore sample data
               </button>
-              <button class="btn" data-goto="add">Add a response</button>
-              <button class="btn" data-goto="how">How it works</button>
             </div>
+            <p class="small hero-note">
+              Chat sync refreshes saved evidence about every 15 seconds. It is
+              not token-by-token network-stream capture.
+            </p>
           </div>
         </div>
         <div id="demo-banner" class="banner hidden">
-          Showing <b>preloaded sample evidence</b>. Click “Try the original
-          samples” to parse the supplied files again, or add a response on the
+          Showing <b>sample evidence, not your personal research</b>. Synthetic
+          examples are labelled individually. Add your own response on the
           <a href="#" data-goto="add">Add data</a> tab.
         </div>
         <div class="cards" id="kpis"></div>
@@ -84,14 +127,14 @@
           <div class="panel">
             <h3>Domains: retrieved vs cited</h3>
             <p class="muted">
-              Top 10 domains across runs. Grey = retrieved, green = retrieved +
-              cited. Bars share a zero baseline and count scale.
+              Top 10 domains in this collection. Grey = retrieved, green =
+              retrieved + cited. Bars share a zero baseline and count scale.
             </p>
             <div id="domain-bars"></div>
           </div>
         </div>
         <div class="panel">
-          <h3>Latest runs</h3>
+          <h3>Latest analyses</h3>
           <div id="latest-runs"></div>
         </div>
       </section>
@@ -99,11 +142,15 @@
       <section id="tab-runs" class="tab">
         <div class="panel">
           <div class="row-between">
-            <h3>All runs</h3>
+            <h3>Analyses in this collection</h3>
             <div class="actions">
-              <button class="btn" id="export-csv">Export sources CSV</button>
-              <button class="btn" id="export-json">Export JSON</button>
-              <button class="btn danger" id="clear-all">Clear all</button>
+              <button class="btn" id="export-csv">Export collection CSV</button>
+              <button class="btn" id="export-json">
+                Export collection JSON
+              </button>
+              <button class="btn danger" id="clear-all">
+                Clear collection
+              </button>
             </div>
           </div>
           <div id="runs-table"></div>
@@ -112,26 +159,6 @@
       </section>
 
       <section id="tab-add" class="tab">
-        <div class="panel try">
-          <div class="row-between">
-            <div>
-              <h3>Try it in 10 seconds</h3>
-              <p class="muted">
-                These two supplied saved-chat files are parsed in this browser.
-                Expected: ChatGPT 29 retrieved / 7 cited; Claude 9 retrieved / 7
-                cited. Neither sample is proof of a live stream capture.
-              </p>
-            </div>
-            <div class="actions">
-              <button class="btn primary" data-sample="chatgpt">
-                Load ChatGPT sample
-              </button>
-              <button class="btn primary" data-sample="claude">
-                Load Claude sample
-              </button>
-            </div>
-          </div>
-        </div>
         <div class="grid2">
           <div class="panel">
             <h3>1 · Add a saved response or capture</h3>
@@ -140,7 +167,57 @@
               pasted stream, choose its provider below. A copied answer or
               screenshot is not a supported response file.
             </p>
-            <label for="provider-hint">Raw stream provider</label>
+            <details id="file-guide" class="file-guide">
+              <summary>Where do I get this file?</summary>
+              <p>
+                This dashboard inspects existing evidence. It does not send
+                prompts to an AI assistant.
+              </p>
+              <label for="guide-provider">Which assistant are you using?</label>
+              <select id="guide-provider">
+                <option value="chatgpt">ChatGPT</option>
+                <option value="claude">Claude</option>
+              </select>
+              <h4>Option A · Import a saved chat (easier)</h4>
+              <ol class="steps">
+                <li>
+                  Open a <b id="guide-name">ChatGPT</b> conversation that used
+                  web search.
+                </li>
+                <li>
+                  Use “Connect your current chat” on this page. Drag its button
+                  to your bookmarks bar, then click it inside that chat.
+                </li>
+                <li>
+                  If automatic transfer fails, click Save snapshot in the AI-tab
+                  panel, then upload the downloaded
+                  <code id="guide-filename">chatgpt_raw.json</code> here.
+                  Private endpoints may change.
+                </li>
+              </ol>
+              <p class="small muted">
+                A normal account data export, copied answer, share link, or
+                screenshot is not the same input. Saved chats may omit search
+                queries and metadata.
+              </p>
+              <h4>Option B · Record a network response (advanced)</h4>
+              <p>
+                Start the local recorder <b>before</b> sending a new web-search
+                prompt. It requires Node.js 22+ and Chrome. Then import its JSON
+                capture.
+              </p>
+              <pre id="guide-command">
+node runner/capture.mjs --provider chatgpt</pre>
+              <button class="btn" id="open-capture-guide">
+                Open capture instructions
+              </button>
+              <p class="small muted">
+                Success means an analysis opens with source evidence or a clear
+                limitation—not just a downloaded file. No authenticated provider
+                capture has been verified for this release.
+              </p>
+            </details>
+            <label for="provider-hint">Raw stream provider (advanced)</label>
             <select id="provider-hint">
               <option value="">Auto-detect JSON / HAR / capture</option>
               <option value="chatgpt">
@@ -200,7 +277,7 @@
             <p id="import-feedback" role="status" aria-live="polite"></p>
           </div>
           <div class="panel">
-            <h3>Optional · Import an open saved chat</h3>
+            <h3>Connect your current chat</h3>
             <ol class="steps">
               <li>
                 Show your bookmarks bar
@@ -209,25 +286,52 @@
               <li>
                 Drag this button onto the bookmarks bar:
                 <div class="center">
-                  <a id="bookmarklet" class="bookmarklet" href="#"
-                    >📌 Send to Citation Tracker</a
+                  <a
+                    id="bookmarklet"
+                    class="bookmarklet"
+                    data-watch-bookmark
+                    href="#"
+                    >Watch this chat</a
                   >
                 </div>
               </li>
               <li>
-                Open a ChatGPT or Claude chat that searched the web, then click
-                the bookmark. Private provider endpoints may change or block
-                this.
+                Open a new or existing ChatGPT or Claude chat, then click the
+                bookmark. A tracker tab and a small control panel open. Keep
+                both tabs open.
               </li>
               <li>
-                If the endpoint and browser hand-off succeed, this dashboard
-                opens with the run.
+                Enable web search and send your prompt in the AI tab. The
+                dashboard checks for new saved evidence about every 15 seconds.
+                Use Sync now or Pause in either tab.
               </li>
             </ol>
             <p class="muted small">
-              If your browser blocks the hand-off, the bookmark downloads the
-              chat as a JSON file instead. Drop that file in the upload box.
+              If connection is blocked, allow pop-ups and re-add the bookmark
+              from this tracker address. After a snapshot is read, Save snapshot
+              in the AI-tab panel downloads a JSON fallback. Full page reloads
+              require reconnecting.
             </p>
+          </div>
+        </div>
+        <div class="panel try">
+          <div class="row-between">
+            <div>
+              <h3>Optional · Explore the supplied samples</h3>
+              <p class="muted">
+                These two supplied saved-chat files are parsed in this browser.
+                Expected: ChatGPT 29 retrieved / 7 cited; Claude 9 retrieved / 7
+                cited. Neither sample is proof of a live stream capture.
+              </p>
+            </div>
+            <div class="actions">
+              <button class="btn" data-sample="chatgpt">
+                Load ChatGPT sample
+              </button>
+              <button class="btn" data-sample="claude">
+                Load Claude sample
+              </button>
+            </div>
           </div>
         </div>
         <div class="panel">
@@ -248,7 +352,7 @@
           </div>
         </div>
         <div class="panel">
-          <details>
+          <details id="capture-guide">
             <summary>
               Advanced · Capture a live network response locally
             </summary>
@@ -274,7 +378,8 @@
                 rather than inventing results.
               </li>
             </ol>
-            <pre>node runner/capture.mjs --provider chatgpt</pre>
+            <pre id="capture-command">
+node runner/capture.mjs --provider chatgpt</pre>
             <p class="muted">
               Other capture targets: <code>claude</code>, <code>gemini</code>,
               <code>perplexity</code>, <code>grok</code>. Capture targeting is
@@ -314,24 +419,146 @@
 
       <section id="tab-how" class="tab">
         <div class="panel">
-          <h3>Three steps, no account required for the demo</h3>
-          <div class="flow">
+          <p class="eyebrow">START WITH YOUR OWN CHAT</p>
+          <h2>Bookmark it. Ask a question. Watch your sources.</h2>
+          <p class="muted">
+            Connect before sending your first prompt, or attach to a chat you
+            already have open. Your normal AI login stays on the AI site. Use a
+            desktop browser for the bookmark workflow.
+          </p>
+          <div class="flow chat-flow">
             <div class="node">
-              1. Load a sample<br /><span>or add a saved response</span>
-            </div>
-            <div class="arrow">→</div>
-            <div class="node">
-              2. Select a run<br /><span
-                >inspect queries and full snapshots</span
+              <b>1 · Add the bookmark</b
+              ><span
+                >Show your bookmarks bar with Ctrl+Shift+B (Mac: ⌘+Shift+B),
+                then drag this button onto it.</span
+              ><a class="bookmarklet" data-watch-bookmark href="#"
+                >Watch this chat</a
+              ><small class="muted"
+                >Drag it—clicking here only shows instructions.</small
               >
             </div>
-            <div class="arrow">→</div>
+            <div class="arrow" aria-hidden="true">→</div>
             <div class="node">
-              3. Export evidence<br /><span
-                >CSV sources or round-trip JSON</span
+              <b>2 · Connect your AI tab</b
+              ><span
+                >Open a new chat below. In that AI tab, click the bookmark you
+                just added. Allow its tracker tab to open.</span
+              >
+              <div class="actions">
+                <a
+                  class="btn"
+                  href="https://chatgpt.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Open ChatGPT ↗</a
+                ><a
+                  class="btn"
+                  href="https://claude.ai/new"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Open Claude ↗</a
+                >
+              </div>
+              <small class="muted"
+                >Look for “Citation Tracker · chat sync” in the AI tab.</small
+              >
+            </div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div class="node">
+              <b>3 · Ask, then inspect</b
+              ><span
+                >Enable web search and send a question. Keep both tabs open. New
+                sources and citations sync to My data when the chat saves
+                them.</span
+              ><button class="btn" id="copy-starter-prompt">
+                Copy a search prompt</button
+              ><small class="muted"
+                >Usually checked every 15 seconds; Sync now is available in both
+                tabs.</small
               >
             </div>
           </div>
+          <label class="small" for="starter-prompt"
+            >A starter prompt—paste this into the AI chat, not this
+            dashboard</label
+          >
+          <textarea id="starter-prompt" readonly>
+Search the web: best YouTube tutorials to learn n8n automation in 2026</textarea>
+          <div class="metric-example">
+            <b>What “watching” means</b>
+            <p>
+              The bookmark reads the
+              <b>current tab's saved conversation</b> repeatedly with your own
+              login. Switching chats in that tab changes which chat is synced.
+              This is automatic chat sync, not a network-stream recorder.
+              Queries or rich metadata that the site does not save cannot appear
+              here. An answer still being generated may have incomplete
+              evidence.
+            </p>
+          </div>
+          <details class="file-guide">
+            <summary>Connection trouble? Try these quick fixes</summary>
+            <ul>
+              <li>
+                Keep the local server running. Open
+                <code>http://localhost:8000/</code> or
+                <code>http://127.0.0.1:8000/</code>, not the terminal's
+                <code>[::]</code> bind address.
+              </li>
+              <li>
+                Allow pop-ups for the AI site. Replace the old “Send to Citation
+                Tracker” bookmark with this new “Watch this chat” bookmark.
+              </li>
+              <li>
+                The bookmark remembers this tracker address. Re-add it if you
+                move between localhost, 127.0.0.1, or GitHub Pages.
+              </li>
+              <li>
+                Click the bookmark again after reloading the AI page or tracker.
+                Normal in-app new-chat navigation can stay connected.
+              </li>
+              <li>
+                If login, rate limits, browser policies, or changed private
+                endpoints block access, the panel reports that. Stop or pause it
+                rather than retrying repeatedly.
+              </li>
+              <li>
+                After a successful read, use Save snapshot in the AI-tab panel
+                if automatic transfer fails. File imports and the advanced
+                network recorder remain available on Add data.
+              </li>
+            </ul>
+          </details>
+          <details class="sample-walkthrough">
+            <summary>Just exploring? Try an example instead</summary>
+            <p class="muted">
+              Optional saved-chat samples let you test without connecting an
+              account. They are not new live research.
+            </p>
+            <div class="actions">
+              <button class="btn" data-walkthrough="load">Load example</button
+              ><button class="btn" data-walkthrough="inspect">
+                Open example sources</button
+              ><button class="btn" data-walkthrough="export">
+                Download example CSV
+              </button>
+            </div>
+          </details>
+          <div class="metric-example">
+            <b>A simple example of the numbers</b>
+            <p>
+              If a response retrieves 10 sources and cites 3 of them, its
+              matched citation rate is <b>30%</b>. That describes source use—not
+              answer quality or accuracy.
+            </p>
+          </div>
+          <p>
+            Prefer manual import?
+            <button class="text-button" id="show-file-guide">
+              Show me how to get a response file →
+            </button>
+          </p>
           <h4>What the numbers mean</h4>
           <ul>
             <li>
@@ -343,98 +570,105 @@
               resolved citation reference—not just any link in answer text.
             </li>
             <li>
-              <b>Matched rate:</b> retrieved-and-cited sources divided by
-              observed retrievals. A dash means no observed denominator.
+              <b>Retrieved sources cited (%):</b> retrieved-and-cited sources
+              divided by observed retrievals. A dash means no observed
+              denominator.
             </li>
             <li>
-              <b>Query:</b> a search query visible in supported tool fields.
-              Missing query data is not zero searches.
+              <b>AI search query:</b> a search query visible in supported tool
+              fields. Missing query data is not zero searches.
             </li>
           </ul>
-          <h4>Supported saved response formats</h4>
-          <div class="table-scroll">
-            <table class="tbl">
-              <thead>
-                <tr>
-                  <th>Provider format</th>
-                  <th>Retrieval evidence</th>
-                  <th>Citation evidence / limit</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>ChatGPT saved chat</td>
-                  <td>metadata.search_result_groups</td>
-                  <td>
-                    Resolved inline references and content_references; active
-                    branch when available
-                  </td>
-                </tr>
-                <tr>
-                  <td>Claude saved chat</td>
-                  <td>Named web_search tool results</td>
-                  <td>Text-block citations; tool blocks must be included</td>
-                </tr>
-                <tr>
-                  <td>OpenAI Responses API</td>
-                  <td>web_search_call.action.sources</td>
-                  <td>
-                    URL annotations; request source inclusion when calling the
-                    API
-                  </td>
-                </tr>
-                <tr>
-                  <td>Anthropic Messages API</td>
-                  <td>web_search_tool_result</td>
-                  <td>Text-block web citations</td>
-                </tr>
-                <tr>
-                  <td>Gemini generateContent API</td>
-                  <td>Grounding chunks</td>
-                  <td>
-                    Grounding support indices; first candidate only, not a full
-                    search log
-                  </td>
-                </tr>
-                <tr>
-                  <td>Perplexity Sonar API</td>
-                  <td>search_results if supplied</td>
-                  <td>
-                    citations; citation-only when retrieval records are missing
-                  </td>
-                </tr>
-                <tr>
-                  <td>Grok / xAI completion API</td>
-                  <td>search_results if supplied</td>
-                  <td>
-                    citations / URL annotations; model must identify Grok or
-                    provider be explicit
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="muted">
-            API formats are fixture-tested. That does not establish
-            compatibility with each provider's consumer website, all API
-            versions, or live accounts. SSE support is scoped in the capture
-            guide. Unknown providers can use the explicit normalized schema.
-          </p>
-          <h4>Full snapshots, only when present</h4>
-          <p>
-            Run details retain full available snippets, publication dates,
-            attribution, channel name, followers, verification, views, likes,
-            description, and text timecodes. Missing metadata stays missing. No
-            transcript or extra source page is fetched. Provider-visible status
-            labels are not hidden reasoning.
-          </p>
+          <details class="technical-details">
+            <summary>Technical details · Formats and evidence fields</summary>
+            <h4>Supported saved response formats</h4>
+            <div class="table-scroll">
+              <table class="tbl">
+                <thead>
+                  <tr>
+                    <th>Provider format</th>
+                    <th>Retrieval evidence</th>
+                    <th>Citation evidence / limit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ChatGPT saved chat</td>
+                    <td>metadata.search_result_groups</td>
+                    <td>
+                      Resolved inline references and content_references; active
+                      branch when available
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Claude saved chat</td>
+                    <td>Named web_search tool results</td>
+                    <td>Text-block citations; tool blocks must be included</td>
+                  </tr>
+                  <tr>
+                    <td>OpenAI Responses API</td>
+                    <td>web_search_call.action.sources</td>
+                    <td>
+                      URL annotations; request source inclusion when calling the
+                      API
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Anthropic Messages API</td>
+                    <td>web_search_tool_result</td>
+                    <td>Text-block web citations</td>
+                  </tr>
+                  <tr>
+                    <td>Gemini generateContent API</td>
+                    <td>Grounding chunks</td>
+                    <td>
+                      Grounding support indices; first candidate only, not a
+                      full search log
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Perplexity Sonar API</td>
+                    <td>search_results if supplied</td>
+                    <td>
+                      citations; citation-only when retrieval records are
+                      missing
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Grok / xAI completion API</td>
+                    <td>search_results if supplied</td>
+                    <td>
+                      citations / URL annotations; model must identify Grok or
+                      provider be explicit
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="muted">
+              API formats are fixture-tested. That does not establish
+              compatibility with each provider's consumer website, all API
+              versions, or live accounts. SSE support is scoped in the capture
+              guide. Unknown providers can use the explicit normalized schema.
+            </p>
+            <h4>Source details, only when present</h4>
+            <p>
+              Analysis details retain full available snippets, publication
+              dates, attribution, channel name, followers, verification, views,
+              likes, description, and text timecodes. Missing metadata stays
+              missing. No transcript or extra source page is fetched.
+              Provider-visible status labels are not hidden reasoning.
+            </p>
+          </details>
           <h4>Privacy and storage</h4>
           <p>
             Imports are parsed here and normalized evidence is stored in this
-            browser's localStorage. No analytics, API keys, or import uploads
-            are used. Hosting still makes normal asset requests; source links
-            contact those sites. Browser storage is origin-wide, not encrypted,
-            and not synced across devices. Export a backup before clearing it.
+            browser's localStorage. No analytics or API keys are used. The
+            bookmark sends this selected conversation directly to your tracker
+            tab; the tracker parses it locally. Hosting still makes normal asset
+            requests; source links contact those sites. Browser storage is
+            origin-wide, not encrypted, and not synced across devices. Export a
+            backup before clearing it.
           </p>
           <h4>Assignment status</h4>
           <p>
@@ -484,6 +718,8 @@
     <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
     <script src="parser.js"></script>
     <script src="demo-data.js"></script>
+    <script src="chat-watcher.js"></script>
+    <script src="live-sync.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

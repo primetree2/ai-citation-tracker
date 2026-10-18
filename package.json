@@ -1,13 +1,22 @@
 {
   "name": "ai-citation-tracker",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "private": true,
   "description": "A static, local-first citation evidence dashboard",
   "scripts": {
     "build": "node runner/build.mjs",
-    "test": "node --test tests/core.test.cjs",
+    "test": "node --test tests/core.test.cjs tests/chat-watcher.test.cjs",
     "capture": "node runner/capture.mjs",
-    "serve": "python -m http.server 8000"
+    "test:browser": "node tests/browser-smoke.mjs",
+    "test:capture": "node --test tests/capture.test.mjs",
+    "serve": "python runner/serve.py",
+    "test:chat": "node tests/watch-browser.mjs",
+    "test:server": "python tests/server.test.py",
+    "check": "node runner/check.mjs",
+    "build:pages": "node runner/build.mjs && node runner/prepare-pages.mjs",
+    "test:pages": "node runner/test-pages.mjs"
   },
-  "engines": { "node": ">=22" }
+  "engines": {
+    "node": ">=22"
+  }
 }

@@ -1,167 +1,133 @@
 # AI Citation Tracker
 
-I built a small, local-first dashboard to inspect **which sources an AI response retrieved and which it cited**. I kept my original four tabs—Overview, Runs, Add data, and How it works—instead of turning the project into a larger workspace app.
+See which sources an AI chat retrieves—and which it cites. A static, local-first dashboard with bookmark-based synchronization for new or existing ChatGPT and Claude chats.
 
-**[Live site](https://primetree2.github.io/ai-citation-tracker/)** · [My requirement audit](docs/REQUIREMENTS.md) · [My capture workflow](docs/CAPTURE.md)
+**[Hosted dashboard](https://primetree2.github.io/ai-citation-tracker/)** · [Chat guide](docs/WATCH_CHAT.md) · [Deployment guide](docs/DEPLOYMENT.md) · [Requirement audit](docs/REQUIREMENTS.md)
 
-## My 30-second demo
+> **Scope:** automatic **saved-chat sync**, not token-by-token network-stream capture. Real authenticated ChatGPT/Claude verification remains pending; the connection flow is tested using local synthetic provider pages. Private endpoints and browser policies can change or block it.
 
-1. I open the live site and click **Try the original samples**.
-2. I select a run on **Runs**. I can inspect search queries, evidence limits, source links, and **Full source snapshot**.
-3. I use **Export sources CSV** or **Export JSON** on Runs.
-4. I open **Add data → Try another provider format** to test an API fixture without a login or API key.
+## Use it on GitHub Pages
 
-I expect **29 retrieved / 7 cited for ChatGPT**, and **9 retrieved / 7 cited for Claude** in the supplied saved-chat files. I have no observable ChatGPT fan-out queries in that original file; I have one in the Claude file. I do not present missing data as zero searches.
+No Python, Node.js, API key, or backend is needed to use the hosted dashboard.
 
-I make no provider request when loading these samples. My five extra API samples are explicitly synthetic, not new real-world research. I label the preloaded original evidence and remove it when importing a response; I do not silently mix it with a fresh import. I can re-load either original sample at any time.
+1. Open the hosted site and select **How it works**.
+2. Show your desktop bookmarks bar: **Ctrl+Shift+B**, or **⌘+Shift+B** on Mac. Drag **Watch this chat** onto it.
+3. Open a new or existing ChatGPT/Claude chat and click that bookmark **inside the AI tab**. Allow its tracker tab to open.
+4. Enable web search and send a prompt. Keep both tabs open. Available saved evidence syncs into **My data** about every 15 seconds; follow-ups update the same conversation analysis.
+5. Use **Sync now**, **Pause/Resume**, **Stop**, or **Save snapshot** as needed. Search sources and export the visible rows or the whole selected collection.
 
-![My original four-tab dashboard](docs/screenshot.png)
+**Replace older bookmarks after upgrading.** Add the new bookmark from the **hosted site** if you want it to open GitHub Pages. A bookmark created on localhost still points to localhost. Local and hosted browser storage are separate—export/import JSON to transfer a collection. See [troubleshooting](docs/WATCH_CHAT.md).
 
-## What I changed
+Examples remain optional and separate from personal data.
 
-- I preserved the original navigation, inline run details, sample buttons, and simple overview.
-- I added saved-response adapters for OpenAI Responses, Anthropic Messages, Gemini grounding, Perplexity Sonar, and Grok/xAI, alongside ChatGPT and Claude saved chats.
-- I added JSONL, round-trip workspace JSON, HAR response-content imports, supported SSE event reconstruction, and an optional local Chrome capture utility.
-- I keep retrieved, cited, and citation-only evidence distinct. My matched rate is **retrieved AND cited / retrieved**, not all citations / retrieved.
-- I preserve available source snippets and mapped metadata without truncating the exported values. I can expand the snapshot in the UI.
-- I added parser tests, visible import failures, safer URL handling, formula-safe CSV, keyboard-accessible run buttons, and contained mobile tables.
+## Update your existing GitHub-connected folder
 
-## My scope, without overclaiming
+**Yes: copy the contents into your existing repository. Do not nest another project folder or replace `.git`.**
 
-I have verified the original two saved-chat files and the included synthetic fixtures. I have tested the capture utility end to end against a **local synthetic SSE server**, not authenticated provider websites. I still need a successful live ChatGPT stream capture and real rich YouTube metadata to substantiate the original task's full investigation. I treat the extra provider API adapters as compatibility work, not proof that I investigated those consumer sites' live traffic.
+For the folder you described, the result should be:
 
-I can submit a partial investigation because the brief permits partial work. I cannot honestly mark every task complete yet. I keep the exact gaps in [my requirement audit](docs/REQUIREMENTS.md).
+```text
+Desktop/ai-citation-tracker/
+  .git/                         keep your existing Git history/remotes
+  .github/workflows/             copy/replace the supplied workflow files
+  .nojekyll
+  index.html
+  package.json
+  README.md
+  site/
+  src/
+  runner/
+  sample-data/
+  sample-output/
+  tests/
+  docs/
+  start-local.bat
+```
 
-## My GitHub Pages setup
-
-I host this as a static site; I do not need Netlify, a backend, a database service, an API key, or a build step.
-
-1. I copy the repository contents into my existing `ai-citation-tracker` Git working folder, preserving `.git`.
-2. I push to `main`.
-3. In GitHub **Settings → Pages**, I choose **Deploy from a branch**, **main**, and **/(root)**.
-4. I open `https://primetree2.github.io/ai-citation-tracker/`. The root redirects to `site/`.
-
-I keep `sample-data/` next to `site/` so sample buttons work. If I previously configured a different Pages workflow, I select branch deployment or deliberately adapt that workflow. I do not publish a browser profile, raw HAR, private capture, or credentials.
-
-### My safe PowerShell copy workflow
-
-I download this release as `ai-citation-tracker-simple-upgrade.zip`. I use a fresh extraction folder rather than mixing two old ZIP extractions.
+1. Download and extract `ai-citation-tracker-github-pages.zip` into a **fresh** Downloads folder.
+2. Open the extracted **`ai-citation-tracker-main`** folder.
+3. Copy **everything inside it**, including `.github`, `.gitignore`, and `.nojekyll`, into your existing `Desktop/ai-citation-tracker`. Replace matching project files.
+4. Keep the existing `.git` directory, any reviewed `CNAME`, and any repository-specific configuration you intentionally maintain. The ZIP contains no `.git` directory. Review the diff before pushing; do not blindly delete unrelated files.
+5. In your existing repository terminal:
 
 ```powershell
-$zip = Join-Path $HOME "Downloads\ai-citation-tracker-simple-upgrade.zip"
-$extract = Join-Path $HOME ("Downloads\citation-upgrade-" + (Get-Date -Format "yyyyMMdd-HHmmss"))
-$repo = Join-Path $HOME "OneDrive\Desktop\ai-citation-tracker"
-Expand-Archive -LiteralPath $zip -DestinationPath $extract
-$source = Join-Path $extract "ai-citation-tracker-main"
-if (!(Test-Path (Join-Path $source "site\index.html"))) { throw "Extracted project not found" }
-if (!(Test-Path (Join-Path $repo ".git"))) { throw "Existing Git repository not found" }
-robocopy $source $repo /E /XD .git node_modules browser-profile .capture-profile __pycache__ test-results /XF *.pyc
-if ($LASTEXITCODE -ge 8) { throw "Copy failed; inspect robocopy output before pushing" }
-Set-Location $repo
+# First confirm you are in the existing repository, not Downloads.
+git remote -v
+git branch --show-current
 git status
 git diff --stat
-# I inspect the changes before staging them.
+
+# After reviewing changes and confirming no private captures or secrets are staged:
 git add .
 git diff --cached --stat
-git commit -m "Keep original UI and extend provider evidence support"
+git diff --cached
+
+git commit -m "Deploy chat-first citation tracker"
 git push origin main
 ```
 
-I do **not** use `/MIR`, which could delete files. I use `git status` to check for old untracked files from another version before staging. This copy overlays matching files but intentionally does not delete unrelated files. I never replace or remove my existing `.git` directory. A clean status after extraction into Downloads alone is expected; Git only sees changes after I copy them into the working folder.
+The push command assumes your publishing branch is **main**. If your repository uses a different branch, use the correct branch and align Pages settings/workflow triggers deliberately; do not rename or force-push a branch just to follow this example.
 
-## My local preview
+**Do not copy the outer folder itself** into the repository: `ai-citation-tracker/ai-citation-tracker-main/site/` is the wrong structure for the supplied root deployment. A clean Git status while working only in Downloads does not update your Desktop repository.
 
-I run this from the repository root with Python installed:
+## Choose your GitHub Pages publishing mode (once)
 
-```powershell
-python -m http.server 8000
-```
+Pushing only deploys automatically if Pages is configured. Both modes below are supported:
 
-I open `http://localhost:8000/`. I do not double-click `site/index.html`, because local `file://` restrictions can break sample fetches. My local and GitHub Pages browser storage are separate because they have different origins.
+### A · Keep existing branch deployment (simplest)
 
-## My own data
+In **GitHub → repository → Settings → Pages**:
 
-I use **Add data** to upload a supported saved response, HAR containing response bodies, `.jsonl`, or `.sse` file. I choose the raw-stream provider for raw SSE; regular JSON is detected automatically. I can also paste a complete JSON response or supported SSE text. I cannot import screenshots or copied answer prose as retrieval evidence.
+- **Source:** Deploy from a branch
+- **Branch:** `main`
+- **Folder:** `/(root)`
 
-I cap imports at 15 MB per file. I parse all records in a JSON/JSONL file before saving that file's runs; one malformed record rejects that file. In a multi-file batch, other valid files can still import. Re-imports replace the same provider + run ID. My JSON exports round-trip through the same import path, including legacy exports from this project.
+If these are already your settings, **no publishing-mode change is needed**. Push the copied files; GitHub's built-in Pages deployment publishes them. The custom `Deploy GitHub Pages` workflow detects branch mode and intentionally skips its own deployment.
 
-I can use an [explicit normalized record](sample-data/api/custom.json) for another provider. I regard its flags as the mapper's assertions, not independent verification.
+### B · Use GitHub Actions deployment
 
-## My optional live capture
+In **Settings → Pages**, set **Source → GitHub Actions**. Push to `main`, or run **Actions → Deploy GitHub Pages → Run workflow** after changing the setting.
 
-I install Node.js 22+ and Chrome, then run:
+The supplied workflow checks the configured Pages source. In Actions mode, it validates/tests the project, prepares an allowlisted `_site/` artifact, and deploys it with the official Pages actions. Build output is not committed. If Pages is disabled or its settings cannot be read, the workflow warns and does **not** claim deployment succeeded.
 
-```powershell
-node runner/capture.mjs --provider chatgpt
-```
+The job needs the included `pages: write` and `id-token: write` permissions; repository/organization policies and environment protection rules can still require owner action. Details, safety notes, and failure fixes are in [DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
-I log in manually in its dedicated browser, enable web search, send one prompt, wait for the response, and press Enter in the terminal. I import the resulting `runner/out/…json` into Add data. I follow [my capture guide](docs/CAPTURE.md) for Chrome paths, other targets, protocol limits, HAR alternatives, and failures.
+## Check the deployment
 
-I do not need Node or Chrome automation to use the hosted dashboard. I never put provider API secrets in GitHub Pages JavaScript.
+1. Watch **Actions** for unit tests, static release checks, and the relevant Pages deployment.
+2. Open `https://primetree2.github.io/ai-citation-tracker/`. The root redirects to `site/` with project-relative asset paths.
+3. Confirm **Connect my AI chat**, **Watch this chat**, and the bookmark-first guide are present. If stale, hard-refresh with **Ctrl+Shift+R** (Mac: **⌘+Shift+R**).
+4. Re-add the bookmark from this hosted address. Try one authorized web-search chat, then check connection status, source counts, follow-up refresh, Pause/Stop, and export.
 
-## My existing batch automation
+The hosted workflow remains subject to the same browser/private-endpoint limitations as local use. Deploying is not proof of authenticated provider compatibility or completion of the research task.
 
-I retain the original saved-chat Playwright workflow for **ChatGPT and Claude only**. I label it experimental because private endpoints, selectors, account access, and bot defenses can change. I do not count a completed saved-chat download as a successful stream investigation.
-
-```powershell
-python -m pip install -r runner/requirements.txt
-python -m playwright install chromium
-node --version
-python runner/batch_runner.py --login
-python runner/batch_runner.py --platform chatgpt
-```
-
-I edit `runner/prompts.txt` before running a small batch. I can pass `--channel chrome` to use installed Chrome. The Python parser bridge requires Node and calls the same engine as the dashboard; I no longer maintain a divergent Python extraction algorithm. I use accounts I am authorized to access, keep volumes small, and respect provider terms and rate limits.
-
-## My repository structure
-
-```text
-index.html                 GitHub Pages entry redirect
-site/                      ready-to-host dashboard, original four tabs
-  parser.js                generated standalone browser/CommonJS parser
-  app.js                   rendering, imports, local storage, exports
-  styles.css               original visual design + responsive fixes
-  demo-data.js              preloaded original saved-chat evidence
-src/                       authoritative, dependency-free parser modules
-  model.js                 URLs, source snapshots, deduplication, metrics
-  adapters.js              seven saved-response format adapters
-  streams.js               supported SSE, HAR, capture-envelope imports
-  export.js                round-trip JSON and safe CSV
-runner/
-  capture.mjs              optional browser-level CDP network recorder
-  parse.cjs                file/stdin CLI using the browser parser
-  build.mjs                builds site/parser.js from src/
-  batch_runner.py          original optional two-provider saved-chat runner
-  parser.py                shared-parser compatibility bridge
-sample-data/
-  chatgpt_raw.json          supplied original saved-chat artifact
-  claude_raw.json           supplied original saved-chat artifact
-  api/                     clearly synthetic API fixtures + custom schema
-  streams/                 clearly synthetic ChatGPT patch replay
-sample-output/             reproducible CSV/JSON from the original files
-tests/                     parser and browser regression tests
-docs/                      usage, formats, capture, audit, submission template
-```
-
-## My development checks
-
-I use Node's built-in tools; I have no production npm dependencies or install step.
+## Run locally (optional)
 
 ```powershell
-npm run build
-npm test
-node runner/parse.cjs sample-data/chatgpt_raw.json
-node runner/parse.cjs sample-data/api/grok.json --csv
+python runner/serve.py
 ```
 
-I rebuild after changing `src/`, and commit the generated `site/parser.js` so GitHub Pages needs no build. My CI verifies that the generated file matches source and runs the parser tests. My optional browser smoke test needs Chrome/Chromium and Python, with setup in `docs/TESTING.md`.
+Or double-click **start-local.bat** on Windows. The launcher opens `http://127.0.0.1:8000/`; keep the terminal open. If the port is occupied, stop the old server or use `python runner/serve.py --port 8001`. Do not use Python's `[::]` bind address as a browser URL, and do not double-click the HTML file.
 
-## My privacy boundary
+## Development checks
 
-I parse imports locally and store normalized prompts, queries, source URLs, snippets, metadata, and evidence fields in localStorage. I do not retain complete raw chats in browser storage. Anyone with access to that browser profile or another script on the same hosting origin may read that storage. I export a backup before clearing it.
+Node.js **22+** is needed for development checks, not for hosted use. There are no production npm dependencies and no `npm install` step.
 
-My local capture files contain private response bodies and may contain personal information even though my recorder does not save request headers, cookies, or access tokens from headers. I inspect and redact them before sharing. I keep capture outputs and profiles ignored by Git. I included only the original supplied sample artifacts and clearly synthetic additional fixtures; I do not treat their embedded dates or model names as independently verified facts.
+```powershell
+npm run check          # Syntax, assets, relative paths, generated parser freshness
+npm test               # 46 parser/watcher tests
+npm run build          # Rebuild site/parser.js after changing src/
+npm run build:pages    # Build parser and prepare public _site/ artifact
+npm run test:pages     # Optional Chromium test of _site/ at /ai-citation-tracker/
+```
 
-## My submission
+Commit the generated `site/parser.js` when changing the parser source. The freshness check does not rewrite files. Additional browser, chat-sync, launcher, and synthetic capture tests are described in [TESTING.md](docs/TESTING.md).
 
-I use [my Google Doc handoff template](docs/SUBMISSION.md) to assemble the single link requested by the recruiter. I add my **actual** elapsed time, tools, observed failures, real output, and next steps. I do not invent a successful live capture or claim that a source contained rich metadata when it did not.
+## Data, privacy, and research boundaries
+
+- Imports are parsed locally. Only normalized evidence is kept in localStorage—not complete raw chats. Storage is origin-wide, unencrypted, and not synced across devices. Scripts/people with access to the same origin/browser profile may read it.
+- The bookmark sends the selected conversation directly from the AI tab to the tracker tab. Its ChatGPT auth token stays in the AI tab; it is not posted, exported, or stored by this code. Switching chats in that tab changes what is synced. [Details](docs/WATCH_CHAT.md).
+- Sample data stays separate from My data. The supplied ChatGPT artifact contains **42 exact URL variants → 29 normalized retrieved sources, 7 cited**; Claude has **9 retrieved, 7 cited**. Extra API fixtures are synthetic, not new platform research. Retrieval is not proof a page was read.
+- Private captures, browser profiles, cookies/tokens, `.env` files, and unrevised private exports must never enter Git. `.gitignore` does not protect files already tracked. Inspect the staged diff and public fixtures before pushing.
+- Branch-root deployment publishes the repository's tracked public site files; Actions mode deploys only the allowlisted artifact. A **public repository still exposes its committed source files regardless of which assets Pages deploys**.
+- Live ChatGPT stream capture, observable live-only fan-out queries, rich YouTube metadata verification, and the final recruiter handoff remain separate pending work. See the [requirement audit](docs/REQUIREMENTS.md), [formats](docs/FORMATS.md), [capture guide](docs/CAPTURE.md), and [submission template](docs/SUBMISSION.md).

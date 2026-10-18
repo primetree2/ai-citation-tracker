@@ -125,9 +125,19 @@ function normalizeRun(input) {
       warnings.add("An invalid or unsafe source URL was skipped.");
       continue;
     }
+    if (s.observedUrls != null && !Array.isArray(s.observedUrls))
+      throw new Error("Source observedUrls must be an array.");
+    const observedUrls = (
+      s.observedUrls?.length ? s.observedUrls : [s.url]
+    ).filter(
+      (value) => typeof value === "string" && canonicalUrl(value) === url,
+    );
     const prev = sources.get(url);
     const next = {
       url,
+      observedUrls: [
+        ...new Set(observedUrls.length ? observedUrls : [String(s.url)]),
+      ],
       title: String(s.title || domainOf(url)),
       domain: domainOf(url),
       snapshot: snapshotOf(s.snapshot || s),
@@ -138,6 +148,9 @@ function normalizeRun(input) {
     };
     if (prev) {
       if (!s.title || s.title === domainOf(url)) next.title = prev.title;
+      next.observedUrls = [
+        ...new Set([...prev.observedUrls, ...next.observedUrls]),
+      ];
       next.cited ||= prev.cited;
       next.retrieved ||= prev.retrieved;
       next.snapshot = { ...prev.snapshot, ...next.snapshot };
@@ -160,6 +173,15 @@ function normalizeRun(input) {
     model: String(input.model || ""),
     createdAt: validDate ? new Date(input.createdAt).toISOString() : null,
     status: [...new Set((input.status || []).map(String))],
+    chatSync:
+      input.chatSync?.mode === "saved-chat-poll"
+        ? {
+            mode: "saved-chat-poll",
+            observedAt: Number.isFinite(Date.parse(input.chatSync.observedAt))
+              ? new Date(input.chatSync.observedAt).toISOString()
+              : null,
+          }
+        : null,
     capture:
       input.capture && typeof input.capture === "object"
         ? {
@@ -184,6 +206,14 @@ function normalizeRun(input) {
     warnings: [...warnings],
     provenance: String(input.provenance || "Imported response"),
     synthetic: input.synthetic === true,
+    sample:
+      input.sample === true ||
+      input.demo === true ||
+      input.source === "sample" ||
+      input.synthetic === true,
+    analysisScope: String(
+      input.analysisScope || "Imported response or normalized record",
+    ),
   };
   const m = metrics([run]);
   return {
@@ -380,7 +410,13 @@ function chatgpt(raw) {
       s.cited = true;
       s.evidence.push("assistant citation reference");
     }
-  return c.finish({ prompt, model: raw.default_model_slug || raw.model });
+  return c.finish({
+    prompt,
+    model: raw.default_model_slug || raw.model,
+    analysisScope: raw.current_node
+      ? "Saved conversation · active branch; sources and citations may span multiple answers. Prompt shown is the first user message."
+      : "Saved conversation · all included branches; sources and citations may span multiple answers. Prompt shown is the first user message.",
+  });
 }
 
 function anthropic(raw, platform) {
@@ -432,7 +468,13 @@ function anthropic(raw, platform) {
         }
     }
   }
-  return c.finish({ prompt });
+  return c.finish({
+    prompt,
+    analysisScope:
+      platform === "claude"
+        ? "Saved conversation · included messages; sources and citations may span multiple answers. Prompt shown is the first user message."
+        : "Single API response",
+  });
 }
 
 function openai(raw) {
@@ -664,6 +706,7 @@ function sourcesCsv(runs) {
       "queries_json",
       "title",
       "url",
+      "observed_urls_json",
       "domain",
       "retrieved",
       "cited",
@@ -683,6 +726,7 @@ function sourcesCsv(runs) {
         JSON.stringify(r.queries),
         s.title,
         s.url,
+        JSON.stringify(s.observedUrls || [s.url]),
         s.domain,
         s.retrieved,
         s.cited,

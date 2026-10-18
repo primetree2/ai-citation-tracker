@@ -4,6 +4,14 @@ I checked this upgrade against the previously supplied **Duplicate of Beyond Lab
 
 **My conclusion: I have a usable partial submission, not verified completion of every requirement.** The brief explicitly allows partial work and values debugging and approach. I keep the missing live evidence visible below.
 
+## Counting clarification
+
+The supplied ChatGPT file contains **42 exact URL strings**, representing **29 normalized source URLs** after stripping tracking parameters, fragments, and equivalent trailing slashes. **Seven** normalized sources have citation evidence; **22** do not. The current exports retain exact observed URL variants alongside the normalized URL. Neither retrieval records nor absent citation evidence prove that a full page was read.
+
+## Chat-sync update boundary
+
+The bookmark now watches a new/current ChatGPT or Claude tab and automatically synchronizes saved snapshots. This improves usability without manual file downloads, but **does not close the live-stream, fan-out-query, or rich-metadata research gaps**. Local synthetic cross-origin tests are not an authenticated provider investigation.
+
 ## My evidence levels
 
 - **Verified on supplied artifacts:** I reproduced extraction from the original ChatGPT and Claude saved-chat JSON.

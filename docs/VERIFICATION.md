@@ -1,12 +1,34 @@
-# My release verification
+# Release verification · 2.2 (chat-first workflow)
 
-I ran the following checks on this repository before packaging it:
+## Passed local checks
 
-- I passed **27 parser regression tests** with Node's built-in test runner.
-- I reproduced the supplied saved-chat counts: **ChatGPT 29 retrieved / 7 cited**, **Claude 9 retrieved / 7 cited**.
-- I passed browser checks for the original four tabs, original sample loading, inline source inspection, invalid imports, citation-only evidence, source filters, download actions, persistence after reload, empty-state persistence, and mobile page-width containment. I recorded eleven states and observed no uncaught browser exceptions.
-- I visually reviewed desktop and mobile overviews, imports, source details, expanded snapshots, error/empty states, the format reference, and expanded advanced capture instructions. I corrected sticky-header overlap and made narrow-screen source details stack rather than squeeze into tiny columns.
-- I exercised the local CDP recorder against a synthetic SSE server, then imported the saved bundle through the shared parser. I got **one retrieved/cited source and one query**, with transport completion recorded. I did not test a live provider account.
-- I kept the original root redirect and static asset structure, and checked that the generated browser parser matches its source build.
+- **46 unit/regression tests:** 32 parser cases and 14 watcher cases. These cover original source counts, safe URL handling, normalized/exported chat-sync metadata, new-chat waiting, SPA chat changes, auth-locality, wrong-channel messages, popup failures, pause/stop, manual snapshot fallback, access denials, transient-failure pause, and long Retry-After waits.
+- **Existing expanded dashboard browser checks:** imports, source search, combined status filters, filtered CSV versus collection exports, persistence, sample/personal isolation, mobile containment, empty/error states, and interactive guidance. A fresh workspace defaults to My data rather than sample totals.
+- **New synthetic cross-origin browser test:** connect on a new-chat page before its ID exists; create the first conversation; send a local fixture through the bookmark into My data; apply a follow-up without duplicating the analysis or stealing source-search focus; pause and stop; reject the wrong channel; surface a denied request. Provider-origin requests are fulfilled locally by CDP interception. No authenticated AI website is contacted.
+- **Local launcher test:** the explicit loopback server serves the correct root even from another working directory and prints a usable `127.0.0.1` URL.
+- **Local synthetic SSE recorder test:** one source and one query captured/parsed through the existing CDP recorder. This is separate from saved-chat synchronization.
+- **25 screenshot states** recorded across desktop, 390px mobile, and dark theme, including the new connection panel, AI-tab control panel, pause and denial states. The chat-first guide, main routes, and connection states were visually inspected. No uncaught exceptions or tested mobile page-width overflow were reported.
+- Generated parser rebuilt from source. No production dependencies, API keys, third-party relay, backend uploads, or browser extension added.
 
-I do not equate fixture tests, browser UI checks, or a local stream replay with authenticated provider compatibility. I keep the remaining recruiter-task gaps in `REQUIREMENTS.md`.
+## Commands
+
+```sh
+npm run build
+npm test
+npm run test:browser
+npm run test:chat
+npm run test:server
+npm run test:capture
+```
+
+## Remaining verification
+
+A real ChatGPT/Claude account smoke test is still required. Browser popup/opener isolation, private endpoint changes, account access, and provider response-saving behavior can affect real use. Tests of synthetic pages are not proof of authenticated compatibility. This release synchronizes saved conversation snapshots; it does not prove successful live network-stream extraction, ChatGPT fan-out recovery, or rich YouTube metadata capture. See REQUIREMENTS.md and WATCH_CHAT.md.
+
+## Deployment packaging validation
+
+- `npm run check` passed: Node syntax, required public assets, project-relative links, and a fresh generated parser. The check does not rewrite the parser.
+- The 46 unit/regression tests passed on the deployment package.
+- `npm run build:pages` produced an 18-file allowlisted public artifact; runner code, docs, private output, tests, and repository metadata were excluded.
+- All supplied workflow files parsed as YAML. Their branch/Actions source selection still requires real GitHub settings and permissions; no workflow was executed on GitHub during this update.
+- The application JS/CSS/HTML assets are unchanged from the chat-first release. A repository-subpath browser test serves the staged artifact at `/ai-citation-tracker/`, rather than assuming a domain root.

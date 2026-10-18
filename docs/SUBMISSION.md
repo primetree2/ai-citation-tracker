@@ -12,7 +12,7 @@ I state whether I captured a live stream or used a saved-chat fallback for each 
 
 I attach or link my redacted JSON/CSV output: **[my actual output link]**. I include source URL, title, full available snippet, mapped metadata, retrieved/cited flags, observed queries, and evidence paths. I attach a screenshot or a 5–10 minute screen recording: **[my link]**.
 
-I reproduce the original supplied saved files as 29 retrieved / 7 cited for ChatGPT, and 9 retrieved / 7 cited for Claude. I do not use those counts as proof that I captured a live stream. I separately report any new result: **[my actual counts and evidence]**.
+I reproduce the supplied saved files as 29 normalized retrieved sources / 7 cited for ChatGPT, and 9 retrieved / 7 cited for Claude. ChatGPT has 42 exact URL variants; URL normalization merges them into 29 sources. Twenty-two normalized ChatGPT retrievals have no matching citation evidence. I do not claim that the full pages were read. I do not use those counts as proof that I captured a live stream. I separately report any new result: **[my actual counts and evidence]**.
 
 ## My findings and failures
 

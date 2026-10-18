@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "exportedAt": "2026-10-16T05:02:32.409Z",
+  "exportedAt": "2026-10-18T11:14:57.129Z",
   "runs": [
     {
       "schemaVersion": 3,
@@ -19,6 +19,10 @@
       "sources": [
         {
           "url": "https://developereducators.com/tutorials/n8n",
+          "observedUrls": [
+            "https://developereducators.com/tutorials/n8n/",
+            "https://developereducators.com/tutorials/n8n/?utm_source=chatgpt.com"
+          ],
           "title": "Best n8n YouTube Channels for Tutorials in 2026 (137 creators)",
           "domain": "developereducators.com",
           "snapshot": {
@@ -40,6 +44,10 @@
         },
         {
           "url": "https://developereducators.com/roadmap/n8n",
+          "observedUrls": [
+            "https://developereducators.com/roadmap/n8n/",
+            "https://developereducators.com/roadmap/n8n/?utm_source=chatgpt.com"
+          ],
           "title": "Learn n8n: A Free YouTube Roadmap (2026)",
           "domain": "developereducators.com",
           "snapshot": {
@@ -61,6 +69,10 @@
         },
         {
           "url": "https://www.classcentral.com/report/best-n8n-courses",
+          "observedUrls": [
+            "https://www.classcentral.com/report/best-n8n-courses/",
+            "https://www.classcentral.com/report/best-n8n-courses/?utm_source=chatgpt.com"
+          ],
           "title": "10 Best n8n Courses for 2026 — Class Central",
           "domain": "classcentral.com",
           "snapshot": {
@@ -84,6 +96,10 @@
         },
         {
           "url": "https://www.classcentral.com/subject/n8n",
+          "observedUrls": [
+            "https://www.classcentral.com/subject/n8n",
+            "https://www.classcentral.com/subject/n8n?utm_source=chatgpt.com"
+          ],
           "title": "600+ n8n Online Courses for 2026 | Explore Free Courses & Certifications | Class Central",
           "domain": "classcentral.com",
           "snapshot": {
@@ -105,6 +121,10 @@
         },
         {
           "url": "https://support.n8n.io/article/learning-resources",
+          "observedUrls": [
+            "https://support.n8n.io/article/learning-resources",
+            "https://support.n8n.io/article/learning-resources?utm_source=chatgpt.com"
+          ],
           "title": "FAQs - General Tips - Learning resources | n8n Help Center",
           "domain": "support.n8n.io",
           "snapshot": {
@@ -128,6 +148,9 @@
         },
         {
           "url": "https://www.youtube.com/watch?v=7_PeuTsx7UM",
+          "observedUrls": [
+            "https://www.youtube.com/watch?v=7_PeuTsx7UM"
+          ],
           "title": "N8N Full Course: Build AI Automations in 2026 (For Beginners) - YouTube",
           "domain": "youtube.com",
           "snapshot": {
@@ -149,6 +172,9 @@
         },
         {
           "url": "https://www.youtube.com/watch?v=TZ43SRdTMs0",
+          "observedUrls": [
+            "https://www.youtube.com/watch?v=TZ43SRdTMs0"
+          ],
           "title": "Ultimate n8n Course: Beginner to Pro in 17 Hours (2026) - YouTube",
           "domain": "youtube.com",
           "snapshot": {
@@ -170,6 +196,10 @@
         },
         {
           "url": "https://learnforge.dev/blog/best-n8n-course-2026",
+          "observedUrls": [
+            "https://learnforge.dev/blog/best-n8n-course-2026/",
+            "https://learnforge.dev/blog/best-n8n-course-2026/?utm_source=chatgpt.com"
+          ],
           "title": "Best n8n Course in 2026: Free vs Paid Options Compared | LearnForge",
           "domain": "learnforge.dev",
           "snapshot": {
@@ -193,6 +223,10 @@
         },
         {
           "url": "https://aiattention.ai/blog/best-ai-agents-educators-youtube-2026",
+          "observedUrls": [
+            "https://aiattention.ai/blog/best-ai-agents-educators-youtube-2026",
+            "https://aiattention.ai/blog/best-ai-agents-educators-youtube-2026?utm_source=chatgpt.com"
+          ],
           "title": "Best YouTube Creators for Learning AI Agents & Automation 2026 | AIAttention Blog",
           "domain": "aiattention.ai",
           "snapshot": {
@@ -215,6 +249,10 @@
         },
         {
           "url": "https://growai.in/best-n8n-course-india-2026",
+          "observedUrls": [
+            "https://growai.in/best-n8n-course-india-2026/",
+            "https://growai.in/best-n8n-course-india-2026/?utm_source=chatgpt.com"
+          ],
           "title": "Best N8N Course India 2026: Free vs Paid Learning Guide | GrowAI",
           "domain": "growai.in",
           "snapshot": {
@@ -238,6 +276,10 @@
         },
         {
           "url": "https://blog.aakashdev.in/blog/ai-automation-langchain-n8n-youtube-resources",
+          "observedUrls": [
+            "https://blog.aakashdev.in/blog/ai-automation-langchain-n8n-youtube-resources",
+            "https://blog.aakashdev.in/blog/ai-automation-langchain-n8n-youtube-resources?utm_source=chatgpt.com"
+          ],
           "title": "AI Automation & LangChain: Best YouTube Resources to Build Real AI Systems",
           "domain": "blog.aakashdev.in",
           "snapshot": {
@@ -260,6 +302,10 @@
         },
         {
           "url": "https://community.n8n.io/c/tutorials/28/l/top",
+          "observedUrls": [
+            "https://community.n8n.io/c/tutorials/28/l/top",
+            "https://community.n8n.io/c/tutorials/28/l/top?utm_source=chatgpt.com"
+          ],
           "title": "Tutorials - n8n Community",
           "domain": "community.n8n.io",
           "snapshot": {
@@ -281,6 +327,9 @@
         },
         {
           "url": "https://www.reddit.com/r/n8n_ai_agents/comments/1wg4e5o/best_channel_to_learn_n8n",
+          "observedUrls": [
+            "https://www.reddit.com/r/n8n_ai_agents/comments/1wg4e5o/best_channel_to_learn_n8n/"
+          ],
           "title": "Best channel to learn n8n",
           "domain": "reddit.com",
           "snapshot": {
@@ -301,6 +350,10 @@
         },
         {
           "url": "https://learnwithpath.com/blog/best-youtube-channels-for-ai-engineering-2026",
+          "observedUrls": [
+            "https://learnwithpath.com/blog/best-youtube-channels-for-ai-engineering-2026",
+            "https://learnwithpath.com/blog/best-youtube-channels-for-ai-engineering-2026?utm_source=chatgpt.com"
+          ],
           "title": "10 Best AI YouTube Channels in 2026 for Learning AI",
           "domain": "learnwithpath.com",
           "snapshot": {
@@ -323,6 +376,10 @@
         },
         {
           "url": "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg",
+          "observedUrls": [
+            "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg",
+            "https://natokhd.com/video/n8n-full-course-masterclass-2026-part-12-installation-core-nodes-data-error-handling/HaSaDsn3AMg?utm_source=chatgpt.com"
+          ],
           "title": "n8n Full Course Masterclass 2026 - Part 1/2 | Installation, Core Nodes, Data, & Error Handling | NatokHD",
           "domain": "natokhd.com",
           "snapshot": {
@@ -346,6 +403,10 @@
         },
         {
           "url": "https://skilldential.com/learn-n8n-from-scratch-using-free-tools",
+          "observedUrls": [
+            "https://skilldential.com/learn-n8n-from-scratch-using-free-tools/",
+            "https://skilldential.com/learn-n8n-from-scratch-using-free-tools/?utm_source=chatgpt.com"
+          ],
           "title": "11 Best Ways to Learn n8n from Scratch Using Free Tools",
           "domain": "skilldential.com",
           "snapshot": {
@@ -368,6 +429,9 @@
         },
         {
           "url": "https://www.classcentral.com/institution/n8n",
+          "observedUrls": [
+            "https://www.classcentral.com/institution/n8n?utm_source=chatgpt.com"
+          ],
           "title": "50+ Top n8n Online Courses [2026] | Class Central",
           "domain": "classcentral.com",
           "snapshot": {
@@ -388,6 +452,9 @@
         },
         {
           "url": "https://www.classcentral.com/course/youtube-n8n-crash-course-in-3-hours-complete-tutorial-for-beginners-455776",
+          "observedUrls": [
+            "https://www.classcentral.com/course/youtube-n8n-crash-course-in-3-hours-complete-tutorial-for-beginners-455776?utm_source=chatgpt.com"
+          ],
           "title": "Free Video: n8n Crash Course - Complete Tutorial for Beginners from Data Science with Harshit | Class Central",
           "domain": "classcentral.com",
           "snapshot": {
@@ -408,6 +475,9 @@
         },
         {
           "url": "https://www.classcentral.com/course/youtube-n8n-beginner-course-513875",
+          "observedUrls": [
+            "https://www.classcentral.com/course/youtube-n8n-beginner-course-513875?utm_source=chatgpt.com"
+          ],
           "title": "Free Video: n8n Beginner Course - Introduction to Automation and Workflow Management from n8n | Class Central",
           "domain": "classcentral.com",
           "snapshot": {
@@ -428,6 +498,9 @@
         },
         {
           "url": "https://www.classcentral.com/course/youtube-n8n-quick-start-build-your-first-workflow-2025-461634",
+          "observedUrls": [
+            "https://www.classcentral.com/course/youtube-n8n-quick-start-build-your-first-workflow-2025-461634?utm_source=chatgpt.com"
+          ],
           "title": "Free Video: n8n Quick Start - Build Your First Workflow [2025] from n8n | Class Central",
           "domain": "classcentral.com",
           "snapshot": {
@@ -448,6 +521,9 @@
         },
         {
           "url": "https://www.classcentral.com/course/youtube-master-n8n-in-2-hours-complete-beginner-s-guide-for-2025-489791",
+          "observedUrls": [
+            "https://www.classcentral.com/course/youtube-master-n8n-in-2-hours-complete-beginner-s-guide-for-2025-489791?utm_source=chatgpt.com"
+          ],
           "title": "Free Video: Master N8N in 2 Hours - Complete Beginner's Guide for 2025 from Jono Catliff | Class Central",
           "domain": "classcentral.com",
           "snapshot": {
@@ -468,6 +544,9 @@
         },
         {
           "url": "https://community.n8n.io/t/n8n-tutorial-for-beginners-2026-part-1-build-your-first-ai-workflow/261168?tl=en",
+          "observedUrls": [
+            "https://community.n8n.io/t/n8n-tutorial-for-beginners-2026-part-1-build-your-first-ai-workflow/261168?tl=en&utm_source=chatgpt.com"
+          ],
           "title": "N8n Tutorial for Beginners (2026) | Part 1: Build Your First AI Workflow - Built with n8n - n8n Community",
           "domain": "community.n8n.io",
           "snapshot": {
@@ -489,6 +568,9 @@
         },
         {
           "url": "https://n8n.io/workflows/18-n8n-nodemation-basic-getting-started-on-the-workflow-canvas-13",
+          "observedUrls": [
+            "https://n8n.io/workflows/18-n8n-nodemation-basic-getting-started-on-the-workflow-canvas-13/?utm_source=chatgpt.com"
+          ],
           "title": "n8n nodemation basic - getting started on the workflow canvas (1/3) | n8n workflow template",
           "domain": "n8n.io",
           "snapshot": {
@@ -509,6 +591,9 @@
         },
         {
           "url": "https://n8n.io/ai-agents",
+          "observedUrls": [
+            "https://n8n.io/ai-agents/?utm_source=chatgpt.com"
+          ],
           "title": "Build Custom AI Agents With Logic & Control | n8n Automation Platform",
           "domain": "n8n.io",
           "snapshot": {
@@ -529,6 +614,9 @@
         },
         {
           "url": "https://community.n8n.io/t/n8n-tutorial-what-is-n8n-and-how-to-automate-anything-no-code/228297",
+          "observedUrls": [
+            "https://community.n8n.io/t/n8n-tutorial-what-is-n8n-and-how-to-automate-anything-no-code/228297?utm_source=chatgpt.com"
+          ],
           "title": "N8n Tutorial: What is n8n and How To Automate Anything (No Code) - English 🇬🇧 - n8n Community",
           "domain": "community.n8n.io",
           "snapshot": {
@@ -550,6 +638,9 @@
         },
         {
           "url": "https://natokhd.com/video/n8n-tutorial-for-beginners-2026-build-ai-automations-step-by-step-full-course/pkSu5HW2RWs",
+          "observedUrls": [
+            "https://natokhd.com/video/n8n-tutorial-for-beginners-2026-build-ai-automations-step-by-step-full-course/pkSu5HW2RWs?utm_source=chatgpt.com"
+          ],
           "title": "n8n course for beginner (2026) | NatokHD",
           "domain": "natokhd.com",
           "snapshot": {
@@ -571,6 +662,9 @@
         },
         {
           "url": "https://www.linkedin.com/posts/i423_the-top-6-n8n-youtube-channels-2026-activity-7413933068190883840-gMvK",
+          "observedUrls": [
+            "https://www.linkedin.com/posts/i423_the-top-6-n8n-youtube-channels-2026-activity-7413933068190883840-gMvK?utm_source=chatgpt.com"
+          ],
           "title": "Top n8n YouTube Channels for AI Automation | Iqra M. posted on the topic | LinkedIn",
           "domain": "linkedin.com",
           "snapshot": {
@@ -591,6 +685,9 @@
         },
         {
           "url": "https://www.linkedin.com/posts/himanshu-chhimpa_aiautomation-aiagents-n8n-activity-7506563124800712704-tSpC",
+          "observedUrls": [
+            "https://www.linkedin.com/posts/himanshu-chhimpa_aiautomation-aiagents-n8n-activity-7506563124800712704-tSpC?utm_source=chatgpt.com"
+          ],
           "title": "Learn AI Automation for Free on YouTube with Top Channels | Himanshu Chhimpa posted on the topic | LinkedIn",
           "domain": "linkedin.com",
           "snapshot": {
@@ -611,6 +708,9 @@
         },
         {
           "url": "https://n8n.academy",
+          "observedUrls": [
+            "https://n8n.academy/?utm_source=chatgpt.com"
+          ],
           "title": "N8N.academy — Learn n8n no-code in one page",
           "domain": "n8n.academy",
           "snapshot": {
@@ -635,6 +735,8 @@
       ],
       "provenance": "Imported saved response; provider-reported metadata is not independently verified.",
       "synthetic": false,
+      "sample": false,
+      "analysisScope": "Saved conversation · active branch; sources and citations may span multiple answers. Prompt shown is the first user message.",
       "retrieved": 29,
       "cited": 7,
       "matched": 7,
@@ -656,6 +758,9 @@
       "sources": [
         {
           "url": "https://glasp.co/posts/10-best-n8n-tutorials-for-ai-automation",
+          "observedUrls": [
+            "https://glasp.co/posts/10-best-n8n-tutorials-for-ai-automation"
+          ],
           "title": "10 Best n8n Tutorials for AI Automation",
           "domain": "glasp.co",
           "snapshot": {
@@ -674,6 +779,9 @@
         },
         {
           "url": "https://developereducators.com/roadmap/n8n",
+          "observedUrls": [
+            "https://developereducators.com/roadmap/n8n/"
+          ],
           "title": "Learn n8n — Free Video Roadmap",
           "domain": "developereducators.com",
           "snapshot": {
@@ -692,6 +800,9 @@
         },
         {
           "url": "https://inferencebysequoia.substack.com/p/best-content-and-community-resources",
+          "observedUrls": [
+            "https://inferencebysequoia.substack.com/p/best-content-and-community-resources"
+          ],
           "title": "Best Content and Community Resources for Founders Using n8n",
           "domain": "inferencebysequoia.substack.com",
           "snapshot": {
@@ -709,6 +820,9 @@
         },
         {
           "url": "https://developereducators.com/best/n8n",
+          "observedUrls": [
+            "https://developereducators.com/best/n8n/"
+          ],
           "title": "Best n8n Tutorial Videos",
           "domain": "developereducators.com",
           "snapshot": {
@@ -727,6 +841,9 @@
         },
         {
           "url": "https://genaiunplugged.substack.com/i/186556145",
+          "observedUrls": [
+            "https://genaiunplugged.substack.com/i/186556145/"
+          ],
           "title": "genaiunplugged.substack.com",
           "domain": "genaiunplugged.substack.com",
           "snapshot": {
@@ -745,6 +862,9 @@
         },
         {
           "url": "https://developereducators.com/tutorials/n8n",
+          "observedUrls": [
+            "https://developereducators.com/tutorials/n8n/"
+          ],
           "title": "developereducators.com",
           "domain": "developereducators.com",
           "snapshot": {
@@ -763,6 +883,9 @@
         },
         {
           "url": "https://community.n8n.io/t/introduction-to-n8n/230666?tl=ar",
+          "observedUrls": [
+            "https://community.n8n.io/t/introduction-to-n8n/230666?tl=ar"
+          ],
           "title": "Introduction to N8N",
           "domain": "community.n8n.io",
           "snapshot": {
@@ -781,6 +904,9 @@
         },
         {
           "url": "https://www.createwith.com/video/n8n-tutorial-2026-complete-learning-roadmap-for-beginners",
+          "observedUrls": [
+            "https://www.createwith.com/video/n8n-tutorial-2026-complete-learning-roadmap-for-beginners"
+          ],
           "title": "n8n tutorial 2026 complete learning roadmap for beginners",
           "domain": "createwith.com",
           "snapshot": {
@@ -799,6 +925,9 @@
         },
         {
           "url": "https://aiagentrank.io/learn/n8n",
+          "observedUrls": [
+            "https://aiagentrank.io/learn/n8n"
+          ],
           "title": "aiagentrank.io",
           "domain": "aiagentrank.io",
           "snapshot": {
@@ -818,6 +947,8 @@
       "warnings": [],
       "provenance": "Imported saved response; provider-reported metadata is not independently verified.",
       "synthetic": false,
+      "sample": false,
+      "analysisScope": "Saved conversation · included messages; sources and citations may span multiple answers. Prompt shown is the first user message.",
       "retrieved": 9,
       "cited": 7,
       "matched": 7,
